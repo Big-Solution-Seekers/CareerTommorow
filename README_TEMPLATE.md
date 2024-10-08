@@ -1,6 +1,6 @@
 # Career Tomorrow
 
-> CareerTomorrow's mission is to empower low-income and lower-middle-class students by providing them with information and access to affordable, rewarding career alternatives beyond traditional college. We aim to help students discover diverse educational programs that lead to successful careers, ensuring they have the opportunities and resources needed to pursue fulfilling paths that align with their financial realities.
+> CareerTomorrow's mission is to empower low-income and lower-middle-class students by providing them with information and access to affordable, rewarding career alternatives beyond traditional college. We aim to help students discover diverse educational programs that lead to successful careers, ensuring they have the opportunities and resources to pursue fulfilling paths that align with their financial realities.
 
 ## Team
 
@@ -44,7 +44,7 @@ npm run build
 
 ### Roadmap
 
-View the project roadmap [here](https://docs.google.com/document/d/1J9DKt0kz5Cw0RNKJVOXUsaxfPKUpLMDLJnHiMvTNafc/edit).
+View the project roadmap [here](https://docs.google.com/document/d/1J9DKt0kz5Cw0RNKJVOXUsaxfPKUpLMDLJnHiMvTNafc).
 
 ## Contributing
 
