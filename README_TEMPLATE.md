@@ -44,7 +44,7 @@ npm run build
 
 ### Roadmap
 
-View the project roadmap [here](https://docs.google.com/document/d/1J9DKt0kz5Cw0RNKJVOXUsaxfPKUpLMDLJnHiMvTNafc).
+View the project roadmap [here](https://github.com/orgs/Big-Solution-Seekers/projects/1/views/1).
 
 ## Contributing
 
