@@ -44,7 +44,7 @@ npm run build
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECTS_TAB).
+View the project roadmap [here](https://docs.google.com/document/d/1J9DKt0kz5Cw0RNKJVOXUsaxfPKUpLMDLJnHiMvTNafc/edit).
 
 ## Contributing
 
