@@ -6,36 +6,22 @@ CareerTomorrow's mission is to empower low-income and lower-middle-class student
 
 ### 🚀 Problem Statement
 
-Clearly define the problem or challenge your project aims to address. Explain why this problem is important and how your project will provide a solution.
-
-- Who the application's audience is
-- What the application does for the user
-- Why the user would use the application
-
-_Example:_ Our application would mainly serve individuals with disability or mobility issues under financial or physical constraints. A priority would be those who live in underprivileged communities, conflict-affected areas, or communities with limited healthcare infrastructure. Our product will leverage the power of technology and community collaboration to make assistive devices more accessible and affordable to those in need. This is done by connecting individuals to a network of builders who facilitate the creation and distribution of affordable, 3D-printed devices.
-
----
+This application is designed for low-income students, particularly Black and Latino borrowers, who face financial barriers to obtaining a college education. The platform helps users access career-building resources and alternative educational opportunities that do not require a traditional college degree. By using this app, users can find job opportunities and upskilling programs that align with their goals, allowing them to overcome the challenges of limited upward mobility and escape the cycle of low-paying jobs, even without a college degree.
 
 ### 📝 Features & User Stories
 
-- Describes all the features and their purpose.
-- For each feature, outline the user flow.
-- Identify features required for a MVP
-
-Example:
-
-- **User Profile Page (MVP)**: Users can sign into the application to see their home page. The home page will display all of their blog posts and settings for updating their profile.
-- **Other User Profile Page (MVP)**: Users can see a directory of all users in the application. Clicking on their name will take the user to view the profile of that user.
-- **Live Chat (MVP)**: Users can start a chat with another user. This chat will have live updates and all messages will be saved.
-- **Chatbot (Stretch)**: Users can navigate to the `/chat` page to interact with a chatbot powered by ChatGPT.
+- **User sign Up(MVP)**: A user of the site can create a new account if it is their first time or they can log in to their account if they are revisiting the site.
+- **User Profile Page (MVP)**: Users can sign into the application to see their profile page. The profile page will show the user the career field that they have chosen.
+- **User Browsing Page (MVP)**: As a visitor of the page, I can click on career fields and scroll through the page to see the programs available.
+- **User Quiz Page (MVP)**: As a visitor or logged-in user, I can take a quiz that will show me recommended programs and career fields
+- **User Community forum Page (MVP)**: A User can go to the community forum to interact with others and create their own posts.
+- **User Favorite Page (Stretch)**: A User can save/ remove their favorite programs to come back to them later.
 
 ---
 
 ### 📚 Tech Stack:
 
-Clearly state the technologies, frameworks, and tools you intend to use for the front-end and back-end development.
-
-_Example:_ We intend on using React for the front end, Node.js and Express for the backend, and PostgreSQL for the database. We will also incorporate Socket.io to implement the live chat feature and ChatGPT to implement the chatbot feature.
+We plan to use React for the front end to build a dynamic and interactive user interface. For the backend, we will use Node.js and Express to create a strong and scalable API. Our database will be PostgreSQL, which helps store and manage our data effectively.
 
 ---
 
@@ -64,9 +50,7 @@ _Example:_ This application will utilize the WeatherAPI API to retrieve live wea
 
 If you are working in a team, specify the roles and responsibilities of each team member and how you will collaborate throughout the project.
 
-_Example:_ The team working on this project will consist of Ben Spector and Reuben Ogbonna. We will collaborate using Github Project boards to manage our tasks, Slack for communication, and Github to manage changes to the codebase. Reuben will primarily focus on building the blog feature while Ben will focus on building the live chat feature.
-
----
+## The team working on this project will consist of Abdullah Khan and Adrian Campos, Rashell Aldas . We will collaborate using Github Project boards to manage our tasks, Slack for communication, and Github to manage changes to the codebase. Abdullah will work on the backend with Adrian and Rashell will work on the frontend using react to make sure the components are done on time.
 
 ### 📓 References and Citations:
 
