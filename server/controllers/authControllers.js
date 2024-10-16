@@ -5,7 +5,8 @@ const User = require('../models/User');
 // is valid, it adds the userId to the cookie (allowing them to stay logged in)
 // and sends back the user object.
 exports.loginUser = async (req, res) => {
-  const { username, password } = req.body // the req.body value is provided by the client
+  const { username, password  } = req.body // the req.body value is provided by the client
+
 
   const user = await User.findByUsername(username);
   if (!user) return res.sendStatus(404);

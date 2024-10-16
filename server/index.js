@@ -14,6 +14,9 @@ const checkAuthentication = require('./middleware/checkAuthentication');
 // controller imports
 const authControllers = require('./controllers/authControllers');
 const userControllers = require('./controllers/userControllers');
+const postControllers = require('./controllers/postControllers'); // Import posts controllers
+const commentControllers = require('./controllers/commentControllers'); // Import comments controllers
+
 const app = express();
 
 // middleware
@@ -22,8 +25,6 @@ app.use(logRoutes); // print information about each incoming request
 app.use(express.json()); // parse incoming request bodies as JSON
 app.use(express.static(path.join(__dirname, '../frontend/dist'))); // Serve static assets from the dist folder of the frontend
 
-
-
 ///////////////////////////////
 // Auth Routes
 ///////////////////////////////
@@ -31,8 +32,6 @@ app.use(express.static(path.join(__dirname, '../frontend/dist'))); // Serve stat
 app.get('/api/me', authControllers.showMe);
 app.post('/api/login', authControllers.loginUser);
 app.delete('/api/logout', authControllers.logoutUser);
-
-
 
 ///////////////////////////////
 // User Routes
@@ -46,7 +45,27 @@ app.get('/api/users', checkAuthentication, userControllers.listUsers);
 app.get('/api/users/:id', checkAuthentication, userControllers.showUser);
 app.patch('/api/users/:id', checkAuthentication, userControllers.updateUser);
 
+///////////////////////////////
+// Posts Routes
+///////////////////////////////
 
+app.get('/api/posts', postControllers.getAllPosts);
+app.get('/api/posts/:id', postControllers.getPostById);
+app.post('/api/posts', checkAuthentication, postControllers.createPost);
+app.patch('/api/posts/:id', checkAuthentication, postControllers.updatePost);
+app.delete('/api/posts', checkAuthentication, postControllers.deleteAllPosts);
+
+///////////////////////////////
+// Comments Routes
+///////////////////////////////
+
+app.get('/api/comments', commentControllers.getAllComments);
+app.get('/api/comments/:id', commentControllers.getCommentById);
+app.get('/api/posts/:post_id/comments', commentControllers.getCommentsByPostId);
+app.post('/api/comments', checkAuthentication, commentControllers.createComment);
+app.patch('/api/comments/:id', checkAuthentication, commentControllers.updateComment);
+app.delete('/api/comments/:id', checkAuthentication, commentControllers.deleteComment);
+app.delete('/api/comments', checkAuthentication, commentControllers.deleteAllComments);
 
 ///////////////////////////////
 // Fallback Route
@@ -58,8 +77,6 @@ app.get('*', (req, res, next) => {
   if (req.originalUrl.startsWith('/api')) return next();
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
-
-
 
 ///////////////////////////////
 // Start Listening
