@@ -1,3 +1,4 @@
+import '../styles/SignUp.css'
 import { useContext, useState } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import CurrentUserContext from "../contexts/current-user-context";
@@ -10,7 +11,9 @@ export default function SignUpPage() {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [errorText, setErrorText] = useState('');
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('')
 
   // users shouldn't be able to see the sign up page if they are already logged in.
   // if the currentUser exists in the context, navigate the user to 
@@ -20,11 +23,16 @@ export default function SignUpPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorText('');
-    if (!username || !password) return setErrorText('Missing username or password');
+    if (!username || !email || !password || !confirmPassword) return setErrorText('Missing username, email, or password');
+    
+    if (password !== confirmPassword) {
+      return setErrorText('Passwords do not match');
+    }
 
-    const [user, error] = await createUser({ username, password });
+    const [user, error] = await createUser({ username, email, password, confirmPassword });
     if (error) return setErrorText(error.message);
 
+    console.log(event)
     setCurrentUser(user);
     navigate('/');
   };
@@ -32,13 +40,15 @@ export default function SignUpPage() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === 'username') setUsername(value);
+    if (name === 'email') setEmail(value)
     if (name === 'password') setPassword(value);
+    if (name === 'confirm_password') setConfirmPassword(value)
   };
 
-  return <>
+  return <div className='sign_up'>
     <h1>Sign Up</h1>
     <form onSubmit={handleSubmit} onChange={handleChange} aria-labelledby="create-heading">
-      <h2 id="create-heading">Create New User</h2>
+      <h2 id="create-heading">Create New Account</h2>
       <label htmlFor="username">Username</label>
       <input
         autoComplete="off"
@@ -47,6 +57,16 @@ export default function SignUpPage() {
         name="username"
         onChange={handleChange}
         value={username}
+      />
+
+      <label htmlFor="email">Email</label>
+      <input
+        autoComplete="off"
+        type="email"
+        id="email"
+        name="email"
+        onChange={handleChange}
+        value={email}
       />
 
       <label htmlFor="password">Password</label>
@@ -59,6 +79,16 @@ export default function SignUpPage() {
         value={password}
       />
 
+      <label htmlFor="confirmPassword">Confirm Password</label>
+      <input
+        autoComplete="off"
+        type="password"
+        id="confirm_password"
+        name="confirm_password"
+        onChange={handleChange}
+        value={confirmPassword}
+      />
+
       {/* In reality, we'd want a LOT more validation on signup, so add more things if you have time
         <label htmlFor="password-confirm">Password Confirm</label>
         <input autoComplete="off" type="password" id="password-confirm" name="passwordConfirm" />
@@ -67,6 +97,6 @@ export default function SignUpPage() {
       <button>Sign Up Now!</button>
     </form>
     {!!errorText && <p>{errorText}</p>}
-    <p>Already have an account with us? <Link to="/login">Log in!</Link></p>
-  </>;
+    <p className='back_to_login'>Already have an account with us? <Link to="/login">Log in!</Link></p>
+  </ div>;
 }
