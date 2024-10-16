@@ -17,7 +17,7 @@ content {
     margin-bottom: 20px;
 }
   
-metaInfo {
+.metaInfo {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
@@ -25,39 +25,39 @@ metaInfo {
     color: gray
 }
   
-username {
+.username {
     font-weight: bold;
 }
 
-timePosted {
+.timePosted {
     font-style: italic;
 }
 
-commentSection {
+.commentSection {
     margin-top: 20px;
 }
 
-commentList {
+.commentList {
     list-style-type: none;
     padding-left: '0';
 }
 
-commentItem {
+.commentItem {
     background-color: #f1f1f1;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
 
-commentInput {
-    width: 100%;
+.commentInput {
+    width: 97%;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
   }
 
-commentButton {
+.commentButton {
     background-color: #28a745;
     color: white;
     padding: 10px 15px;

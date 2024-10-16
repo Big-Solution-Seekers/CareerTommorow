@@ -1,7 +1,9 @@
+import { useState } from "react";
 import Posts from "../components/Posts";
+import PostModel from "../components/PostModal";
 
 export default function CommunityForum() {
-    const postData = [
+    const [postData, setPostData] = useState([
         { title: "Post 1", content: "This is the first post", username: "user1", timePosted: "2024-10-15 10:00 AM" },
         { title: "Post 2", content: "Here's some content for post 2", username: "user2", timePosted: "2024-10-15 10:30 AM" },
         { title: "Post 3", content: "Post 3 content goes here", username: "user3", timePosted: "2024-10-15 11:00 AM" },
@@ -12,21 +14,25 @@ export default function CommunityForum() {
         { title: "Post 8", content: "Post 8 is about...", username: "user8", timePosted: "2024-10-15 01:30 PM" },
         { title: "Post 9", content: "This is post 9", username: "user9", timePosted: "2024-10-15 02:00 PM" },
         { title: "Post 10", content: "Post 10 details", username: "user10", timePosted: "2024-10-15 02:30 PM" },
-      ];
-    
-      return (
-        <div>
-            <button>Add a post!</button>
-          <h1>Community Forum</h1>
-          {postData.map((post, index) => (
-              <Posts 
-              key={index} 
-              title={post.title} 
-              content={post.content} 
-              username={post.username} 
-              timePosted={post.timePosted} 
-            />
-          ))}
+    ]);
+
+    const addPost = (newPost) => {
+        setPostData([newPost, ...postData]);
+    };
+
+    return (
+        <div id='community-page'>
+            <PostModel addPost={addPost} />
+            <h1>Community Forum</h1>
+            {postData.map((post, index) => (
+                <Posts
+                    key={index}
+                    title={post.title}
+                    content={post.content}
+                    username={post.username}
+                    timePosted={post.timePosted}
+                />
+            ))}
         </div>
-      );
+    );
 }
