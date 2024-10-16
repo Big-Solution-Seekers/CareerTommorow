@@ -29,7 +29,7 @@ export default function SignUpPage() {
       return setErrorText('Passwords do not match');
     }
 
-    const [user, error] = await createUser({ username, email, password, confirmPassword });
+    const [user, error] = await createUser({ username, email, password});
     if (error) return setErrorText(error.message);
 
     console.log(event)
@@ -100,3 +100,4 @@ export default function SignUpPage() {
     <p className='back_to_login'>Already have an account with us? <Link to="/login">Log in!</Link></p>
   </ div>;
 }
+

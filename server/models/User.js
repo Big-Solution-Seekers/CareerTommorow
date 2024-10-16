@@ -36,11 +36,11 @@ class User {
     return rawUserData ? new User(rawUserData) : null;
   }
 
-  static async create(username, password, email, profileImage) {
+  static async create(username, password, email) {
     const passwordHash = await authUtils.hashPassword(password);
-    const query = `INSERT INTO users (username, password_hash, email, profile_image)
-      VALUES (?, ?, ?, ?) RETURNING *`;
-    const result = await knex.raw(query, [username, passwordHash, email, profileImage]);
+    const query = `INSERT INTO users (username, password_hash, email)
+      VALUES (?, ?, ?) RETURNING *`;
+    const result = await knex.raw(query, [username, passwordHash, email]);
     const rawUserData = result.rows[0];
     return new User(rawUserData);
   }
