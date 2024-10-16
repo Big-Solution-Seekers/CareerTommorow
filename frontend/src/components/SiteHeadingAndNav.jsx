@@ -6,7 +6,7 @@ export default function SiteHeadingAndNav() {
   const { currentUser } = useContext(CurrentUserContext);
 
   return <header>
-    <a id='logo' href='/'>CareerTMM</a>
+    <a id='logo' href='/'>CareerTomorrow</a>
     <nav>
       <ul>
         <li><NavLink to='/'>Home</NavLink></li>

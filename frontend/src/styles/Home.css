@@ -1,14 +1,16 @@
 .mission {
-    margin-top: 30px;
-    margin-left: 875px;
-    margin-right: 75px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-  }
-  
+  margin-top: 30px;
+  margin-left: 875px;
+  margin-right: 75px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
 .title {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    margin-top: 200px;
-    margin-left: 800px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 200px;
+  margin-left: 800px;
+  font-size: 40px;
 }
