@@ -21,9 +21,11 @@ exports.seed = async (knex) => {
 
   // Insert career fields
   const careerFields = await knex('fields').insert([
-    { fields_category: 'Software Engineering' },
-    { fields_category: 'Data Science' },
-    { fields_category: 'Marketing' },
+    { fields_category: 'Technology' },
+    { fields_category: 'Bussiness' },
+    { fields_category: 'Healthcare' },
+    { fields_category: 'Education' },
+
   ]).returning('*');
 
   // Create users and get their IDs

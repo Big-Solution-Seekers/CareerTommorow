@@ -16,6 +16,7 @@ const authControllers = require('./controllers/authControllers');
 const userControllers = require('./controllers/userControllers');
 const postControllers = require('./controllers/postControllers'); // Import posts controllers
 const commentControllers = require('./controllers/commentControllers'); // Import comments controllers
+const fieldsControllers = require('./controllers/fieldsControllers')
 
 const app = express();
 
@@ -66,6 +67,14 @@ app.post('/api/comments', checkAuthentication, commentControllers.createComment)
 app.patch('/api/comments/:id', checkAuthentication, commentControllers.updateComment);
 app.delete('/api/comments/:id', checkAuthentication, commentControllers.deleteComment);
 app.delete('/api/comments', checkAuthentication, commentControllers.deleteAllComments);
+
+
+
+///////////////////////////////
+// Fields route
+///////////////////////////////
+app.get('/api/fields', fieldsControllers.listFields);
+app.get('/api/fields/:id', fieldsControllers.findField);
 
 ///////////////////////////////
 // Fallback Route
