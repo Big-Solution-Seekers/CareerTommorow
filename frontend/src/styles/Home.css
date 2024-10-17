@@ -14,3 +14,25 @@
   margin-left: 800px;
   font-size: 40px;
 }
+
+/* .images {
+  width: 100%;
+} */
+
+.homepageCards {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid blue;
+  padding: 16px;
+  margin: 16px;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.Cards {
+  border: 2px solid blue;
+}
+
+.frontpage {
+  margin-bottom: 15rem;
+}
