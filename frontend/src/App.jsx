@@ -10,6 +10,7 @@ import { checkForLoggedInUser } from './adapters/auth-adapter';
 import UsersPage from './pages/Users';
 import UserPage from './pages/User';
 import CommunityForum from './pages/CommunityForum';
+import ProgramsList from './components/ProgramsList';
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
@@ -27,6 +28,7 @@ export default function App() {
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/users' element={<UsersPage />} />
         <Route path='/users/:id' element={<UserPage />} />
+        <Route path="/programs/:fieldId" element={<ProgramsList />} /> 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </main>
