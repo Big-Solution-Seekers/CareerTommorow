@@ -38,8 +38,21 @@ exports.seed = async (knex) => {
 
   // Insert programs
   const programs = await knex('programs').insert([
-    { fields_id: careerFields[0].id, name: 'Full-Stack Bootcamp', cost: 10000, url: 'https://example.com', description: 'Learn full-stack development.', location: 'Online', image: 'https://example.com/image1.png' },
-    { fields_id: careerFields[1].id, name: 'Data Science Immersive', cost: 12000, url: 'https://example.com', description: 'Become a data scientist.', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[0].id, name: 'The Marcy Lab School', cost: 0, url: 'https://www.marcylabschool.org/', description: 'Learn full-stack development.', location: 'New York', image: 'https://example.com/image1.png' },
+    { fields_id: careerFields[0].id, name: 'Npower', cost: 0, url: 'https://www.npower.org/?gad_source=1&gclid=Cj0KCQjw05i4BhDiARIsAB_2wfCOYXde89K2vB8uYnFcJKjF1UGP81Hsq6oqN0NWbaYwNJWHR5qeDxMaAvs5EALw_wcB', description: 'Software Engineer program for women, Tech fundamentals, Cybersecurity, & Cloud computing ', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[0].id, name: 'LaunchCode', cost: 0, url: 'https://www.launchcode.org/education', description: 'Software Engineer, Data Analyst, Database Engineer & Salesforce ', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[0].id, name: 'Fullstack Academy ', cost: 0, url: 'https://www.fullstackacademy.com/programs/wdf-data', description: 'Data Analysis program.', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[0].id, name: 'Code Squad', cost: 0, url: 'https://www.codesquad.org/students.html', description: 'Software Engineer/Developer program.', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[0].id, name: 'Per Scholars', cost: 0, url: 'https://perscholas.org/locations/new-york/', description: 'IT Support, Cybersecurity, Software Engineer & AWS', location: 'New York', image: 'https://example.com/image2.png' },
+
+    { fields_id: careerFields[1].id, name: 'Strayer University', cost: 0, url: 'https://degrees.strayer.edu/business/ ', description: 'Marketing, Management, Accounting', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[1].id, name: 'Coursera ', cost: 0, url: 'https://www.coursera.org/professional-certificates/google-digital-marketing-ecommerce', description: 'Marketing,E-commerce', location: 'New York', image: 'https://example.com/image2.png' },
+   
+    { fields_id: careerFields[2].id, name: 'Job Corps', cost: 0, url: 'https://info.joinjobcorps.com/trade', description: 'Medical Assistant, Medical Administrative Assistant, EMT, Nurse Assistant,', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[2].id, name: 'Phillip Houses ', cost: 0, url: 'https://www.phippsny.org/programs/career-readiness/career-network/', description: 'PCT, CMA, & MAA', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[2].id, name: 'Bronxeoc', cost: 0, url: 'http://www.bronxeoc.org/vocational.html#emt', description: 'Medical assitant & EMT', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[2].id, name: 'Selfhelp', cost: 0, url: 'https://selfhelp.net/home-care-training/', description: 'HHA & PCA', location: 'New York', image: 'https://example.com/image2.png' },
+    
   ]).returning('*');
 
   // Insert posts

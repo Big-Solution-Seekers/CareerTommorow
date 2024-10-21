@@ -31,3 +31,5 @@ const CatagoryCard = () => {
 };
 
 export default CatagoryCard
+
+

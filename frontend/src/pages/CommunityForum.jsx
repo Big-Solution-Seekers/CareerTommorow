@@ -11,7 +11,10 @@ export default function CommunityForum() {
 
     return (
         <div id='community-page'>
-            <PostModel addPost={addPost} />
+
+    <h1>Community Forum</h1>
+    <PostModel/>
+            {/* <PostModel addPost={addPost} />
             <h1>Community Forum</h1>
             {postData.map((post, index) => (
                 <Posts
@@ -21,7 +24,7 @@ export default function CommunityForum() {
                     username={post.username}
                     timePosted={post.timePosted}
                 />
-            ))}
+            ))} */}
         </div>
     );
 }

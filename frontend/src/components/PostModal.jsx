@@ -4,6 +4,7 @@ import CurrentUserContext from "../contexts/current-user-context";
 import { fetchHandler, getPostOptions } from "../utils/fetchingUtils";
 
 const baseUrl = '/api/posts';
+const commentsUrl = '/api/comments';
 
 const PostModel = () => {
     const [modal, setModal] = useState(false);
@@ -12,6 +13,8 @@ const PostModel = () => {
     const [errorText, setErrorText] = useState('');
     const { currentUser } = useContext(CurrentUserContext);
     const [posts, setPosts] = useState([]); // State for the list of posts
+    const [comments, setComments] = useState({}); // State for the comments for each post
+    const [newComment, setNewComment] = useState(''); // State for the new comment
 
     // Function to toggle the modal visibility
     const toggleModal = () => {
@@ -21,13 +24,13 @@ const PostModel = () => {
             setContent('');
         }
     };
-
-    // Function to handle form submission
+    const currentTime = new Date().toLocaleString(); // Get current date and time
+    // Function to handle form submission for posts
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (createTitle.trim() && createContent.trim()) {
             const fields_id = 1; // Set this dynamically if needed
-            const currentTime = new Date().toLocaleString(); // Get current date and time
+            
 
             const newPost = {
                 user_id: currentUser.id,
@@ -51,11 +54,56 @@ const PostModel = () => {
         }
     };
 
+    // Function to fetch comments for a specific post
+    const fetchComments = async (postId) => {
+        const [fetchedComments] = await fetchHandler(`${commentsUrl}?post_id=${postId}`);
+        setComments((prevComments) => ({
+            ...prevComments,
+            [postId]: fetchedComments || [],
+        }));
+    };
+
+    // Fetch comments for all posts
+    const fetchAllComments = async (posts) => {
+        for (let post of posts) {
+            await fetchComments(post.id);
+        }
+    };
+
+    // Function to handle adding a comment
+    const handleAddComment = async (postId) => {
+        if (!newComment.trim()) return;
+
+        const newCommentData = {
+            post_id: postId,
+            user_id: currentUser.id,
+            content: newComment,
+            username: currentUser.username, // Including username for display
+        };
+
+        const [comment, error] = await fetchHandler(commentsUrl, getPostOptions(newCommentData, 'POST'));
+        
+        if (comment) {
+            setComments((prevComments) => ({
+                ...prevComments,
+                [postId]: [...(prevComments[postId] || []), comment],
+            }));
+            setNewComment(''); // Clear the input field after successful submission
+        } else {
+            console.error('Error creating comment', error);
+        }
+    };
+
     // Fetch posts from the server when the component mounts
     useEffect(() => {
         const fetchPosts = async () => {
             const [fetchedPosts] = await fetchHandler(baseUrl);
             setPosts(fetchedPosts || []); // Set the state with fetched posts
+
+            // Fetch comments for each post
+            if (fetchedPosts) {
+                await fetchAllComments(fetchedPosts);
+            }
         };
         fetchPosts();
     }, []);
@@ -108,8 +156,28 @@ const PostModel = () => {
                         <h3>{post.title}</h3>
                         <p>{post.content}</p>
                         <small>
-                            Posted by {currentUser?.username} at {post.timePosted}
+                            Posted by {post.user_id.username} at {currentTime}
                         </small>
+
+                        {/* Comments Section */}
+                        <div className="comments-section">
+                            <h4>Comments</h4>
+                            <div className="comments-list">
+                                {(comments[post.id] || []).map((comment) => (
+                                    <div key={comment.id} className="comment-item">
+                                        <p>{comment.content}</p>
+                                        <small>Commented by {currentUser.username || comment.user_id}</small>
+                                    </div>
+                                ))}
+                            </div>
+                            <input
+                                type="text"
+                                value={newComment}
+                                placeholder="Add a comment..."
+                                onChange={(e) => setNewComment(e.target.value)}
+                            />
+                            <button onClick={() => handleAddComment(post.id)}>Add Comment</button>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -118,5 +186,3 @@ const PostModel = () => {
 };
 
 export default PostModel;
-
-
