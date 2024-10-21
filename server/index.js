@@ -17,7 +17,7 @@ const userControllers = require('./controllers/userControllers');
 const postControllers = require('./controllers/postControllers'); // Import posts controllers
 const commentControllers = require('./controllers/commentControllers'); // Import comments controllers
 const fieldsControllers = require('./controllers/fieldsControllers')
-
+const programsControllers = require('./controllers/programsControllers')
 const app = express();
 
 // middleware
@@ -76,6 +76,10 @@ app.delete('/api/comments', checkAuthentication, commentControllers.deleteAllCom
 app.get('/api/fields', fieldsControllers.listFields);
 app.get('/api/fields/:id', fieldsControllers.findField);
 
+
+
+app.get('/api/programs', programsControllers.listPrograms);
+app.get('/api/programs/:id', programsControllers.findProgram);
 ///////////////////////////////
 // Fallback Route
 ///////////////////////////////
