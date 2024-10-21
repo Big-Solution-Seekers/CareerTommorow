@@ -1,6 +1,6 @@
 import '../styles/Home.css'
 import ComputerScience from '../assets/ComputerScience.jpg'
-import CatagoryCard from '../components/CatagoryContainer'
+import FieldCards from '../components/CatagoryContainer'
 
 export default function HomePage() {
   return <>
@@ -14,7 +14,7 @@ export default function HomePage() {
       </p>
     </div>
     <div>
-      <CatagoryCard />
+      <FieldCards/>
     </div>
 
   </>
