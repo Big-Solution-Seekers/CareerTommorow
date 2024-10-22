@@ -156,7 +156,7 @@ const PostModel = () => {
                         <h3>{post.title}</h3>
                         <p>{post.content}</p>
                         <small>
-                            Posted by {post.user_id.username} at {currentTime}
+                            Posted by {post.username} at {currentTime}
                         </small>
 
                         {/* Comments Section */}
@@ -166,7 +166,7 @@ const PostModel = () => {
                                 {(comments[post.id] || []).map((comment) => (
                                     <div key={comment.id} className="comment-item">
                                         <p>{comment.content}</p>
-                                        <small>Commented by {currentUser.username || comment.user_id}</small>
+                                        <small>Commented by {comment.username}</small>
                                     </div>
                                 ))}
                             </div>

@@ -2,21 +2,28 @@
 const knex = require('../db/knex');
 
 class Comment {
-    constructor({ id, user_id, post_id, content, created_at, updated_at }) {
+    constructor({ id, user_id, post_id, content, created_at, updated_at , username}) {
         this.id = id;
         this.user_id = user_id;
         this.post_id = post_id;
         this.content = content;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.username = username
+
     }
 
     // Fetches all comments
     static async list() {
-        const query = `SELECT * FROM comments`;
+        const query = `
+            SELECT comments.*, users.username
+            FROM comments
+            JOIN users ON comments.user_id = users.id
+        `;
         const result = await knex.raw(query);
         return result.rows.map((rawCommentData) => new Comment(rawCommentData));
     }
+    
 
     // Fetches a single comment by its ID
     static async find(id) {
