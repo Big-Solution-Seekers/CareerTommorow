@@ -1,0 +1,73 @@
+/* Center the entire quiz on the page */
+#quiz-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure it takes up the full viewport height */
+    text-align: center; /* Center text alignment */
+}
+  
+/* Style for the quiz title */
+.quiz-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+  
+/* Center each question container */
+.quiz-question-container {
+    margin-bottom: 20px;
+    width: 100%; /* Optional: You can adjust this based on your preference */
+    max-width: 600px; /* Limits the width of the question container */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    padding: 15px; /* Add padding for spacing inside the border */
+    background-color: #f9f9f9; /* Optional: Background color for better visibility */
+}
+/* Center the options */
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+/* Smaller button styling */
+.quiz-option-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    margin: 5px 0;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%; /* Ensures buttons take the full width of the question container */
+    max-width: 400px; /* Restricts the maximum button width */
+    transition: background-color 0.3s ease;
+    color: black; /* Set button text color to black */
+}
+  
+.quiz-option-button:hover {
+    background-color: #e0e0e0;
+}
+  
+.quiz-option-button.selected {
+    background-color: #007bff;
+    color: white; /* Optional: You can keep or change this for the selected state */
+}
+  
+.quiz-button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white; /* Set the text color for the submit button to black */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+  
+.quiz-button:hover {
+    background-color: #0056b3;
+}
