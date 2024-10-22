@@ -55,6 +55,7 @@ app.get('/api/posts/:id', postControllers.getPostById);
 app.post('/api/posts', checkAuthentication, postControllers.createPost);
 app.patch('/api/posts/:id', checkAuthentication, postControllers.updatePost);
 app.delete('/api/posts', checkAuthentication, postControllers.deleteAllPosts);
+app.delete('/api/posts/:id', checkAuthentication, postControllers.deletePost);
 
 ///////////////////////////////
 // Comments Routes

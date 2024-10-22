@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import '../styles/PostModel.css';
 import CurrentUserContext from "../contexts/current-user-context";
 import { fetchHandler, getPostOptions } from "../utils/fetchingUtils";
+import { deletePost } from "../adapters/post-adapter"; // Import the deletePost function
 
 const baseUrl = '/api/posts';
 const commentsUrl = '/api/comments';
@@ -25,13 +26,13 @@ const PostModel = () => {
         }
     };
     const currentTime = new Date().toLocaleString(); // Get current date and time
+
     // Function to handle form submission for posts
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (createTitle.trim() && createContent.trim()) {
             const fields_id = 1; // Set this dynamically if needed
             
-
             const newPost = {
                 user_id: currentUser.id,
                 fields_id,
@@ -91,6 +92,34 @@ const PostModel = () => {
             setNewComment(''); // Clear the input field after successful submission
         } else {
             console.error('Error creating comment', error);
+        }
+    };
+
+    // Function to delete a post
+    const handleDeletePost = async (postId) => {
+        try {
+            await deletePost(postId);
+            setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId)); // Remove post from state
+        } catch (error) {
+            console.error('Failed to delete post:', error);
+            // Handle error state here if needed
+        }
+    };
+
+    // Function to delete a comment
+    const handleDeleteComment = async (postId, commentId) => {
+        try {
+            // Replace this with your delete comment function
+            await fetchHandler(`${commentsUrl}/${commentId}`, {
+                method: 'DELETE',
+            });
+            setComments((prevComments) => ({
+                ...prevComments,
+                [postId]: prevComments[postId].filter((comment) => comment.id !== commentId),
+            }));
+        } catch (error) {
+            console.error('Failed to delete comment:', error);
+            // Handle error state here if needed
         }
     };
 
@@ -158,7 +187,7 @@ const PostModel = () => {
                         <small>
                             Posted by {post.username} at {currentTime}
                         </small>
-
+                     
                         {/* Comments Section */}
                         <div className="comments-section">
                             <h4>Comments</h4>
@@ -166,7 +195,13 @@ const PostModel = () => {
                                 {(comments[post.id] || []).map((comment) => (
                                     <div key={comment.id} className="comment-item">
                                         <p>{comment.content}</p>
-                                        <small>Commented by {comment.username}</small>
+                                        <small>Commented by {comment.username || currentUser.username}</small>
+                                        {/* Button to delete comment */}
+                                        {currentUser.id === comment.user_id && ( // Check if the current user is the owner of the comment
+                                            <button onClick={() => handleDeleteComment(post.id, comment.id)} className="delete-button">
+                                                Delete Comment
+                                            </button>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -177,6 +212,13 @@ const PostModel = () => {
                                 onChange={(e) => setNewComment(e.target.value)}
                             />
                             <button onClick={() => handleAddComment(post.id)}>Add Comment</button>
+                            
+                            {/* Button to delete the post */}
+                            {currentUser.id === post.user_id && ( // Check if the current user is the owner of the post
+                                <button onClick={() => handleDeletePost(post.id)} className="delete-button">
+                                    Delete Post
+                                </button>
+                            )}
                         </div>
                     </div>
                 ))}
@@ -186,3 +228,5 @@ const PostModel = () => {
 };
 
 export default PostModel;
+
+
