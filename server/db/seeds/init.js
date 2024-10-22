@@ -24,7 +24,7 @@ exports.seed = async (knex) => {
     { fields_category: 'Technology' },
     { fields_category: 'Bussiness' },
     { fields_category: 'Healthcare' },
-    { fields_category: 'Education' },
+    { fields_category: 'Skilled Trade' },
 
   ]).returning('*');
 
@@ -47,11 +47,20 @@ exports.seed = async (knex) => {
 
     { fields_id: careerFields[1].id, name: 'Strayer University', cost: 0, url: 'https://degrees.strayer.edu/business/ ', description: 'Marketing, Management, Accounting', location: 'New York', image: 'https://example.com/image2.png' },
     { fields_id: careerFields[1].id, name: 'Coursera ', cost: 0, url: 'https://www.coursera.org/professional-certificates/google-digital-marketing-ecommerce', description: 'Marketing,E-commerce', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[1].id, name: 'Year Up United  ', cost: 0, url: 'https://www.yearup.org/job-training/banking', description: 'Banking', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[1].id, name: 'Year Up United  ', cost: 0, url: 'https://www.yearup.org/job-training/business-fundamentals', description: 'Business Operations', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[1].id, name: 'Year Up United  ', cost: 0, url: 'https://www.yearup.org/job-training/investment-operations', description: 'Marketing,E-commerce', location: 'New York', image: 'https://example.com/image2.png' },
    
     { fields_id: careerFields[2].id, name: 'Job Corps', cost: 0, url: 'https://info.joinjobcorps.com/trade', description: 'Medical Assistant, Medical Administrative Assistant, EMT, Nurse Assistant,', location: 'New York', image: 'https://example.com/image2.png' },
     { fields_id: careerFields[2].id, name: 'Phillip Houses ', cost: 0, url: 'https://www.phippsny.org/programs/career-readiness/career-network/', description: 'PCT, CMA, & MAA', location: 'New York', image: 'https://example.com/image2.png' },
     { fields_id: careerFields[2].id, name: 'Bronxeoc', cost: 0, url: 'http://www.bronxeoc.org/vocational.html#emt', description: 'Medical assitant & EMT', location: 'New York', image: 'https://example.com/image2.png' },
     { fields_id: careerFields[2].id, name: 'Selfhelp', cost: 0, url: 'https://selfhelp.net/home-care-training/', description: 'HHA & PCA', location: 'New York', image: 'https://example.com/image2.png' },
+    
+
+    { fields_id: careerFields[3].id, name: 'New York City Small Business Services ', cost: 0, url: 'https://www.nyc.gov/site/sbs/careers/industrial-training.page', description: 'Construction Site Safety HVAC Eco-friendly Energy Installation, Stipend included ', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[3].id, name: 'Genspace ', cost: 0, url: 'https://www.genspace.org/break-into-biotech-program', description: 'Life Science Skills Training program, Stipend included', location: 'New York', image: 'https://example.com/image2.png' },
+    { fields_id: careerFields[3].id, name: 'YouthBuild IGNITE', cost: 0, url: 'https://www.cypresshills.org/career-education', description: 'GED Prep Construction training Healthcare Training,Stipend included ', location: 'New York', image: 'https://example.com/image2.png' },
+
     
   ]).returning('*');
 

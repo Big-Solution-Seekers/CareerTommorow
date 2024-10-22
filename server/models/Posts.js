@@ -1,4 +1,3 @@
-// /server/db/models/CommunityPost.js
 const knex = require('../db/knex');
 
 class Posts {
@@ -8,7 +7,7 @@ class Posts {
         this.fields_id = fields_id;
         this.title = title;
         this.content = content;
-        this.username = username
+        this.username = username;
     }
 
     static async list() {
@@ -20,7 +19,7 @@ class Posts {
         const result = await knex.raw(query);
         return result.rows.map((rawPostData) => new Posts(rawPostData));
     }
-    
+
     static async find(id) {
         const query = `SELECT * FROM posts WHERE id = ?`;
         const result = await knex.raw(query, [id]);
@@ -45,6 +44,14 @@ class Posts {
         const result = await knex.raw(query, [user_id, fields_id, title, content, id]);
         const rawUpdatedPost = result.rows[0];
         return rawUpdatedPost ? new Posts(rawUpdatedPost) : null;
+    }
+
+    // New delete function
+    static async delete(id) {
+        const query = `DELETE FROM posts WHERE id = ? RETURNING *`;
+        const result = await knex.raw(query, [id]);
+        const deletedPostData = result.rows[0];
+        return deletedPostData ? new Posts(deletedPostData) : null;
     }
 
     static async deleteAll() {

@@ -38,8 +38,7 @@ const ProgramsList = () => {
                 <div key={program.id} className="program-card">
                     <h4>{program.name}</h4>
                     <p>{program.description}</p>
-                    <p>Cost: ${program.cost}</p>
-                    <a href={program.url} target="_blank" rel="noopener noreferrer">More Info</a>
+                    
                 </div>
             ))}
         </div>
