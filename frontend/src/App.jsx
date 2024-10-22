@@ -11,6 +11,7 @@ import UsersPage from './pages/Users';
 import UserPage from './pages/User';
 import CommunityForum from './pages/CommunityForum';
 import ProgramsList from './components/ProgramsList';
+import ProgramInfo from './pages/ProgramInfo';
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
@@ -28,7 +29,8 @@ export default function App() {
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/users' element={<UsersPage />} />
         <Route path='/users/:id' element={<UserPage />} />
-        <Route path="/programs/:fieldId" element={<ProgramsList />} /> 
+        <Route path="/programs/:fieldId" element={<ProgramsList />} />
+        <Route path='/program/:id' element={<ProgramInfo />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </main>
