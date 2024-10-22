@@ -1,5 +1,4 @@
 import '../styles/Home.css'
-import ComputerScience from '../assets/ComputerScience.jpg'
 import FieldCards from '../components/CatagoryContainer'
 
 export default function HomePage() {
@@ -14,7 +13,7 @@ export default function HomePage() {
       </p>
     </div>
     <div>
-      <FieldCards/>
+      <FieldCards />
     </div>
 
   </>
