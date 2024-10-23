@@ -21,10 +21,10 @@ exports.seed = async (knex) => {
 
   // Insert career fields
   const careerFields = await knex('fields').insert([
-    { fields_category: 'Technology' },
-    { fields_category: 'Bussiness' },
-    { fields_category: 'Healthcare' },
-    { fields_category: 'Skilled Trade' },
+    { fields_category: 'Technology', description: "In a tech-driven society, the tech industry stands out for its creativity and innovation. With opportunities for high salaries, flexible work arrangements, and a commitment to diversity, it's an exciting field for those who thrive on continuous learning. If you’re seeking a fulfilling career that offers a healthy work-life balance, check out our curated list of programs below!" },
+    { fields_category: 'Bussiness', description: "In a capitalist economy, business plays a vital role. Whether you’re interested in management, consulting, or marketing, the industry offers a range of opportunities. While it may not be as fast-paced as some fields, there is a diverse list of roles to explore. If you prefer a structured environment and a typical 9-to-5 schedule, consider looking at the programs below!" },
+    { fields_category: 'Healthcare', description: "Taking care of our health is crucial, and we all experience illness at various stages of life. The healthcare field is a stable industry that is always on demand that has a variety of job opportunities. With diverse roles available, you’ll always find something new and engaging. If you’re passionate about helping others, value job security, and enjoy variety in your work, check out the programs below!"},
+    { fields_category: 'Trades Training', description: "Blue-collar jobs play a vital role in our society, and skilled trades are always in demand, whether in HVAC, plumbing, gardening, or other fields. If you enjoy working with your hands and thrive on solving practical challenges, this might be the perfect path for you. Check out the programs below to find the right fit for your skills and interests!" },
 
   ]).returning('*');
 
