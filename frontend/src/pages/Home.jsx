@@ -1,6 +1,8 @@
 import '../styles/Home.css'
+
 import { Link } from 'react-router-dom'
 import ComputerScience from '../assets/ComputerScience.jpg'
+
 import FieldCards from '../components/CatagoryContainer'
 
 export default function HomePage() {
@@ -15,7 +17,7 @@ export default function HomePage() {
       </p>
     </div>
     <div>
-      <FieldCards/>
+      <FieldCards />
     </div>
     <h3>Don't know what field to choose?</h3>
     <h4>Take this quiz!</h4>
