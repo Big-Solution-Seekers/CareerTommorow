@@ -1,8 +1,8 @@
 // /server/db/models/CommunityPost.js
 const knex = require('../db/knex');
 
-class Programs{
-    constructor({ id, fields_id, name, cost, url, description, location, image}) {
+class Programs {
+    constructor({ id, fields_id, name, cost, url, description, location, image, map_link }) {
         this.id = id;
         this.fields_id = fields_id
         this.name = name
@@ -11,6 +11,7 @@ class Programs{
         this.description = description
         this.location = location
         this.image = image
+        this.map_link = map_link
     }
 
     static async list() {
