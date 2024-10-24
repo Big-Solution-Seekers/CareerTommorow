@@ -10,15 +10,33 @@ class Posts {
         this.username = username;
     }
 
-    static async list() {
-        const query = `
+    // static async list() {
+    //     const query = `
+    //         SELECT posts.*, users.username
+    //         FROM posts
+    //         JOIN users ON posts.user_id = users.id
+    //     `;
+    //     const result = await knex.raw(query);
+    //     return result.rows.map((rawPostData) => new Posts(rawPostData));
+    // }
+
+    static async list(fields_id = null) {
+        let query = `
             SELECT posts.*, users.username
             FROM posts
             JOIN users ON posts.user_id = users.id
         `;
-        const result = await knex.raw(query);
+        const queryParams = [];
+        
+        if (fields_id) {
+            query += ` WHERE posts.fields_id = ?`;
+            queryParams.push(fields_id);
+        }
+    
+        const result = await knex.raw(query, queryParams);
         return result.rows.map((rawPostData) => new Posts(rawPostData));
     }
+    
 
     static async find(id) {
         const query = `SELECT * FROM posts WHERE id = ?`;
