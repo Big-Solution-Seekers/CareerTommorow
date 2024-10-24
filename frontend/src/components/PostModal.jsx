@@ -253,44 +253,7 @@ const PostModel = () => {
                     </div>
                 </div>
             )}
-            {posts.length === 0 ? (
-                <p>No posts available.</p>
-            ) : (
-                filteredPosts.map((post) => (
-                    <div className="post-card" key={post.id}>
-                        <h3>{post.title}</h3>
-                        <p>{post.content}</p>
-                        <p>Posted by: {post.username} {timeAgo(post.created_at)}</p>
-                        {currentUser && currentUser.id === post.user_id && (
-                            <div>
-                                <button onClick={() => handleEditPost(post)}>Edit</button>
-                                <button onClick={() => handleDeletePost(post.id)}>Delete</button>
-                            </div>
-                        )}
-                        <button onClick={() => toggleComments(post.id)}>Comments ({(comments[post.id]?.length || 0)})</button>
-                        {visibleComments[post.id] && (
-                            <div>
-                                <h4>Comments:</h4>
-                                {comments[post.id]?.map((comment) => (
-                                    <div key={comment.id} className="comment">
-                                        <p>{comment.content}</p>
-                                        <p>By: {comment.username} {timeAgo(comment.created_at)}</p>
-                                        {currentUser && currentUser.id === comment.user_id && (
-                                            <button onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
-                                        )}
-                                    </div>
-                                ))}
-                                <textarea
-                                    placeholder='Add a comment...'
-                                    value={newComment}
-                                    onChange={(e) => setNewComment(e.target.value)}
-                                />
-                                <button onClick={() => handleAddComment(post.id)}>Add Comment</button>
-                            </div>
-                        )}
-                    </div>
-                ))
-            )}
+            
             {editModal && (
                 <div className='modal'>
                     <div className='overlay' onClick={toggleEditModal}></div>
