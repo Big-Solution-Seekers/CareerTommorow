@@ -202,7 +202,7 @@ const PostModel = () => {
     if (!currentUser) {
         return <p>You must be signed in to view posts and comments.</p>; 
     }
-
+console.log(comments)
     return (
         <>
             <button onClick={toggleModal} className="btn-modal">Add a post!</button>
