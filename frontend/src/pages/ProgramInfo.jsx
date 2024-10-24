@@ -21,6 +21,7 @@ const ProgramInfo = () => {
       <h1>{program.name}</h1>
       <h3>Title: {program.description}</h3>
       <h3>Cost: ${program.cost}</h3>
+      <img src={program.image} />
     </>
   );
 }
