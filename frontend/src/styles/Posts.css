@@ -16,7 +16,7 @@
     background-color: #0056b3;
 }
 
-/* Modal background */
+
 .modal {
     position: fixed;
     top: 0;
@@ -30,7 +30,6 @@
     z-index: 1000;
 }
 
-/* Overlay that covers the entire screen */
 .overlay {
     position: absolute;
     top: 0;
@@ -39,7 +38,7 @@
     bottom: 0;
 }
 
-/* Modal content */
+
 .modal-content {
     background-color: white;
     border-radius: 10px;
@@ -51,7 +50,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Post form styling */
 .post-form {
     display: flex;
     flex-direction: column;
@@ -73,7 +71,7 @@
     width: 100%;
 }
 
-/* Submit button for the form */
+
 .submit-button {
     background-color: #28a745;
     color: white;
@@ -89,53 +87,55 @@
     background-color: #218838;
 }
 
-/* Error message styling */
+
 .error-text {
     color: red;
     margin-top: 10px;
     font-size: 14px;
 }
 
-/* Posts list */
+
 .posts-list {
-    width: 75%; /* Increased width for larger cards */
-    margin: 50px auto; /* Increased margin for more spacing */
+    width: 75%; 
+    margin: 50px auto; 
     padding: 0;
 }
 
-/* Individual post item */
+
 .post-item {
     border: 1px solid #ccc;
-    padding: 30px; /* Increased padding for larger content area */
-    margin-bottom: 20px; /* Added more space between cards */
-    border-radius: 8px; /* Slightly larger border radius for a smoother look */
-    background-color: #f0f0f0; /* Slightly lighter background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow */
-    transition: transform 0.3s ease; /* Add a smooth scaling effect on hover */
+    padding: 30px; 
+    margin-bottom: 20px; 
+    border-radius: 8px; 
+    background-color: #f0f0f0; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+    transition: transform 0.3s ease; 
 }
 
-/* Post item hover effect */
+
 .post-item:hover {
-    transform: scale(1.03); /* Slightly increase the size when hovering */
+    transform: scale(1.03); 
 }
 
-/* Post title styling */
+
 .post-item h3 {
     margin-top: 0;
     color: #333;
-    font-size: 24px; /* Increased font size for the title */
+    font-size: 24px; 
 }
 
-/* Post content styling */
+
 .post-item p {
-    font-size: 18px; /* Increased font size for the content */
-    color: #444; /* Slightly darker text for better readability */
-    margin: 15px 0; /* Increased margin for spacing */
+    font-size: 18px; 
+    color: #444; 
+    margin: 15px 0; 
 }
 
-/* Post meta information styling */
+
 .post-item small {
     color: #666;
-    font-size: 14px; /* Increased font size for better readability */
+    font-size: 14px; 
 }
+
+
 

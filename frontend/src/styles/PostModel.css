@@ -1,26 +1,26 @@
-.modal {
-    position: fixed; /* Stays in place */
+/* .modal {
+    position: fixed; 
     top: 0;
     left: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    display: flex; /* Flexbox to center content */
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
-    z-index: 1000; /* Ensures it's on top of everything */
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
 }
 
-/* Modal overlay */
+
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5); 
 }
 
-/* Modal content */
+
 .modal-content {
     display: flex;
     justify-content: center;
@@ -31,8 +31,8 @@
     border-radius: 10px;
     height: 70%;
     width: 70%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Adds a shadow for depth */
-    z-index: 1010; /* Ensure it's on top of overlay */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+    z-index: 1010; 
 }
 
 .post-form {
@@ -40,7 +40,7 @@ height: 70%;
 width: 70%;
 }
 
-/* Close button */
+
 .close-modal {
     position: absolute;
     top: 10px;
@@ -49,4 +49,18 @@ width: 70%;
     border: none;
     font-size: 1.2rem;
     cursor: pointer;
-} 
+}  */
+
+
+.comments {
+    max-height: 200px; /* Set a maximum height for the comments section */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: add a border for visibility */
+    padding: 10px; /* Optional: add padding for better spacing */
+    margin-top: 10px; /* Optional: add margin to separate from the post content */
+    background-color: aliceblue;
+}
+
+.comment-item {
+    margin-bottom: 10px; /* Add spacing between comments */
+}

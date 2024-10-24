@@ -1,7 +1,7 @@
 import '../styles/Home.css'
 
 import { Link } from 'react-router-dom'
-import ComputerScience from '../assets/ComputerScience.jpg'
+// import ComputerScience from '../assets/ComputerScience.jpg'
 
 import FieldCards from '../components/CatagoryContainer'
 
