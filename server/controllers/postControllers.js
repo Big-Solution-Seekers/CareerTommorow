@@ -2,8 +2,10 @@ const Posts = require('../models/Posts');
 
 // Get all posts
 const getAllPosts = async (req, res) => {
+    const fields_id = req.query.fields_id || null;
     try {
-        const posts = await Posts.list();
+        
+        const posts = await Posts.list(fields_id);
         res.status(200).json(posts);
     } catch (error) {
         res.status(404).json({ message: 'Error fetching posts', error });
