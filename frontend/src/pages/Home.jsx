@@ -1,6 +1,5 @@
 import '../styles/Home.css'
 import { Link } from 'react-router-dom'
-import ComputerScience from '../assets/ComputerScience.jpg'
 import FieldCards from '../components/FieldCards'
 
 export default function HomePage() {
