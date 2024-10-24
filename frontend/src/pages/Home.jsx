@@ -1,6 +1,5 @@
 import '../styles/Home.css'
 import { Link } from 'react-router-dom'
-
 import FieldCards from '../components/CatagoryContainer'
 
 export default function HomePage() {
