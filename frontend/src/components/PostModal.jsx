@@ -24,6 +24,26 @@ const PostModel = () => {
     const [visibleComments, setVisibleComments] = useState({});
     const [moreCommentsVisible, setMoreCommentsVisible] = useState({});
 
+    const timeAgo = (timestamp) => {
+    const now = new Date();
+    const postTime = new Date(timestamp);
+    const seconds = Math.floor((now - postTime) / 1000);
+    
+    let interval = Math.floor(seconds / 31536000); // Years
+    if (interval >= 1) return interval === 1 ? `${interval} year ago` : `${interval} years ago`;
+    interval = Math.floor(seconds / 2592000); // Months
+    if (interval >= 1) return interval === 1 ? `${interval} month ago` : `${interval} months ago`;
+    interval = Math.floor(seconds / 86400); // Days
+    if (interval >= 1) return interval === 1 ? `${interval} day ago` : `${interval} days ago`;
+    interval = Math.floor(seconds / 3600); // Hours
+    if (interval >= 1) return interval === 1 ? `${interval} hour ago` : `${interval} hours ago`;
+    interval = Math.floor(seconds / 60); // Minutes
+    if (interval >= 1) return interval === 1 ? `${interval} minute ago` : `${interval} minutes ago`;
+    
+    // Seconds
+    return seconds === 1 ? `${seconds} second ago` : `${seconds} seconds ago`;
+};
+
     const toggleModal = () => {
         setModal(!modal);
         if (!modal) {
@@ -43,7 +63,9 @@ const PostModel = () => {
         }));
     };
 
-    const currentTime = new Date().toLocaleString(); 
+    // const currentTime = new Date().toLocaleString(); 
+    // console.log(currentTime.slice(12, 17) + currentTime.slice(20, 23))
+    // console.log(currentTime.length)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,6 +74,7 @@ const PostModel = () => {
             return;
         }
         if (createTitle.trim() && createContent.trim()) {
+
             const fields_id = 1; 
             const newPost = {
                 user_id: currentUser.id,
@@ -59,7 +82,6 @@ const PostModel = () => {
                 title: createTitle,
                 content: createContent,
                 username: currentUser.username,
-                timePosted: currentTime,
             };
             const [post, error] = await fetchHandler(baseUrl, getPostOptions(newPost));
             if (post) {
@@ -122,6 +144,7 @@ const PostModel = () => {
             setErrorText('You must be signed in to add a comment.');
             return;
         }
+
         const newCommentData = {
             post_id: postId,
             user_id: currentUser.id,
@@ -249,12 +272,12 @@ const PostModel = () => {
                     <div key={post.id} className="post-item">
                         <h3>{post.title}</h3>
                         <p>{post.content}</p>
-                        <small>Posted by {post.username} at {post.timePosted}</small>
+                        <small>Posted by {post.username} {timeAgo(post.created_at)}</small>
 
                         {currentUser.id === post.user_id && (
                             <>
-                                <button onClick={() => handleEditPost(post)}>Edit</button>
-                                <button onClick={() => handleDeletePost(post.id)}>Delete Post</button>
+                                <button onClick={() => handleEditPost(post)} className="edit-button">Edit</button>
+                                <button onClick={() => handleDeletePost(post.id)} className="deletePost-button">Delete Post</button>
                             </>
                         )}
                         <div className="comments-section">
@@ -269,6 +292,7 @@ const PostModel = () => {
                                                 {comments[post.id].map((comment) => (
                                                     <div key={comment.id} className="comment-item">
                                                         <p>{comment.content}</p>
+                                                        {console.log(comment.user_id)}
                                                         <small>Commented by {comment.username}</small>
                                                         {currentUser.id === comment.user_id && (
                                                             <button onClick={() => handleDeleteComment(post.id, comment.id)}>Delete Comment</button>
