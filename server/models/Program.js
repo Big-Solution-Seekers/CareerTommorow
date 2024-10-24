@@ -2,7 +2,7 @@
 const knex = require('../db/knex');
 
 class Program {
-    constructor({ id, fields_id, name, cost, url, description, location, image }) {
+    constructor({ id, fields_id, name, cost, url, description, location, image, map_link }) {
         this.id = id;
         this.fields_id = fields_id;
         this.name = name;
@@ -11,6 +11,7 @@ class Program {
         this.description = description;
         this.location = location;
         this.image = image;
+        this.map_link = map_link
     }
 
     static async list() {
@@ -26,21 +27,21 @@ class Program {
         return rawProgramData ? new Program(rawProgramData) : null;
     }
 
-    static async create(fields_id, name, cost, url, description, location, image) {
-        const query = `INSERT INTO programs (fields_id, name, cost, url, description, location, image) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING *`;
-        const result = await knex.raw(query, [fields_id, name, cost, url, description, location, image]);
+    static async create(fields_id, name, cost, url, description, location, image, map_link) {
+        const query = `INSERT INTO programs (fields_id, name, cost, url, description, location, image, map_link) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING *`;
+        const result = await knex.raw(query, [fields_id, name, cost, url, description, location, image, map_link]);
         const rawProgramData = result.rows[0];
         return new Program(rawProgramData);
     }
 
-    static async update(id, fields_id, name, cost, url, description, location, image) {
+    static async update(id, fields_id, name, cost, url, description, location, image, map_link) {
         const query = `
           UPDATE programs
-          SET fields_id=?, name=?, cost=?, url=?, description=?, location=?, image=?
+          SET fields_id=?, name=?, cost=?, url=?, description=?, location=?, image=?, map_link=?
           WHERE id=?
           RETURNING *
         `;
-        const result = await knex.raw(query, [fields_id, name, cost, url, description, location, image, id]);
+        const result = await knex.raw(query, [fields_id, name, cost, url, description, location, image, map_link, id]);
         const rawUpdatedProgram = result.rows[0];
         return rawUpdatedProgram ? new Program(rawUpdatedProgram) : null;
     }
