@@ -64,8 +64,6 @@ const PostModel = () => {
         }));
     };
 
-    const currentTime = new Date().toLocaleString(); 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!currentUser) {
@@ -74,13 +72,13 @@ const PostModel = () => {
         }
         if (createTitle.trim() && createContent.trim()) {
             const fields_id = selectedField !== 'all' ? parseInt(selectedField) : null; // Get selected field ID
+
             const newPost = {
                 user_id: currentUser.id,
                 fields_id, // Save selected field ID
                 title: createTitle,
                 content: createContent,
                 username: currentUser.username,
-                timePosted: currentTime,
             };
             const [post, error] = await fetchHandler(baseUrl, getPostOptions(newPost));
             if (post) {
@@ -106,13 +104,13 @@ const PostModel = () => {
             title: editTitle,
             content: editContent,
         };
-    
+
         try {
             const updated = await updatePost(postId, updatedContent); 
             if (updated) {
                 setPosts((prevPosts) =>
                     prevPosts.map((post) =>
-                        post.id === postId ? { ...post, title: editTitle, content: editContent, timePosted: currentTime } : post
+                        post.id === postId ? { ...post, title: editTitle, content: editContent } : post
                     )
                 );
                 toggleEditModal(); 
@@ -134,7 +132,6 @@ const PostModel = () => {
                 [post.id]: fetchedComments || [],
             }));
         }
-        
     };
 
     const handleAddComment = async (postId) => {
@@ -143,6 +140,7 @@ const PostModel = () => {
             setErrorText('You must be signed in to add a comment.');
             return;
         }
+
         const newCommentData = {
             post_id: postId,
             user_id: currentUser.id,
@@ -218,12 +216,11 @@ const PostModel = () => {
                     <option value="4">Trade Training</option>
                 </select>
             </div>
-
             {modal && (
                 <div className='modal'>
                     <div className='overlay' onClick={toggleModal}></div>
                     <div className='modal-content'>
-                        <button className="btn"onClick={toggleModal}>x</button>
+                        <button className="btn" onClick={toggleModal}>x</button>
                         <form className='post-form' onSubmit={handleSubmit}>
                             <h2>Create your post!</h2>
                             <label htmlFor="title">Title</label>
@@ -244,46 +241,82 @@ const PostModel = () => {
                             />
                             <label htmlFor="field">Select Field:</label>
                             <select id="field" value={selectedField} onChange={(e) => setSelectedField(e.target.value)}>
+                                <option value="all">All</option>
                                 <option value="1">Technology</option>
                                 <option value="2">Business</option>
                                 <option value="3">Healthcare</option>
                                 <option value="4">Trade Training</option>
                             </select>
-                            <button  className="btn" type="submit">Post</button>
+                            <button type="submit" className='btn'>Create</button>
+                            {errorText && <p className='error'>{errorText}</p>}
                         </form>
-                        {errorText && <p className="error-text">{errorText}</p>}
                     </div>
                 </div>
             )}
-
+            {posts.length === 0 ? (
+                <p>No posts available.</p>
+            ) : (
+                filteredPosts.map((post) => (
+                    <div className="post-card" key={post.id}>
+                        <h3>{post.title}</h3>
+                        <p>{post.content}</p>
+                        <p>Posted by: {post.username} {timeAgo(post.created_at)}</p>
+                        {currentUser && currentUser.id === post.user_id && (
+                            <div>
+                                <button onClick={() => handleEditPost(post)}>Edit</button>
+                                <button onClick={() => handleDeletePost(post.id)}>Delete</button>
+                            </div>
+                        )}
+                        <button onClick={() => toggleComments(post.id)}>Comments ({(comments[post.id]?.length || 0)})</button>
+                        {visibleComments[post.id] && (
+                            <div>
+                                <h4>Comments:</h4>
+                                {comments[post.id]?.map((comment) => (
+                                    <div key={comment.id} className="comment">
+                                        <p>{comment.content}</p>
+                                        <p>By: {comment.username} {timeAgo(comment.created_at)}</p>
+                                        {currentUser && currentUser.id === comment.user_id && (
+                                            <button onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
+                                        )}
+                                    </div>
+                                ))}
+                                <textarea
+                                    placeholder='Add a comment...'
+                                    value={newComment}
+                                    onChange={(e) => setNewComment(e.target.value)}
+                                />
+                                <button onClick={() => handleAddComment(post.id)}>Add Comment</button>
+                            </div>
+                        )}
+                    </div>
+                ))
+            )}
             {editModal && (
                 <div className='modal'>
                     <div className='overlay' onClick={toggleEditModal}></div>
                     <div className='modal-content'>
                         <button className="btn" onClick={toggleEditModal}>x</button>
-                        <form className='post-form' onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
+                        <form onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
                             <h2>Edit Post</h2>
                             <label htmlFor="edit-title">Title</label>
                             <input
                                 type="text"
-                                id='edit-title'
+                                id="edit-title"
                                 value={editTitle}
                                 onChange={(e) => setEditTitle(e.target.value)}
                             />
                             <label htmlFor="edit-content">Content</label>
                             <input
                                 type="text"
-                                id='edit-content'
+                                id="edit-content"
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
                             />
-                            <button className="btn" type="submit">Update</button>
+                            <button type="submit">Update</button>
                         </form>
-                        {errorText && <p className="error-text">{errorText}</p>}
                     </div>
                 </div>
             )}
-
 <div className="posts-container">
     {filteredPosts.map((post) => (
         <div key={post.id} className="post-card">
@@ -325,10 +358,10 @@ const PostModel = () => {
         </div>
     ))}
 </div>
+
         </>
     );
 };
 
 export default PostModel;
-
 
