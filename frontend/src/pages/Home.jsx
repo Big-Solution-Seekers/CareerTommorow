@@ -1,6 +1,7 @@
 import '../styles/Home.css'
 import { Link } from 'react-router-dom'
 import FieldCards from '../components/FieldCards'
+import CarouselComponent from "../components/CarouselComponent"
 
 export default function HomePage() {
   return <>
@@ -11,8 +12,10 @@ export default function HomePage() {
         programs that lead to successful careers, ensuring they have the opportunities and resources needed to pursue
         fulfilling paths that align with their financial realities
       </p>
+      <CarouselComponent />
     </div>
     <div>
+
       <FieldCards />
     </div>
     <h3>Don't know what field to choose?</h3>
