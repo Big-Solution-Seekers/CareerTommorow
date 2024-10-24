@@ -204,7 +204,7 @@ const PostModel = () => {
                 <div className='modal'>
                     <div className='overlay' onClick={toggleModal}></div>
                     <div className='modal-content'>
-                        <button className="close-button" onClick={toggleModal}>x</button>
+                        <button className="btn"onClick={toggleModal}>x</button>
                         <form className='post-form' onSubmit={handleSubmit}>
                             <h2>Create your post!</h2>
                             <label htmlFor="title">Title</label>
@@ -230,7 +230,7 @@ const PostModel = () => {
                                 <option value="3">Healthcare</option>
                                 <option value="4">Trade Training</option>
                             </select>
-                            <button type="submit">Post</button>
+                            <button  className="btn" type="submit">Post</button>
                         </form>
                         {errorText && <p className="error-text">{errorText}</p>}
                     </div>
@@ -241,7 +241,7 @@ const PostModel = () => {
                 <div className='modal'>
                     <div className='overlay' onClick={toggleEditModal}></div>
                     <div className='modal-content'>
-                        <button className="close-button" onClick={toggleEditModal}>x</button>
+                        <button className="btn" onClick={toggleEditModal}>x</button>
                         <form className='post-form' onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
                             <h2>Edit Post</h2>
                             <label htmlFor="edit-title">Title</label>
@@ -258,7 +258,7 @@ const PostModel = () => {
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
                             />
-                            <button type="submit">Update</button>
+                            <button className="btn" type="submit">Update</button>
                         </form>
                         {errorText && <p className="error-text">{errorText}</p>}
                     </div>
@@ -288,7 +288,7 @@ const PostModel = () => {
                                 <p className="comment-content">{comment.content}</p>
                                 <p className="comment-meta">Commented by {comment.username}</p>
                                 {currentUser.id === comment.user_id && (
-                                    <button onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
+                                    <button className="btn" onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
                                 )}
                             </div>
                         ))}
@@ -300,7 +300,7 @@ const PostModel = () => {
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button onClick={() => handleAddComment(post.id)}>Add Comment</button>
+                    <button className="btn"onClick={() => handleAddComment(post.id)}>Add Comment</button>
                 </div>
             )}
         </div>
