@@ -26,24 +26,23 @@ const PostModel = () => {
     const [selectedField, setSelectedField] = useState('all');
 
     const timeAgo = (timestamp) => {
-    const now = new Date();
-    const postTime = new Date(timestamp);
-    const seconds = Math.floor((now - postTime) / 1000);
-    
-    let interval = Math.floor(seconds / 31536000); // Years
-    if (interval >= 1) return interval === 1 ? `${interval} year ago` : `${interval} years ago`;
-    interval = Math.floor(seconds / 2592000); // Months
-    if (interval >= 1) return interval === 1 ? `${interval} month ago` : `${interval} months ago`;
-    interval = Math.floor(seconds / 86400); // Days
-    if (interval >= 1) return interval === 1 ? `${interval} day ago` : `${interval} days ago`;
-    interval = Math.floor(seconds / 3600); // Hours
-    if (interval >= 1) return interval === 1 ? `${interval} hour ago` : `${interval} hours ago`;
-    interval = Math.floor(seconds / 60); // Minutes
-    if (interval >= 1) return interval === 1 ? `${interval} minute ago` : `${interval} minutes ago`;
-    
-    // Seconds
-    return seconds === 1 ? `${seconds} second ago` : `${seconds} seconds ago`;
-};
+        const now = new Date();
+        const postTime = new Date(timestamp);
+        const seconds = Math.floor((now - postTime) / 1000);
+
+        let interval = Math.floor(seconds / 31536000); // Years
+        if (interval >= 1) return interval === 1 ? `${interval} year ago` : `${interval} years ago`;
+        interval = Math.floor(seconds / 2592000); // Months
+        if (interval >= 1) return interval === 1 ? `${interval} month ago` : `${interval} months ago`;
+        interval = Math.floor(seconds / 86400); // Days
+        if (interval >= 1) return interval === 1 ? `${interval} day ago` : `${interval} days ago`;
+        interval = Math.floor(seconds / 3600); // Hours
+        if (interval >= 1) return interval === 1 ? `${interval} hour ago` : `${interval} hours ago`;
+        interval = Math.floor(seconds / 60); // Minutes
+        if (interval >= 1) return interval === 1 ? `${interval} minute ago` : `${interval} minutes ago`;
+
+        return seconds === 1 ? `${seconds} second ago` : `${seconds} seconds ago`;
+    };
 
     const toggleModal = () => {
         setModal(!modal);
@@ -65,10 +64,6 @@ const PostModel = () => {
         }));
     };
 
-    // const currentTime = new Date().toLocaleString(); 
-    // console.log(currentTime.slice(12, 17) + currentTime.slice(20, 23))
-    // console.log(currentTime.length)
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!currentUser) {
@@ -76,9 +71,6 @@ const PostModel = () => {
             return;
         }
         if (createTitle.trim() && createContent.trim()) {
-
-            const fields_id = 1; 
-
             const fields_id = selectedField !== 'all' ? parseInt(selectedField) : null; // Get selected field ID
 
             const newPost = {
@@ -112,13 +104,13 @@ const PostModel = () => {
             title: editTitle,
             content: editContent,
         };
-    
+
         try {
             const updated = await updatePost(postId, updatedContent); 
             if (updated) {
                 setPosts((prevPosts) =>
                     prevPosts.map((post) =>
-                        post.id === postId ? { ...post, title: editTitle, content: editContent, timePosted: currentTime } : post
+                        post.id === postId ? { ...post, title: editTitle, content: editContent } : post
                     )
                 );
                 toggleEditModal(); 
@@ -140,7 +132,6 @@ const PostModel = () => {
                 [post.id]: fetchedComments || [],
             }));
         }
-        
     };
 
     const handleAddComment = async (postId) => {
@@ -225,12 +216,11 @@ const PostModel = () => {
                     <option value="4">Trade Training</option>
                 </select>
             </div>
-
             {modal && (
                 <div className='modal'>
                     <div className='overlay' onClick={toggleModal}></div>
                     <div className='modal-content'>
-                        <button className="btn"onClick={toggleModal}>x</button>
+                        <button className="btn" onClick={toggleModal}>x</button>
                         <form className='post-form' onSubmit={handleSubmit}>
                             <h2>Create your post!</h2>
                             <label htmlFor="title">Title</label>
@@ -251,140 +241,84 @@ const PostModel = () => {
                             />
                             <label htmlFor="field">Select Field:</label>
                             <select id="field" value={selectedField} onChange={(e) => setSelectedField(e.target.value)}>
+                                <option value="all">All</option>
                                 <option value="1">Technology</option>
                                 <option value="2">Business</option>
                                 <option value="3">Healthcare</option>
                                 <option value="4">Trade Training</option>
                             </select>
-                            <button  className="btn" type="submit">Post</button>
+                            <button type="submit" className='btn'>Create</button>
+                            {errorText && <p className='error'>{errorText}</p>}
                         </form>
-                        {errorText && <p className="error-text">{errorText}</p>}
                     </div>
                 </div>
             )}
-
+            {posts.length === 0 ? (
+                <p>No posts available.</p>
+            ) : (
+                filteredPosts.map((post) => (
+                    <div className="post-card" key={post.id}>
+                        <h3>{post.title}</h3>
+                        <p>{post.content}</p>
+                        <p>Posted by: {post.username} {timeAgo(post.created_at)}</p>
+                        {currentUser && currentUser.id === post.user_id && (
+                            <div>
+                                <button onClick={() => handleEditPost(post)}>Edit</button>
+                                <button onClick={() => handleDeletePost(post.id)}>Delete</button>
+                            </div>
+                        )}
+                        <button onClick={() => toggleComments(post.id)}>Comments ({(comments[post.id]?.length || 0)})</button>
+                        {visibleComments[post.id] && (
+                            <div>
+                                <h4>Comments:</h4>
+                                {comments[post.id]?.map((comment) => (
+                                    <div key={comment.id} className="comment">
+                                        <p>{comment.content}</p>
+                                        <p>By: {comment.username} {timeAgo(comment.created_at)}</p>
+                                        {currentUser && currentUser.id === comment.user_id && (
+                                            <button onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
+                                        )}
+                                    </div>
+                                ))}
+                                <textarea
+                                    placeholder='Add a comment...'
+                                    value={newComment}
+                                    onChange={(e) => setNewComment(e.target.value)}
+                                />
+                                <button onClick={() => handleAddComment(post.id)}>Add Comment</button>
+                            </div>
+                        )}
+                    </div>
+                ))
+            )}
             {editModal && (
                 <div className='modal'>
                     <div className='overlay' onClick={toggleEditModal}></div>
                     <div className='modal-content'>
                         <button className="btn" onClick={toggleEditModal}>x</button>
-                        <form className='post-form' onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
+                        <form onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
                             <h2>Edit Post</h2>
                             <label htmlFor="edit-title">Title</label>
                             <input
                                 type="text"
-                                id='edit-title'
+                                id="edit-title"
                                 value={editTitle}
                                 onChange={(e) => setEditTitle(e.target.value)}
                             />
                             <label htmlFor="edit-content">Content</label>
                             <input
                                 type="text"
-                                id='edit-content'
+                                id="edit-content"
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
                             />
-                            <button className="btn" type="submit">Update</button>
+                            <button type="submit">Update</button>
                         </form>
-                        {errorText && <p className="error-text">{errorText}</p>}
                     </div>
                 </div>
             )}
-
-
-            <div className="posts-list">
-                {posts.map((post) => (
-                    <div key={post.id} className="post-item">
-                        <h3>{post.title}</h3>
-                        <p>{post.content}</p>
-                        <small>Posted by {post.username} {timeAgo(post.created_at)}</small>
-
-                        {currentUser.id === post.user_id && (
-                            <>
-                                <button onClick={() => handleEditPost(post)} className="edit-button">Edit</button>
-                                <button onClick={() => handleDeletePost(post.id)} className="deletePost-button">Delete Post</button>
-                            </>
-                        )}
-                        <div className="comments-section">
-                            <button onClick={() => toggleComments(post.id)}>
-                                {visibleComments[post.id] ? 'Hide Comments' : 'Show Comments'}
-                            </button>
-                            {visibleComments[post.id] && (
-                                <>
-                                    <div className="comments">
-                                        {comments[post.id] && comments[post.id].length > 0 ? (
-                                            <>
-                                                {comments[post.id].map((comment) => (
-                                                    <div key={comment.id} className="comment-item">
-                                                        <p>{comment.content}</p>
-                                                        {console.log(comment.user_id)}
-                                                        <small>Commented by {comment.username}</small>
-                                                        {currentUser.id === comment.user_id && (
-                                                            <button onClick={() => handleDeleteComment(post.id, comment.id)}>Delete Comment</button>
-                                                        )}
-                                                    </div>
-                                                ))}
-                                            </>
-                                        ) : (
-                                            <p>No comments yet.</p>
-                                        )}
-                                        <input
-                                            type="text"
-                                            placeholder="Add a comment..."
-                                            value={newComment}
-                                            onChange={(e) => setNewComment(e.target.value)}
-                                        />
-                                        <button onClick={() => handleAddComment(post.id)}>Add Comment</button>
-                                    </div>
-                                </>
-                            )}
-                        </div>
-
-<div className="posts-container">
-    {filteredPosts.map((post) => (
-        <div key={post.id} className="post-card">
-            <h3 className="post-title">{post.title}</h3>
-            <p className="post-content">{post.content}</p>
-            <p className="post-meta">Posted by {post.username} at {post.timePosted}</p>
-            {currentUser.id === post.user_id && (
-                <div className="post-actions">
-                    <button onClick={() => handleEditPost(post)}>Edit</button>
-                    <button onClick={() => handleDeletePost(post.id)}>Delete</button>
-                </div>
-            )}
-            <button onClick={() => toggleComments(post.id)} className="comments-toggle-button">
-                Comments ({comments[post.id]?.length || 0})
-            </button>
-            {visibleComments[post.id] && (
-                <div className="comments-section">
-                    <div className="comments-container">
-                        {comments[post.id]?.map((comment) => (
-                            <div key={comment.id} className="comment">
-                                <p className="comment-content">{comment.content}</p>
-                                <p className="comment-meta">Commented by {comment.username}</p>
-                                {currentUser.id === comment.user_id && (
-                                    <button className="btn" onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
-                                )}
-                            </div>
-                        ))}
-
-                    </div>
-                    <input
-                        type="text"
-                        className="new-comment-input"
-                        placeholder="Add a comment..."
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                    />
-                    <button className="btn"onClick={() => handleAddComment(post.id)}>Add Comment</button>
-                </div>
-            )}
-        </div>
-    ))}
-</div>
         </>
     );
 };
 
 export default PostModel;
-
