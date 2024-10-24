@@ -1,10 +1,11 @@
-import "../styles/Quiz.css"
+import "../styles/Quiz.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import ResultsModel from "../components/ResultsModel";
 
 export default function Quiz() {
   const [answers, setAnswers] = useState({});
-  const navigate = useNavigate()
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Track the current question
+  const [showModal, setShowModal] = useState(false); // Track when to show the modal
 
   const questions = [
     {
@@ -61,68 +62,69 @@ export default function Quiz() {
     });
   };
 
-  const handleSubmit = (answers) => {
-    let count = 0
-
-    for(const answer in answers) {
-        for(const question of questions) {
-            const options = question.options
-            for(const option of options) {
-                if(answers[answer] === option[0]) {
-                    console.log(option[1])
-                    count += option[1]
-                }
-            }
-        }
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      setShowModal(true); // Show modal when last question is answered
     }
+  };
 
-    console.log(count)
-    if(count >= 125 && count <= 200) {
-        navigate(`/programs/1`)
-    } else if(count >= 225 && count <= 300) {
-        navigate(`/programs/2`)
-    } else if(count >= 325 && count <= 400) {
-        navigate(`/programs/3`)
-    } else if(count >= 425 && count <= 500) {
-        navigate(`/programs/4`)
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
-  }
+  };
 
   const optionLetters = ["A", "B", "C", "D"]; // Array to map options to letters
 
   return (
     <div id="quiz-container">
       <h1 className="quiz-title">Career Preference Quiz</h1>
+
+      {!showModal ? (
         <>
-          {questions.map((q, index) => (
-            <div key={index} className="quiz-question-container">
-              <h3 className="quiz-question">{q.question}</h3>
-              <div className="quiz-options">
-                {q.options.map((option, i) => (
-                  <button
-                    key={i}
-                    className={`quiz-option-button ${answers[index] === option[0] ? "selected" : ""}`}
-                    onClick={() => {
-                        handleAnswerChange(index, option)
-                        // console.log(index, option)
-                    }
-                    }
-                  >
-                    {`${optionLetters[i]}. ${option[0]}`}
-                  </button>
-                ))}
-              </div>
+          <div className="quiz-question-container">
+            <h3 className="quiz-question">
+              {questions[currentQuestionIndex].question}
+            </h3>
+            <div className="quiz-options">
+              {questions[currentQuestionIndex].options.map((option, i) => (
+                <button
+                  key={i}
+                  className={`quiz-option-button ${
+                    answers[currentQuestionIndex] === option[0] ? "selected" : ""
+                  }`}
+                  onClick={() => handleAnswerChange(currentQuestionIndex, option)}
+                >
+                  {`${optionLetters[i]}. ${option[0]}`}
+                </button>
+              ))}
             </div>
-          ))}
-          <button id="submit-button" 
-          className="quiz-button" 
-          type="submit"
-          onClick={() => {
-            handleSubmit(answers)
-          }}>
-            Submit
-          </button>
+          </div>
+          <div className="quiz-navigation-buttons">
+            {currentQuestionIndex > 0 && (
+              <button
+                className="previous-button"
+                onClick={handlePreviousQuestion}
+              >
+                Previous
+              </button>
+            )}
+            <button
+              className="next-button"
+              onClick={handleNextQuestion}
+              disabled={!answers[currentQuestionIndex]} // Disable until an option is selected
+            >
+              {currentQuestionIndex === questions.length - 1 ? "Finish" : "Next"}
+            </button>
+          </div>
         </>
+      ) : (<>
+      <h1>We've calculated the results!</h1>
+      <ResultsModel answers={answers} questions={questions} />
+      </>
+      )}
     </div>
   );
 }
