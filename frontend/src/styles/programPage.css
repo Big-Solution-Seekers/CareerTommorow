@@ -1,0 +1,6 @@
+.programImage {
+    width: 50rem;        /* Set the width of the image */
+    height: auto;        /* Maintain the aspect ratio */
+    display: block;      /* Center the image if you want */
+    margin: 0 auto;     /* Center the image horizontally */
+}

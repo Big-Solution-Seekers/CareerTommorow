@@ -25,6 +25,25 @@ const PostModel = () => {
     const [moreCommentsVisible, setMoreCommentsVisible] = useState({});
     const [selectedField, setSelectedField] = useState('all');
 
+    const timeAgo = (timestamp) => {
+        const now = new Date();
+        const postTime = new Date(timestamp);
+        const seconds = Math.floor((now - postTime) / 1000);
+
+        let interval = Math.floor(seconds / 31536000); // Years
+        if (interval >= 1) return interval === 1 ? `${interval} year ago` : `${interval} years ago`;
+        interval = Math.floor(seconds / 2592000); // Months
+        if (interval >= 1) return interval === 1 ? `${interval} month ago` : `${interval} months ago`;
+        interval = Math.floor(seconds / 86400); // Days
+        if (interval >= 1) return interval === 1 ? `${interval} day ago` : `${interval} days ago`;
+        interval = Math.floor(seconds / 3600); // Hours
+        if (interval >= 1) return interval === 1 ? `${interval} hour ago` : `${interval} hours ago`;
+        interval = Math.floor(seconds / 60); // Minutes
+        if (interval >= 1) return interval === 1 ? `${interval} minute ago` : `${interval} minutes ago`;
+
+        return seconds === 1 ? `${seconds} second ago` : `${seconds} seconds ago`;
+    };
+
     const toggleModal = () => {
         setModal(!modal);
         if (!modal) {
@@ -45,8 +64,6 @@ const PostModel = () => {
         }));
     };
 
-    const currentTime = new Date().toLocaleString(); 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!currentUser) {
@@ -55,13 +72,13 @@ const PostModel = () => {
         }
         if (createTitle.trim() && createContent.trim()) {
             const fields_id = selectedField !== 'all' ? parseInt(selectedField) : null; // Get selected field ID
+
             const newPost = {
                 user_id: currentUser.id,
                 fields_id, // Save selected field ID
                 title: createTitle,
                 content: createContent,
                 username: currentUser.username,
-                timePosted: currentTime,
             };
             const [post, error] = await fetchHandler(baseUrl, getPostOptions(newPost));
             if (post) {
@@ -87,13 +104,13 @@ const PostModel = () => {
             title: editTitle,
             content: editContent,
         };
-    
+
         try {
             const updated = await updatePost(postId, updatedContent); 
             if (updated) {
                 setPosts((prevPosts) =>
                     prevPosts.map((post) =>
-                        post.id === postId ? { ...post, title: editTitle, content: editContent, timePosted: currentTime } : post
+                        post.id === postId ? { ...post, title: editTitle, content: editContent } : post
                     )
                 );
                 toggleEditModal(); 
@@ -115,7 +132,6 @@ const PostModel = () => {
                 [post.id]: fetchedComments || [],
             }));
         }
-        
     };
 
     const handleAddComment = async (postId) => {
@@ -124,6 +140,7 @@ const PostModel = () => {
             setErrorText('You must be signed in to add a comment.');
             return;
         }
+
         const newCommentData = {
             post_id: postId,
             user_id: currentUser.id,
@@ -185,7 +202,7 @@ const PostModel = () => {
     if (!currentUser) {
         return <p>You must be signed in to view posts and comments.</p>; 
     }
-
+console.log(comments)
     return (
         <>
             <button onClick={toggleModal} className="btn-modal">Add a post!</button>
@@ -199,12 +216,11 @@ const PostModel = () => {
                     <option value="4">Trade Training</option>
                 </select>
             </div>
-
             {modal && (
                 <div className='modal'>
                     <div className='overlay' onClick={toggleModal}></div>
                     <div className='modal-content'>
-                        <button className="btn"onClick={toggleModal}>x</button>
+                        <button className="btn" onClick={toggleModal}>x</button>
                         <form className='post-form' onSubmit={handleSubmit}>
                             <h2>Create your post!</h2>
                             <label htmlFor="title">Title</label>
@@ -225,52 +241,51 @@ const PostModel = () => {
                             />
                             <label htmlFor="field">Select Field:</label>
                             <select id="field" value={selectedField} onChange={(e) => setSelectedField(e.target.value)}>
+                                <option value="all">All</option>
                                 <option value="1">Technology</option>
                                 <option value="2">Business</option>
                                 <option value="3">Healthcare</option>
                                 <option value="4">Trade Training</option>
                             </select>
-                            <button  className="btn" type="submit">Post</button>
+                            <button type="submit" className='btn'>Create</button>
+                            {errorText && <p className='error'>{errorText}</p>}
                         </form>
-                        {errorText && <p className="error-text">{errorText}</p>}
                     </div>
                 </div>
             )}
-
+            
             {editModal && (
                 <div className='modal'>
                     <div className='overlay' onClick={toggleEditModal}></div>
                     <div className='modal-content'>
                         <button className="btn" onClick={toggleEditModal}>x</button>
-                        <form className='post-form' onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
+                        <form onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
                             <h2>Edit Post</h2>
                             <label htmlFor="edit-title">Title</label>
                             <input
                                 type="text"
-                                id='edit-title'
+                                id="edit-title"
                                 value={editTitle}
                                 onChange={(e) => setEditTitle(e.target.value)}
                             />
                             <label htmlFor="edit-content">Content</label>
                             <input
                                 type="text"
-                                id='edit-content'
+                                id="edit-content"
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
                             />
-                            <button className="btn" type="submit">Update</button>
+                            <button type="submit">Update</button>
                         </form>
-                        {errorText && <p className="error-text">{errorText}</p>}
                     </div>
                 </div>
             )}
-
 <div className="posts-container">
     {filteredPosts.map((post) => (
         <div key={post.id} className="post-card">
             <h3 className="post-title">{post.title}</h3>
             <p className="post-content">{post.content}</p>
-            <p className="post-meta">Posted by {post.username} at {post.timePosted}</p>
+            <p className="post-meta">Posted by {post.username} at {timeAgo(post.created_at)}</p>
             {currentUser.id === post.user_id && (
                 <div className="post-actions">
                     <button onClick={() => handleEditPost(post)}>Edit</button>
@@ -306,6 +321,7 @@ const PostModel = () => {
         </div>
     ))}
 </div>
+
         </>
     );
 };

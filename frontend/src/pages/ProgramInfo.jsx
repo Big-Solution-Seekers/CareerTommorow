@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { getProgram } from "../adapters/programs-adapters"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
+import '../styles/programPage.css'; 
 
 const ProgramInfo = () => {
   const { id } = useParams();
@@ -22,8 +23,11 @@ const ProgramInfo = () => {
       <h1>{program.name}</h1>
       <h3>Title: {program.description}</h3>
       <h3>Cost: ${program.cost}</h3>
+
       <img src={program.image} />
       <h3>Requirements: {program.requirements}</h3>
+
+      <img className="programImage" src={program.image} />
       <Link to={program.map_link}>
         <button>Google Maps</button>
       </Link>
