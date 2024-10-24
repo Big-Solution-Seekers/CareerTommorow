@@ -317,8 +317,51 @@ const PostModel = () => {
                     </div>
                 </div>
             )}
+<div className="posts-container">
+    {filteredPosts.map((post) => (
+        <div key={post.id} className="post-card">
+            <h3 className="post-title">{post.title}</h3>
+            <p className="post-content">{post.content}</p>
+            <p className="post-meta">Posted by {post.username} at {timeAgo(post.created_at)}</p>
+            {currentUser.id === post.user_id && (
+                <div className="post-actions">
+                    <button onClick={() => handleEditPost(post)}>Edit</button>
+                    <button onClick={() => handleDeletePost(post.id)}>Delete</button>
+                </div>
+            )}
+            <button onClick={() => toggleComments(post.id)} className="comments-toggle-button">
+                Comments ({comments[post.id]?.length || 0})
+            </button>
+            {visibleComments[post.id] && (
+                <div className="comments-section">
+                    <div className="comments-container">
+                        {comments[post.id]?.map((comment) => (
+                            <div key={comment.id} className="comment">
+                                <p className="comment-content">{comment.content}</p>
+                                <p className="comment-meta">Commented by {comment.username}</p>
+                                {currentUser.id === comment.user_id && (
+                                    <button className="btn" onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    <input
+                        type="text"
+                        className="new-comment-input"
+                        placeholder="Add a comment..."
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                    />
+                    <button className="btn"onClick={() => handleAddComment(post.id)}>Add Comment</button>
+                </div>
+            )}
+        </div>
+    ))}
+</div>
+
         </>
     );
 };
 
 export default PostModel;
+
