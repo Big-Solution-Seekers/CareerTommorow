@@ -2,7 +2,7 @@
 const knex = require('../db/knex');
 
 class Programs {
-    constructor({ id, fields_id, name, cost, url, description, location, image, map_link }) {
+    constructor({ id, fields_id, name, cost, url, description, location, image, map_link, requirements, program_summary }) {
         this.id = id;
         this.fields_id = fields_id
         this.name = name
@@ -12,6 +12,8 @@ class Programs {
         this.location = location
         this.image = image
         this.map_link = map_link
+        this.requirements = requirements
+        this.program_summary
     }
 
     static async list() {
