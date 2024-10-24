@@ -1,39 +1,70 @@
-// ProgramsList.js
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useParams and useNavigate
-import { getAllPrograms } from '../adapters/programs-adapters'; // Import adapter to fetch programs
-import '../styles/program.css'
+import { useParams, useNavigate } from 'react-router-dom';
+import { getAllPrograms } from '../adapters/programs-adapters';
+import { getFieldDescription, getAllFields } from '../adapters/fields-adapter'; // Import getAllFields
+import '../styles/program.css';
 
 const ProgramsList = () => {
-    const { fieldId } = useParams(); // Get fieldId from the URL parameters
-    const navigate = useNavigate(); // Initialize useNavigate for redirection
-    const [programs, setPrograms] = useState([]); // State to hold the list of programs
-    const [errorText, setErrorText] = useState(''); // State to hold error messages
+    const { fieldId } = useParams();
+    const navigate = useNavigate();
+    const [programs, setPrograms] = useState([]);
+    const [errorText, setErrorText] = useState('');
+    const [fieldDescription, setFieldDescription] = useState('');
+    const [category, setCategory] = useState(''); // State to hold the field category
+    const [fields, setFields] = useState([]); // State to hold fetched fields
 
     useEffect(() => {
         const fetchPrograms = async () => {
-            const fetchedPrograms = await getAllPrograms(); // Fetch all programs
-            const filteredPrograms = fetchedPrograms.filter(program => program.fields_id === parseInt(fieldId)); // Filter programs by fieldId
+            const fetchedPrograms = await getAllPrograms();
+            const filteredPrograms = fetchedPrograms.filter(program => program.fields_id === parseInt(fieldId));
+
             if (filteredPrograms.length > 0) {
                 setPrograms(filteredPrograms);
             } else {
                 setErrorText('No programs found for this field.');
             }
         };
+
+        const fetchFieldData = async () => {
+            const description = await getFieldDescription(fieldId);
+            setFieldDescription(description);
+        };
+
+        const fetchFields = async () => {
+            const fetchedFields = await getAllFields(); // Fetch all fields
+            console.log("Fetched fields:", fetchedFields); // Debugging step
+            if (fetchedFields.length > 0) {
+                setFields(fetchedFields);
+                
+                // Find the specific field based on fieldId
+                const field = fetchedFields.find(field => field.id === parseInt(fieldId));
+                if (field) {
+                    setCategory(field.category); // Assuming `field` has a `category` property
+                } else {
+                    setErrorText('Field not found.');
+                }
+            } else {
+                setErrorText('Error fetching fields or no fields found.');
+            }
+        };
+
         fetchPrograms();
+        fetchFieldData();
+        fetchFields();
     }, [fieldId]);
 
     const handleBack = () => {
-        navigate('/'); // Navigate back to the home page
+        navigate('/');
     };
 
-    // When you click a card, this will take you to a page with a single program information
     const handleSingleProgram = (e) => {
         let id = null;
-        if (e.target.parentNode.className === "program-card") id = e.target.parentNode.getAttribute("data-program-id");
-        else id = e.target.getAttribute("data-program-id");
+        if (e.target.parentNode.className === "program-card") 
+            id = e.target.parentNode.getAttribute("data-program-id");
+        else 
+            id = e.target.getAttribute("data-program-id");
         navigate(`/program/${id}`);
-    }
+    };
 
     return (
         <div className="programs-list-container">
@@ -42,11 +73,17 @@ const ProgramsList = () => {
             </button>
             {errorText && <p className="error-text">{errorText}</p>}
             {programs.length === 0 && !errorText && <p>Loading programs...</p>}
+            {fieldDescription && category && ( // Ensure both are available before rendering
+            <>
+             <h3>{category} </h3>
+             <h4>Description of Field: {fieldDescription}</h4>
+            </>
+               
+            )}
             {programs.map((program) => (
                 <div key={program.id} className="program-card" onClick={handleSingleProgram} data-program-id={program.id}>
                     <h4>{program.name}</h4>
                     <p>{program.description}</p>
-                    
                 </div>
             ))}
         </div>

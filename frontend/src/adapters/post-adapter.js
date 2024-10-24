@@ -12,8 +12,8 @@ export const getAllPosts = async () => {
 
 export const getPost = async (id) => fetchHandler(`${baseUrl}/${id}`);
 
-export const updatePost = async (postId, { content }) =>
-  fetchHandler(`${baseUrl}/${postId}`, getPatchOptions({ content }));
+export const updatePost = async (postId, { title, content }) =>
+  fetchHandler(`${baseUrl}/${postId}`, getPatchOptions({ title, content }));
 
 // New deletePost function
 export const deletePost = async (postId) => {

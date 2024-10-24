@@ -2,9 +2,10 @@
 const knex = require('../db/knex');
 
 class Fields{
-    constructor({ id, fields_category}) {
+    constructor({ id, fields_category, description}) {
         this.id = id;
         this.category = fields_category
+        this.description = description
     }
 
     static async list() {

@@ -34,18 +34,18 @@ class Posts {
         return new Posts(rawPostData);
     }
 
-    static async update(id, user_id, fields_id, title, content) {
+    
+    static async update(id, title, content) {
         const query = `
-          UPDATE posts
-          SET user_id=?, fields_id=?, title=?, content=?
-          WHERE id=?
-          RETURNING *
-        `;
-        const result = await knex.raw(query, [user_id, fields_id, title, content, id]);
-        const rawUpdatedPost = result.rows[0];
-        return rawUpdatedPost ? new Posts(rawUpdatedPost) : null;
+            UPDATE posts
+            SET title = ?, content = ?
+            WHERE id = ?
+            RETURNING *`;
+        const result = await knex.raw(query, [title, content, id]); // Ensure id is used in the WHERE clause
+        const rawPostData = result.rows[0];
+        return rawPostData ? new Posts(rawPostData) : null; // Return the updated post or null if not found
     }
-
+    
     // New delete function
     static async delete(id) {
         const query = `DELETE FROM posts WHERE id = ? RETURNING *`;

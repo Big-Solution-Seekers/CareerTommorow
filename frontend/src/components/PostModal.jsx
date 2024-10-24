@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import '../styles/PostModel.css';
 import CurrentUserContext from "../contexts/current-user-context";
 import { fetchHandler, getPostOptions } from "../utils/fetchingUtils";
-import { deletePost } from "../adapters/post-adapter"; // Import the deletePost function
+import { deletePost, updatePost } from "../adapters/post-adapter";
+import { getAllComments } from "../adapters/comments-adapter";
 
 const baseUrl = '/api/posts';
 const commentsUrl = '/api/comments';
@@ -13,11 +14,16 @@ const PostModel = () => {
     const [createContent, setContent] = useState('');
     const [errorText, setErrorText] = useState('');
     const { currentUser } = useContext(CurrentUserContext);
-    const [posts, setPosts] = useState([]); // State for the list of posts
-    const [comments, setComments] = useState({}); // State for the comments for each post
-    const [newComment, setNewComment] = useState(''); // State for the new comment
+    const [posts, setPosts] = useState([]); 
+    const [comments, setComments] = useState({});
+    const [newComment, setNewComment] = useState('');
+    const [editModal, setEditModal] = useState(false);
+    const [editPostId, setEditPostId] = useState(null);
+    const [editTitle, setEditTitle] = useState('');
+    const [editContent, setEditContent] = useState('');
+    const [visibleComments, setVisibleComments] = useState({});
+    const [moreCommentsVisible, setMoreCommentsVisible] = useState({});
 
-    // Function to toggle the modal visibility
     const toggleModal = () => {
         setModal(!modal);
         if (!modal) {
@@ -25,117 +31,155 @@ const PostModel = () => {
             setContent('');
         }
     };
-    const currentTime = new Date().toLocaleString(); // Get current date and time
 
-    // Function to handle form submission for posts
+    const toggleEditModal = () => {
+        setEditModal(!editModal);
+    };
+
+    const toggleComments = (postId) => {
+        setVisibleComments((prevVisibleComments) => ({
+            ...prevVisibleComments,
+            [postId]: !prevVisibleComments[postId],
+        }));
+    };
+
+    const currentTime = new Date().toLocaleString(); 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!currentUser) {
+            setErrorText('You must be signed in to create a post.');
+            return;
+        }
         if (createTitle.trim() && createContent.trim()) {
-            const fields_id = 1; // Set this dynamically if needed
-            
+            const fields_id = 1; 
             const newPost = {
                 user_id: currentUser.id,
                 fields_id,
                 title: createTitle,
                 content: createContent,
                 username: currentUser.username,
-                timePosted: currentTime, // Set the time the post was created
+                timePosted: currentTime,
             };
-
             const [post, error] = await fetchHandler(baseUrl, getPostOptions(newPost));
-            
             if (post) {
-                setPosts((prevPosts) => [post, ...prevPosts]); // Update posts state to include new post
+                setPosts((prevPosts) => [post, ...prevPosts]);
                 setTitle('');
                 setContent('');
-                toggleModal(); // Close modal after successful submission
+                toggleModal(); 
             } else {
-                setErrorText('Error creating post'); // Display error message if submission fails
+                setErrorText('Error creating post'); 
             }
         }
     };
 
-    // Function to fetch comments for a specific post
-    const fetchComments = async (postId) => {
-        const [fetchedComments] = await fetchHandler(`${commentsUrl}?post_id=${postId}`);
-        setComments((prevComments) => ({
-            ...prevComments,
-            [postId]: fetchedComments || [],
-        }));
+    const handleEditPost = (post) => {
+        setEditPostId(post.id);
+        setEditTitle(post.title);
+        setEditContent(post.content);
+        toggleEditModal();
     };
 
-    // Fetch comments for all posts
-    const fetchAllComments = async (posts) => {
-        for (let post of posts) {
-            await fetchComments(post.id);
+    const handleUpdatePost = async (postId) => {
+        const updatedContent = {
+            title: editTitle,
+            content: editContent,
+        };
+    
+        try {
+            const updated = await updatePost(postId, updatedContent); 
+            if (updated) {
+                setPosts((prevPosts) =>
+                    prevPosts.map((post) =>
+                        post.id === postId ? { ...post, title: editTitle, content: editContent, timePosted: currentTime } : post
+                    )
+                );
+                toggleEditModal(); 
+            } else {
+                setErrorText('Error updating post');
+            }
+        } catch (error) {
+            setErrorText('Error updating post');
+            console.error(error);
         }
     };
 
-    // Function to handle adding a comment
+    const fetchAllComments = async (posts) => {
+        for (let post of posts) {
+            const fetchedComments = await getAllComments(post.id);
+            if (!fetchedComments) console.log('error');
+            setComments((prevComments) => ({
+                ...prevComments,
+                [post.id]: fetchedComments || [],
+            }));
+        }
+        
+    };
+
     const handleAddComment = async (postId) => {
         if (!newComment.trim()) return;
-
+        if (!currentUser) {
+            setErrorText('You must be signed in to add a comment.');
+            return;
+        }
         const newCommentData = {
             post_id: postId,
             user_id: currentUser.id,
             content: newComment,
-            username: currentUser.username, // Including username for display
+            username: currentUser.username,
         };
-
-        const [comment, error] = await fetchHandler(commentsUrl, getPostOptions(newCommentData, 'POST'));
-        
+        const [comment] = await fetchHandler(commentsUrl, getPostOptions(newCommentData, 'POST'));
         if (comment) {
             setComments((prevComments) => ({
                 ...prevComments,
                 [postId]: [...(prevComments[postId] || []), comment],
             }));
-            setNewComment(''); // Clear the input field after successful submission
-        } else {
-            console.error('Error creating comment', error);
+            setNewComment('');
         }
     };
 
-    // Function to delete a post
     const handleDeletePost = async (postId) => {
         try {
             await deletePost(postId);
-            setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId)); // Remove post from state
+            setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId)); 
         } catch (error) {
             console.error('Failed to delete post:', error);
-            // Handle error state here if needed
         }
     };
 
-    // Function to delete a comment
     const handleDeleteComment = async (postId, commentId) => {
         try {
-            // Replace this with your delete comment function
-            await fetchHandler(`${commentsUrl}/${commentId}`, {
-                method: 'DELETE',
-            });
+            await fetchHandler(`${commentsUrl}/${commentId}`, { method: 'DELETE' });
             setComments((prevComments) => ({
                 ...prevComments,
                 [postId]: prevComments[postId].filter((comment) => comment.id !== commentId),
             }));
         } catch (error) {
             console.error('Failed to delete comment:', error);
-            // Handle error state here if needed
         }
     };
 
-    // Fetch posts from the server when the component mounts
+    const toggleMoreComments = (postId) => {
+        setMoreCommentsVisible((prevVisible) => ({
+            ...prevVisible,
+            [postId]: !prevVisible[postId],
+        }));
+    };
+
     useEffect(() => {
         const fetchPosts = async () => {
             const [fetchedPosts] = await fetchHandler(baseUrl);
-            setPosts(fetchedPosts || []); // Set the state with fetched posts
-
-            // Fetch comments for each post
+            setPosts(fetchedPosts || []);
             if (fetchedPosts) {
                 await fetchAllComments(fetchedPosts);
             }
         };
         fetchPosts();
     }, []);
+
+    if (!currentUser) {
+        return <p>You must be signed in to view posts and comments.</p>; 
+    }
 
     return (
         <>
@@ -145,79 +189,105 @@ const PostModel = () => {
                 <div className='modal'>
                     <div className='overlay' onClick={toggleModal}></div>
                     <div className='modal-content'>
-                        <form className='post-form' onSubmit={handleSubmit} aria-labelledby="create-post">
+                        <button className="close-button" onClick={toggleModal}>x</button>
+                        <form className='post-form' onSubmit={handleSubmit}>
                             <h2>Create your post!</h2>
                             <label htmlFor="title">Title</label>
                             <input
-                                autoComplete="off"
                                 type="text"
                                 id='title'
                                 name='title'
                                 value={createTitle}
-                                placeholder="Title..."
                                 onChange={(e) => setTitle(e.target.value)}
                             />
-
                             <label htmlFor="content">Content</label>
                             <input
-                                autoComplete="off"
                                 type="text"
                                 id='content'
                                 name='content'
                                 value={createContent}
-                                placeholder="Content..."
                                 onChange={(e) => setContent(e.target.value)}
                             />
-                            
-                            <button type="submit" className="submit-button">
-                                Post
-                            </button>
+                            <button type="submit">Post</button>
                         </form>
                         {errorText && <p className="error-text">{errorText}</p>}
                     </div>
                 </div>
             )}
 
-            {/* Render the list of posts */}
+            {editModal && (
+                <div className='modal'>
+                    <div className='overlay' onClick={toggleEditModal}></div>
+                    <div className='modal-content'>
+                        <button className="close-button" onClick={toggleEditModal}>x</button>
+                        <form className='post-form' onSubmit={() => handleUpdatePost(editPostId)}>
+                            <h2>Edit your post!</h2>
+                            <label htmlFor="edit-title">Title</label>
+                            <input
+                                type="text"
+                                id='edit-title'
+                                name='edit-title'
+                                value={editTitle}
+                                onChange={(e) => setEditTitle(e.target.value)}
+                            />
+                            <label htmlFor="edit-content">Content</label>
+                            <input
+                                type="text"
+                                id='edit-content'
+                                name='edit-content'
+                                value={editContent}
+                                onChange={(e) => setEditContent(e.target.value)}
+                            />
+                            <button type="submit">Save</button>
+                        </form>
+                    </div>
+                </div>
+            )}
+
             <div className="posts-list">
                 {posts.map((post) => (
                     <div key={post.id} className="post-item">
                         <h3>{post.title}</h3>
                         <p>{post.content}</p>
-                        <small>
-                            Posted by {post.username} at {currentTime}
-                        </small>
-                     
-                        {/* Comments Section */}
+                        <small>Posted by {post.username} at {post.timePosted}</small>
+
+                        {currentUser.id === post.user_id && (
+                            <>
+                                <button onClick={() => handleEditPost(post)}>Edit</button>
+                                <button onClick={() => handleDeletePost(post.id)}>Delete Post</button>
+                            </>
+                        )}
                         <div className="comments-section">
-                            <h4>Comments</h4>
-                            <div className="comments-list">
-                                {(comments[post.id] || []).map((comment) => (
-                                    <div key={comment.id} className="comment-item">
-                                        <p>{comment.content}</p>
-                                        <small>Commented by {comment.username || currentUser.username}</small>
-                                        {/* Button to delete comment */}
-                                        {currentUser.id === comment.user_id && ( // Check if the current user is the owner of the comment
-                                            <button onClick={() => handleDeleteComment(post.id, comment.id)} className="delete-button">
-                                                Delete Comment
-                                            </button>
+                            <button onClick={() => toggleComments(post.id)}>
+                                {visibleComments[post.id] ? 'Hide Comments' : 'Show Comments'}
+                            </button>
+                            {visibleComments[post.id] && (
+                                <>
+                                    <div className="comments">
+                                        {comments[post.id] && comments[post.id].length > 0 ? (
+                                            <>
+                                                {comments[post.id].map((comment) => (
+                                                    <div key={comment.id} className="comment-item">
+                                                        <p>{comment.content}</p>
+                                                        <small>Commented by {comment.username}</small>
+                                                        {currentUser.id === comment.user_id && (
+                                                            <button onClick={() => handleDeleteComment(post.id, comment.id)}>Delete Comment</button>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </>
+                                        ) : (
+                                            <p>No comments yet.</p>
                                         )}
+                                        <input
+                                            type="text"
+                                            placeholder="Add a comment..."
+                                            value={newComment}
+                                            onChange={(e) => setNewComment(e.target.value)}
+                                        />
+                                        <button onClick={() => handleAddComment(post.id)}>Add Comment</button>
                                     </div>
-                                ))}
-                            </div>
-                            <input
-                                type="text"
-                                value={newComment}
-                                placeholder="Add a comment..."
-                                onChange={(e) => setNewComment(e.target.value)}
-                            />
-                            <button onClick={() => handleAddComment(post.id)}>Add Comment</button>
-                            
-                            {/* Button to delete the post */}
-                            {currentUser.id === post.user_id && ( // Check if the current user is the owner of the post
-                                <button onClick={() => handleDeletePost(post.id)} className="delete-button">
-                                    Delete Post
-                                </button>
+                                </>
                             )}
                         </div>
                     </div>
@@ -228,5 +298,3 @@ const PostModel = () => {
 };
 
 export default PostModel;
-
-
