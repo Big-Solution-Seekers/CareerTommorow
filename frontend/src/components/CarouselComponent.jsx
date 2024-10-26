@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import { useCarousel } from '../hooks/useCarousel';
 
 const carouselImages = [
@@ -8,17 +8,24 @@ const carouselImages = [
 ];
 
 const CarouselComponent = () => {
-  const { handleClickDown, handleClickUp, pic } = useCarousel(carouselImages)
+  const { handleClickDown, handleClickUp, pic } = useCarousel(carouselImages);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleClickUp();
+    }, 2000); // 
+
+    return () => clearInterval(interval); // Cleanup the interval on unmount
+  }, [handleClickUp]);
+
   return (
     <>
       <h1 style={{ textAlign: "center" }}></h1>
-      <img src={carouselImages[pic]} />
+      <img className="Carousel-pics" src={carouselImages[pic]} alt="Carousel" />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <button onClick={handleClickDown}>{"<"} Prev</button>
-        <button onClick={handleClickUp}> Next {">"}</button>
       </div>
     </>
   );
-}
+};
 
-export default CarouselComponent
+export default CarouselComponent;

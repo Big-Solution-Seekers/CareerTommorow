@@ -13,6 +13,7 @@ import UserPage from './pages/User';
 import CommunityForum from './pages/CommunityForum';
 import ProgramsList from './components/ProgramsList';
 import ProgramInfo from './pages/ProgramInfo';
+import AboutUs from './components/aboutUs'
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
@@ -29,7 +30,7 @@ export default function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/quiz' element={<Quiz />}></Route>
-        <Route path='/users' element={<UsersPage />} />
+        <Route path='/About-us' element={<AboutUs/>}></Route>
         <Route path='/users/:id' element={<UserPage />} />
         <Route path="/programs/:fieldId" element={<ProgramsList />} />
         <Route path='/program/:id' element={<ProgramInfo />} />

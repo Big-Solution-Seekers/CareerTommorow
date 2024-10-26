@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import CurrentUserContext from "../contexts/current-user-context";
 import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
-import UpdateUsernameForm from "../components/UpdateUsernameForm";
+import UpdateUserInfoForm from "../components/UpdateUserInfoForm";
 
 export default function UserPage() {
   const navigate = useNavigate();
@@ -39,12 +39,11 @@ export default function UserPage() {
 
   return <>
     <h1>{profileUsername}</h1>
-    {!!isCurrentUserProfile && <button onClick={handleLogout}>Log Out</button>}
-    <p>If the user had any data, here it would be</p>
-    <p>Fake Bio or something</p>
+ 
     {
       !!isCurrentUserProfile
-      && <UpdateUsernameForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      && <UpdateUserInfoForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
     }
+       {!!isCurrentUserProfile && <button className="log-out" onClick={handleLogout}>Log Out</button>}
   </>;
 }

@@ -1,39 +1,36 @@
-/* Overall container for posts */
 .posts-container {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between cards */
+    gap: 20px;
     padding: 20px;
 }
 
-/* Style for individual post cards */
 .post-card {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    position: relative; /* For positioning children if needed */
+    position: relative;
+    width: 70%;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
-/* Post title styling */
 .post-title {
     margin: 0;
     font-size: 1.5em;
 }
 
-/* Post content styling */
 .post-content {
     margin: 10px 0;
 }
 
-/* Metadata for posts */
 .post-meta {
     font-size: 0.9em;
     color: #555;
 }
 
-/* Button styles */
 .btn-modal, .comments-toggle-button, .post-actions button {
     padding: 8px 12px;
     border: none;
@@ -48,74 +45,107 @@
     background-color: #0056b3;
 }
 
-/* Comments section */
 .comments-section {
     margin-top: 10px;
 }
-
-/* Container for scrolling through comments */
 .comments-container {
-    max-height: 150px; /* Set a max height for scrolling */
-    overflow-y: auto; /* Enable vertical scrolling */
-    background: #f9f9f9; /* Light background for comments */
+    max-height: 150px;
+    overflow-y: auto;
+    background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 10px;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
 }
 
-/* Comment styling */
 .comment {
-    padding: 5px 0;
-    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.comment-content-wrapper {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
 }
 
-.comment:last-child {
-    border-bottom: none; /* Remove border from last comment */
+.commented-by {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 5px;
 }
 
 .comment-content {
     margin: 0;
 }
 
-/* New comment input styling */
+.comment-meta {
+    font-size: 0.9em;
+    color: #555;
+    margin: 5px 0 0; /* Add margin for spacing */
+}
+
+.comments-container .comment:last-child {
+    margin-bottom: 0;
+}
+
+.delete-btn {
+    background-color: #007bff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-comment-section {
+    display: flex;
+    align-items: center; 
+    margin-top: 10px; 
+}
+
 .new-comment-input {
-    width: calc(100% - 90px); /* Adjust width according to button size */
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-top: 10px;
+    flex-grow: 1; 
+    padding: 6px; 
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    margin-right: 10px; 
 }
 
 .new-comment-input:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #007bff; 
 }
 
-/* PostModel.css */
-
 .post-actions {
-    display: flex; /* Use flexbox for alignment */
-    gap: 10px; /* Adjust the spacing as needed */
-    margin-top: 10px; /* Add some margin to the top for better visual separation */
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .post-actions button {
-    padding: 5px 10px; /* Add padding for better button appearance */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #007BFF; /* Button background color */
-    color: white; /* Button text color */
-    cursor: pointer; /* Cursor change on hover */
-    transition: background-color 0.3s; 
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .post-actions button:hover {
-    background-color: #0056b3; 
+    background-color: #0056b3;
 }
 
 .btn {
-    background-color: #007BFF; 
+    background-color: #007BFF;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -124,5 +154,165 @@
 }
 
 .btn:hover {
-    background-color: #0056b3; 
+    background-color: #0056b3;
+}
+
+.field-selector-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+
+.field-selector-container label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.field-selector {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.field-selector:hover {
+    border-color: #888;
+}
+
+.field-selector:focus {
+    outline: none;
+    border-color: #5b9dd9;
+    box-shadow: 0 0 5px rgba(91, 157, 217, 0.5);
+}
+
+.btn-modal {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 20px auto;
+    display: block;
+    width: fit-content;
+}
+
+.btn-modal:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 400px;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.post-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-form label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.post-form input {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+}
+
+.error-text {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.posts-list {
+    width: 75%;
+    margin: 50px auto;
+    padding: 0;
+}
+
+.post-item {
+    border: 1px solid #ccc;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.post-item:hover {
+    transform: scale(1.03);
+}
+
+.post-item h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 24px;
+}
+
+.post-item p {
+    font-size: 18px;
+    color: #444;
+    margin: 15px 0;
+}
+
+.post-item small {
+    color: #666;
+    font-size: 14px;
+}
+
+.modal-content {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
 }

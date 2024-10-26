@@ -1,0 +1,76 @@
+/* Apply basic styles to the whole page */
+.log_in {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height for centering */
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center contents vertically */
+    align-items: center; /* Center contents horizontally */
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Fixed width for the form */
+}
+
+/* Heading styles */
+h1, h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Style for each label and input */
+label {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+/* Input field styles */
+input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; /* Make inputs take full width of the form */
+}
+
+/* Error message styling */
+.back_to_signup {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Flexbox alignment for the entire form (already defined above, can be removed if redundant) */
+/* Align items already handled in the form definition above */
+form {
+    align-items: center; /* Center inputs horizontally */
+}
+
+/* Link style for login */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Optional: Make the form container responsive */
+@media (max-width: 500px) {
+    form {
+        width: 100%; /* Full width on small screens */
+        padding: 1.5rem;
+    }
+}

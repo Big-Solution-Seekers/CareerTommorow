@@ -24,6 +24,8 @@ const PostModel = () => {
     const [visibleComments, setVisibleComments] = useState({});
     const [moreCommentsVisible, setMoreCommentsVisible] = useState({});
     const [selectedField, setSelectedField] = useState('all');
+    const [postMakingField, setPostMakingField] = useState('');
+
 
     const timeAgo = (timestamp) => {
         const now = new Date();
@@ -71,7 +73,8 @@ const PostModel = () => {
             return;
         }
         if (createTitle.trim() && createContent.trim()) {
-            const fields_id = selectedField !== 'all' ? parseInt(selectedField) : null; // Get selected field ID
+            const fields_id = parseInt(postMakingField);
+            console.log("Selected fields_id:", fields_id);
 
             const newPost = {
                 user_id: currentUser.id,
@@ -202,25 +205,26 @@ const PostModel = () => {
     if (!currentUser) {
         return <p>You must be signed in to view posts and comments.</p>; 
     }
-console.log(comments)
+// console.log(comments)
     return (
         <>
             <button onClick={toggleModal} className="btn-modal">Add a post!</button>
-            <div className="filter-container">
-                <label htmlFor="field-filter">Filter by Field:</label>
-                <select id="field-filter" value={selectedField} onChange={(e) => setSelectedField(e.target.value)}>
-                    <option value="all">All</option>
-                    <option value="1">Technology</option>
-                    <option value="2">Business</option>
-                    <option value="3">Healthcare</option>
-                    <option value="4">Trade Training</option>
-                </select>
-            </div>
+        <div className="field-selector-container">
+            <label htmlFor="field-filter">Filter by Field: </label>
+            <select id="field-filter" className="field-selector" value={selectedField} onChange={(e) => setSelectedField(e.target.value)}>
+                <option value="all">All</option>
+                <option value="1">Technology</option>
+                <option value="2">Business</option>
+                 <option value="3">Healthcare</option>
+                 <option value="4">Trade Training</option>
+            </select>
+        </div>
+
             {modal && (
                 <div className='modal'>
                     <div className='overlay' onClick={toggleModal}></div>
                     <div className='modal-content'>
-                        <button className="btn" onClick={toggleModal}>x</button>
+                        <button className="close-btn" onClick={toggleModal}>x</button>
                         <form className='post-form' onSubmit={handleSubmit}>
                             <h2>Create your post!</h2>
                             <label htmlFor="title">Title</label>
@@ -239,14 +243,15 @@ console.log(comments)
                                 value={createContent}
                                 onChange={(e) => setContent(e.target.value)}
                             />
-                            <label htmlFor="field">Select Field:</label>
-                            <select id="field" value={selectedField} onChange={(e) => setSelectedField(e.target.value)}>
-                                <option value="all">All</option>
-                                <option value="1">Technology</option>
-                                <option value="2">Business</option>
-                                <option value="3">Healthcare</option>
-                                <option value="4">Trade Training</option>
-                            </select>
+                           <label htmlFor="field">Select Field:</label>
+                         <select id="field" value={postMakingField} onChange={(e) => setPostMakingField(e.target.value)}>
+                            <option value="all">All</option>
+                            <option value="1">Technology</option>
+                            <option value="2">Business</option>
+                            <option value="3">Healthcare</option>
+                            <option value="4">Trade Training</option>
+                        </select>
+
                             <button type="submit" className='btn'>Create</button>
                             {errorText && <p className='error'>{errorText}</p>}
                         </form>
@@ -258,7 +263,7 @@ console.log(comments)
                 <div className='modal'>
                     <div className='overlay' onClick={toggleEditModal}></div>
                     <div className='modal-content'>
-                        <button className="btn" onClick={toggleEditModal}>x</button>
+                        <button className="close-btn" onClick={toggleEditModal}>x</button>
                         <form onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
                             <h2>Edit Post</h2>
                             <label htmlFor="edit-title">Title</label>
@@ -275,7 +280,7 @@ console.log(comments)
                                 value={editContent}
                                 onChange={(e) => setEditContent(e.target.value)}
                             />
-                            <button type="submit">Update</button>
+                            <button className='btn' type="submit">Update</button>
                         </form>
                     </div>
                 </div>
@@ -296,18 +301,22 @@ console.log(comments)
                 Comments ({comments[post.id]?.length || 0})
             </button>
             {visibleComments[post.id] && (
-                <div className="comments-section">
-                    <div className="comments-container">
-                        {comments[post.id]?.map((comment) => (
-                            <div key={comment.id} className="comment">
-                                <p className="comment-content">{comment.content}</p>
-                                <p className="comment-meta">Commented by {comment.username}</p>
-                                {currentUser.id === comment.user_id && (
-                                    <button className="btn" onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
-                                )}
-                            </div>
+    <div className="comments-section">
+        <div className="comments-container">
+            {comments[post.id]?.map((comment) => (
+                <div key={comment.id} className="comment">
+                    <div className="comment-content-wrapper">
+                        <p className="comment-content">{comment.content}</p>
+                        <p className="comment-meta">Commented by {comment.username}</p>
+                    </div>
+                    
+                    {currentUser.id === comment.user_id && (
+                        <button className="delete-btn" onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
+                    )}
+                </div>
                         ))}
                     </div>
+                    <div className="add-comment-section">
                     <input
                         type="text"
                         className="new-comment-input"
@@ -316,6 +325,7 @@ console.log(comments)
                         onChange={(e) => setNewComment(e.target.value)}
                     />
                     <button className="btn"onClick={() => handleAddComment(post.id)}>Add Comment</button>
+                    </div>
                 </div>
             )}
         </div>
@@ -327,4 +337,3 @@ console.log(comments)
 };
 
 export default PostModel;
-
