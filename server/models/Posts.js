@@ -11,15 +11,6 @@ class Posts {
         this.created_at = created_at;
     }
 
-    // static async list() {
-    //     const query = `
-    //         SELECT posts.*, users.username
-    //         FROM posts
-    //         JOIN users ON posts.user_id = users.id
-    //     `;
-    //     const result = await knex.raw(query);
-    //     return result.rows.map((rawPostData) => new Posts(rawPostData));
-    // }
 
     static async list(fields_id = null) {
         let query = `

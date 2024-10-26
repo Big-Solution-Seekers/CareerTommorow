@@ -34,11 +34,17 @@ class Comment {
     }
 
     // Fetches all comments for a given post
-    static async findByPostId(post_id) {
-        const query = `SELECT * FROM comments WHERE post_id = ?`;
-        const result = await knex.raw(query, [post_id]);
-        return result.rows.map((rawCommentData) => new Comment(rawCommentData));
-    }
+// Fetches all comments for a given post, including usernames
+static async findByPostId(post_id) {
+    const query = `
+        SELECT comments.*, users.username
+        FROM comments
+        JOIN users ON comments.user_id = users.id
+        WHERE post_id = ?
+    `;
+    const result = await knex.raw(query, [post_id]);
+    return result.rows.map((rawCommentData) => new Comment(rawCommentData));
+}
 
     // Creates a new comment
     static async create(user_id, post_id, content) {

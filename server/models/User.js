@@ -45,14 +45,14 @@ class User {
     return new User(rawUserData);
   }
 
-  static async update(id, username, email, profileImage) {
+  static async updateUserInfo(id, username, email) {
     const query = `
       UPDATE users
-      SET username = ?, email = ?, profile_image = ?
+      SET username = ?, email = ?
       WHERE id = ?
-      RETURNING id, username, email, profile_image
+      RETURNING id, username, email
     `;
-    const result = await knex.raw(query, [username, email, profileImage, id]);
+    const result = await knex.raw(query, [username, email, id]);
     const rawUpdatedUser = result.rows[0];
     return rawUpdatedUser ? new User(rawUpdatedUser) : null;
   }

@@ -5,7 +5,9 @@ const Comment = require('../models/Comment');
 const getAllComments = async (req, res) => {
     try {
         const comments = await Comment.list();
+    
         res.status(200).json(comments);
+   
     } catch (error) {
         res.status(500).json({ message: 'Error fetching comments', error });
     }
