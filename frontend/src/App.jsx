@@ -11,7 +11,7 @@ import { checkForLoggedInUser } from './adapters/auth-adapter';
 import UsersPage from './pages/Users';
 import UserPage from './pages/User';
 import CommunityForum from './pages/CommunityForum';
-import ProgramsList from './components/ProgramsList';
+import ProgramsList from './pages/programsList'
 import ProgramInfo from './pages/ProgramInfo';
 import AboutUs from './components/aboutUs'
 
