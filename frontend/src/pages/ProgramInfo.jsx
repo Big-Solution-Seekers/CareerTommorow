@@ -1,40 +1,47 @@
-import { useParams } from "react-router-dom"
-import { getProgram } from "../adapters/programs-adapters"
-import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom";
+import { getProgram } from "../adapters/programs-adapters";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import '../styles/programPage.css';
 
 const ProgramInfo = () => {
   const { id } = useParams();
-
-  const [program, setProgram] = useState('');
+  const [mapButton, setMapButton] = useState(false);
+  const [program, setProgram] = useState(null); // Use null initially for better checks
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchProgram = async () => {
       const data = await getProgram(id);
       setProgram(data[0]);
-    }
-    fetch();
-  }, [])
-  console.log(program);
+
+      // Check if map_link exists and update the state accordingly
+      if (data[0]?.map_link) {
+        setMapButton(true);
+      }
+    };
+
+    fetchProgram();
+  }, [id]); // Include id as a dependency
+
+  if (!program) {
+    return <div>Loading...</div>; // Loading state while fetching
+  }
 
   return (
     <>
       <h1>{program.name}</h1>
       <h3>Title: {program.description}</h3>
       <h3>Cost: ${program.cost}</h3>
-
+      <h3>{program.program_summary}</h3>
       <h3>Requirements: {program.requirements}</h3>
-      <h3>{program.program_summary}</h3>
+      <img className="programImage" src={program.image} alt={program.name} />
+      <h3>Find Out More: <Link to={program.url}>{program.url}</Link></h3>
 
-      <img className="programImage" src={program.image} />
-      <h3>{program.program_summary}</h3>
-      <h3>Find Out More: <Link>{program.url}</Link></h3>
-      <Link to={program.map_link}>
-        <button>Google Maps</button>
-      </Link>
-
-
+      {mapButton && (
+        <Link to={program.map_link}>
+          <button>Google Maps</button>
+        </Link>
+      )}
     </>
   );
 }

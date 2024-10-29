@@ -78,6 +78,7 @@ exports.seed = async (knex) => {
       requirements: "At least 18 years of age, High School diploma or equivalent ,Authorized to work in the U.S",
     },
 
+    //-----------------------------------------------
 
     { fields_id: careerFields[1].id, name: 'Strayer University', cost: 0, url: 'https://degrees.strayer.edu/business/ ', description: 'Marketing, Management, Accounting', location: 'New York', image: 'https://example.com/image2.png' },
     {
@@ -100,11 +101,38 @@ exports.seed = async (knex) => {
       program_summary: "Job Corps is a free program operated by the U.S. Department of Labor, providing a diverse range of career opportunities across its nationwide campuses. Participants benefit from free housing, meals, basic medical care, and a living allowance. Among the healthcare careers available are Medical Assistant, Medical Administrative Assistant, EMT, Nurse Assistant, and Dental Assistant.",
       requirements: "Ages 18- 24, Low income individuals, Be a citizen, resident or have DACA",
     },
-    { fields_id: careerFields[2].id, name: 'Phillip Houses ', cost: 0, url: 'https://www.phippsny.org/programs/career-readiness/career-network/', description: 'PCT, CMA, & MAA', location: 'New York', image: 'https://www.phippsny.org/wp-content/themes/required-foundation/images/logo.png' },
-    { fields_id: careerFields[2].id, name: 'Bronx eoc', cost: 0, url: 'http://www.bronxeoc.org/vocational.html#emt', description: 'Medical assitant & EMT', location: 'New York', image: 'https://sunyempire.edu/media/partnerships/images/Bronx-EOC-logo.jpg' },
-    { fields_id: careerFields[2].id, name: 'Selfhelp', cost: 0, url: 'https://selfhelp.net/home-care-training/', description: 'HHA & PCA', location: 'New York', image: 'https://media.licdn.com/dms/image/v2/C4D1BAQGWVDgrN0cWLQ/company-background_10000/company-background_10000/0/1611072059495/selfhelp_community_services_cover?e=2147483647&v=beta&t=JU4Hz4Ydq47bhHLMCMb5uqRptovx5Bjmk6NS3kcsBTw' },
-    { fields_id: careerFields[2].id, name: 'YM & YWAH Washignton Heights & Inwood', cost: 0, url: 'https://media.licdn.com/dms/image/v2/C4E0BAQGeWtYtSUChEQ/company-logo_200_200/company-logo_200_200/0/1630610743542/ym__ywha_of_washington_heights_and_inwood_logo?e=2147483647&v=beta&t=H4a532DebPLG99NjacDKbJ5jXnyR3CeJ26saL8B8moI' },
-    { fields_id: careerFields[2].id, name: 'NYU Dentistry', cost: 0, url: 'https://pbs.twimg.com/profile_images/836338082186166272/jHNqYnDb_400x400.jpg' },
+    {
+      fields_id: careerFields[2].id, name: 'Phillip Houses ', cost: 0, url: 'https://www.phippsny.org/programs/career-readiness/career-network/', description: 'PCT, CMA, & MAA', location: 'New York',
+      image: 'https://www.phippsny.org/wp-content/themes/required-foundation/images/logo.png',
+      map_link: 'https://www.google.com/maps/place/Phipps+Neighborhoods+West+Farms+Opportunity+Center/@40.8403574,-73.8787378,19z/data=!3m1!4b1!4m6!3m5!1s0x89c2f48d152588cb:0x836b8aabfcf85c7b!8m2!3d40.8403574!4d-73.8787378!16s%2Fg%2F1tftxwy5?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D',
+      program_summary: 'Phipps Houses is a non-profit organization that provides low-income individuals and families with the social services and opportunities they need to thrive. Phipps Houses provides career readiness programs such as the Career Network: Health Care, which partners with Hostos Community College and Montefiore Medical Center to help young adults secure employment in the healthcare field. ​​This 10-week program includes stipends, onsite training, job readiness workshops, CPR/First Aid certification, certification opportunities at Hostos (PCT, CMA, MMA), and job placement assistance.',
+    },
+    {
+      fields_id: careerFields[2].id, name: 'Bronx eoc', cost: 0, url: 'http://www.bronxeoc.org/vocational.html#emt', description: 'Medical assitant & EMT', location: 'New York',
+      image: 'https://sunyempire.edu/media/partnerships/images/Bronx-EOC-logo.jpg',
+      map_link: 'https://www.google.com/maps/place/SUNY+Bronx+Educational+Opportunity+Center/@40.8405334,-73.9002001,15z/data=!4m2!3m1!1s0x0:0x9dbc6b71fe4d68a9?sa=X&ved=1t:2428&ictx=111',
+      program_summary: 'The SUNY Bronx Educational Opportunity Center provides tuition-free programs. Some vocational programs they have for individuals are Patient Care Technician, Certified Nursing Assistant, Direct Support Professional, Medical Assistant, Emergency Medical Technician, and Home Health Aid.',
+    },
+    {
+      fields_id: careerFields[2].id, name: 'Selfhelp', cost: 0, url: 'https://selfhelp.net/home-care-training/', description: 'HHA & PCA', location: 'New York',
+      image: 'https://media.licdn.com/dms/image/v2/C4D1BAQGWVDgrN0cWLQ/company-background_10000/company-background_10000/0/1611072059495/selfhelp_community_services_cover?e=2147483647&v=beta&t=JU4Hz4Ydq47bhHLMCMb5uqRptovx5Bjmk6NS3kcsBTw',
+      map_link: 'https://www.google.com/maps/place/Selfhelp+Community+Services,+Inc./@40.7208506,-74.0921684,12.03z/data=!4m10!1m2!2m1!1sSelfhelp!3m6!1s0x89c259adab5d38ad:0xf11694f57e7ffd51!8m2!3d40.7535985!4d-73.9919802!15sCghTZWxmaGVscJIBHHNvY2lhbF9zZXJ2aWNlc19vcmdhbml6YXRpb27gAQA!16s%2Fg%2F1tfbjn3l?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D',
+      program_summary: 'Selfhelp is a non-profit organization dedicated to helping seniors maintain their independence and dignity through housing, home care, and social services. To support this mission, Selfhelp offers a free Home Care Training Program available in both English and Spanish, which includes training for home health aides and personal care aides. Participants receive immediate job placement assistance upon completing the program, which lasts just one week!',
+    },
+    {
+      fields_id: careerFields[2].id, name: 'YM & YWAH Washignton Heights & Inwood', cost: 0, url: 'https://media.licdn.com/dms/image/v2/C4E0BAQGeWtYtSUChEQ/company-logo_200_200/company-logo_200_200/0/1630610743542/ym__ywha_of_washington_heights_and_inwood_logo?e=2147483647&v=beta&t=H4a532DebPLG99NjacDKbJ5jXnyR3CeJ26saL8B8moI',
+      image: 'https://media.licdn.com/dms/image/v2/C4E0BAQGeWtYtSUChEQ/company-logo_200_200/company-logo_200_200/0/1630610743542/ym__ywha_of_washington_heights_and_inwood_logo?e=2147483647&v=beta&t=H4a532DebPLG99NjacDKbJ5jXnyR3CeJ26saL8B8moI',
+      map_link: 'https://www.google.com/maps/place/YM+%26+YWHA+of+Washington+Heights+and+Inwood/@40.8601279,-73.9295215,15z/data=!4m2!3m1!1s0x0:0x820d5e1f509a891?sa=X&ved=1t:2428&ictx=111',
+      program_summary: 'YM&YWHA of Washington heights & Inwood is a jewish community center that provides social services and programs in health, wealness, education, and social justice for individuals of all ages. The center features a new Workforce Development Center that provides free healthcare training programs, including Patient Care Technician (PCT) and Certified Nursing Assistant (CNA) courses.',
+    },
+    {
+      fields_id: careerFields[2].id, name: 'NYU Dentistry', cost: 0, url: 'https://pbs.twimg.com/profile_images/836338082186166272/jHNqYnDb_400x400.jpg',
+      image: 'https://pbs.twimg.com/profile_images/836338082186166272/jHNqYnDb_400x400.jpg',
+      map_link: 'https://www.google.com/maps/place/NYU+College+of+Dentistry/@40.7378213,-73.9784058,15z/data=!4m2!3m1!1s0x0:0xedf7f1439bcc8194?sa=X&ved=1t:2428&ictx=111',
+      program_summary: 'New York University is a private prestigious university that currently offers a highly selective, tuition-free Dental Assistant Certificate Program designed for motivated and underemployed individuals.',
+    },
+
+    // -----------------------------------------------------------------
 
     { fields_id: careerFields[3].id, name: 'New York City Small Business Services ', cost: 0, url: 'https://www.nyc.gov/site/sbs/careers/industrial-training.page', description: 'Construction Site Safety HVAC Eco-friendly Energy Installation, Stipend included ', location: 'New York', image: 'https://d5xydlzdo08s0.cloudfront.net/media/celebrities/16017/sbslogo_300x300__L.jpg' },
     { fields_id: careerFields[3].id, name: 'Genspace ', cost: 0, url: 'https://www.genspace.org/break-into-biotech-program', description: 'Life Science Skills Training program, Stipend included', location: 'New York', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYsU4a_r0eoUX_sLhy2NpYc5zgXW2tc_0SFQ&s' },
