@@ -1,4 +1,4 @@
- body {
+body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
   background-color: rgb(255, 255, 255);
@@ -32,17 +32,25 @@ header {
 }
 
 nav ul {
-  display: flex;
+  display: flex; /* Flexbox to align items in a row */
   font-size: large;
-  gap: 3rem;
   padding: 0;
   margin: 0;
   list-style: none;
+  gap: 3rem; /* Space between items */
 }
 
 nav a {
-  display: block;
+  display: flex; /* Use flex to enable alignment */
+  align-items: center; /* Center links vertically */
+  height: 40px; /* Fixed height to align items */
   color: #000;
+  text-decoration: none; /* Remove underline from links */
+  line-height: 40px; /* Ensures text is vertically centered */
+}
+
+nav a:hover {
+  text-decoration: underline; /* Add hover effect for better UX */
 }
 
 .active {
@@ -51,9 +59,27 @@ nav a {
   font-style: italic;
 }
 
+.profile-container {
+  display: flex; /* Use flex to align profile elements */
+  align-items: center; /* Center profile items vertically */
+}
+
+.profile-image {
+  width: 60px; /* Adjust size as needed */
+  height: 60px; /* Adjust size as needed */
+  border-radius: 50%; /* Makes it circular */
+  margin-left: 8px; /* Space between the username and image */
+  object-fit: cover; /* Ensures the image fits well */
+}
 
 @media (max-width: 768px) {
   .card {
       flex: 1 1 100%; /* full width on mobile */
   }
+
+  nav ul {
+      flex-direction: column; /* Stack items vertically on mobile */
+      gap: 1rem; /* Adjust gap for vertical alignment */
+  }
 }
+

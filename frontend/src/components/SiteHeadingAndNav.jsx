@@ -17,7 +17,19 @@ export default function SiteHeadingAndNav() {
           {currentUser ? (
             <>
               <li><NavLink to="/community-forum">Community Forum</NavLink></li>
-              <li><NavLink to={`/users/${currentUser.id}`}>{currentUser.username}</NavLink></li>
+              <li>
+                <NavLink to={`/users/${currentUser.id}`} style={{ display: 'flex', alignItems: 'center' }}>
+                  {currentUser.username}
+                  {/* Display the profile image after the username */}
+                  {currentUser.profileImage && (
+                    <img
+                      src={currentUser.profileImage} // Assuming this is the URL of the profile image
+                      alt={`${currentUser.username}'s profile`}
+                      className="profile-image" // Use the defined class for styling
+                    />
+                  )}
+                </NavLink>
+              </li>
             </>
           ) : (
             <>

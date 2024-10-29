@@ -33,6 +33,9 @@ export default function UpdateUserInfoForm({ currentUser, setCurrentUser }) {
         <label htmlFor='email'>New Email</label>
         <input type='email' id='email' name='email' defaultValue={currentUser.email} />
 
+        <label htmlFor='password'>New Password</label>
+        <input type='text' id='password' name='password' placeholder="Enter new password..." />
+
         <input type="hidden" name="id" value={currentUser.id} />
         
         <button className="update" type="submit">Update User Info</button>
@@ -40,3 +43,4 @@ export default function UpdateUserInfoForm({ currentUser, setCurrentUser }) {
     </section>
   );
 }
+

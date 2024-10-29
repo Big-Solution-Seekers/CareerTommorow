@@ -12,6 +12,7 @@ export default function UserPage() {
   const [errorText, setErrorText] = useState(null);
   const { id } = useParams();
   const isCurrentUserProfile = currentUser && currentUser.id === Number(id);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   useEffect(() => {
     const loadUser = async () => {
@@ -24,26 +25,60 @@ export default function UserPage() {
   }, [id]);
 
   const handleLogout = async () => {
-    logUserOut();
+    await logUserOut(); // Ensure to await logout
     setCurrentUser(null);
     navigate('/');
+  };
+
+  const handleUpdateSubmit = async (updatedUser) => {
+    // Here you would typically send a request to update the user info in your backend
+    // For now, we will simply update the current user context and close the modal
+    setCurrentUser(updatedUser);
+    setIsModalOpen(false); // Close the modal after submitting
   };
 
   if (!userProfile && !errorText) return null;
   if (errorText) return <p>{errorText}</p>;
 
-  // What parts of state would change if we altered our currentUser context?
-  // Ideally, this would update if we mutated it
-  // But we also have to consider that we may NOT be on the current users page
   const profileUsername = isCurrentUserProfile ? currentUser.username : userProfile.username;
 
-  return <>
-    <h1>{profileUsername}</h1>
- 
-    {
-      !!isCurrentUserProfile
-      && <UpdateUserInfoForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
-    }
-       {!!isCurrentUserProfile && <button className="log-out" onClick={handleLogout}>Log Out</button>}
-  </>;
+  return (
+    <>
+    <div className="update-information-card">
+      <h1>{profileUsername}</h1>
+
+      {/* Display the profile picture */}
+      <div className="profile-picture-container">
+        <img
+          src={isCurrentUserProfile ? currentUser.profileImage : userProfile.profileImage}
+          alt={`${profileUsername}'s profile`}
+          className="profile-picture"
+        />
+      </div>
+      
+      {isCurrentUserProfile && (
+        <>
+          <button onClick={() => setIsModalOpen(true)}>Update User Info</button>
+
+          {isModalOpen && (
+            <div className="modal">
+              <div className="modal-content">
+                <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
+                <UpdateUserInfoForm 
+                  currentUser={currentUser} 
+                  setCurrentUser={handleUpdateSubmit} 
+                />
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+      {isCurrentUserProfile && (
+        <button className="log-out" onClick={handleLogout}>
+          Log Out
+        </button>
+      )}
+    </>
+  );
 }
