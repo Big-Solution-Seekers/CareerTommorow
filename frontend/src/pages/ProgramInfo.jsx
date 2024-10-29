@@ -28,6 +28,8 @@ const ProgramInfo = () => {
       <h3>{program.program_summary}</h3>
 
       <img className="programImage" src={program.image} />
+      <h3>{program.program_summary}</h3>
+      <h3>Find Out More: <Link>{program.url}</Link></h3>
       <Link to={program.map_link}>
         <button>Google Maps</button>
       </Link>
