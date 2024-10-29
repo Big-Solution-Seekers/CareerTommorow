@@ -39,6 +39,7 @@ exports.seed = async (knex) => {
   // Insert programs
   const programs = await knex('programs').insert([
     {
+
       fields_id: careerFields[0].id, name: 'The Marcy Lab School', cost: 0, url: 'https://www.marcylabschool.org/', description: 'Learn full-stack development.', location: 'New York',
       image: 'https://www.marcylabschool.org/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2F5tpkas7gb5io%2F4jXk6I0OfjAJNYxGL7VpeI%2F0c885a5f54e37aa58a7bfdfe351b7583%2Fbreakthrough-fellows.webp&w=3840&q=75',
       map_link: "https://www.google.com/maps/place/The+Marcy+Lab+School/@40.6576598,-74.0046992,15z/data=!4m6!3m5!1s0x89c25bb184c6a46f:0x7a66056656d02af8!8m2!3d40.6576598!4d-74.0046992!16s%2Fg%2F11j64sspbv?entry=ttu&g_ep=EgoyMDI0MTAyMS4xIKXMDSoASAFQAw%3D%3D",

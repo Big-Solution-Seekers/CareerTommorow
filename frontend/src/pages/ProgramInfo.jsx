@@ -24,8 +24,8 @@ const ProgramInfo = () => {
       <h3>Title: {program.description}</h3>
       <h3>Cost: ${program.cost}</h3>
 
-      <img src={program.image} />
       <h3>Requirements: {program.requirements}</h3>
+      <h3>{program.program_summary}</h3>
 
       <img className="programImage" src={program.image} />
       <h3>{program.program_summary}</h3>
