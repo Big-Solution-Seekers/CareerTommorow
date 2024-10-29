@@ -57,3 +57,9 @@ body, html {
   .log-out:hover {
     background-color: #0056b3; /* Darker button color on hover */
   }
+
+  @media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%; /* full width on mobile */
+    }
+}

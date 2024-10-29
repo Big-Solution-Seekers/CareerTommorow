@@ -72,13 +72,11 @@ exports.seed = async (knex) => {
     { user_id: users[1].id, fields_id: careerFields[1].id, title: 'Best practices for data cleaning', content: 'Data cleaning is an essential step...', created_at: knex.fn.now() },
   ]).returning('*');
 
-  console.log(posts, "these are my posts");
-
   // Insert comments
   const comments = await knex('comments').insert([
     { user_id: users[0].id, post_id: posts[0].id, content: 'Great tips! Thanks for sharing.', created_at: knex.fn.now() },
     { user_id: users[1].id, post_id: posts[1].id, content: 'Very helpful article.', created_at: knex.fn.now() },
   ]).returning('*');
 
-  console.log(comments, "these are the comments related to the post");
+
 };

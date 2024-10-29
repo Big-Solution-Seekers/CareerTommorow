@@ -7,7 +7,10 @@ const AboutUs = () => {
   const linkedInUrlAdrian = "https://www.linkedin.com/in/adrian-campos-3199002bb/"; // Replace with your LinkedIn URL
 
   return (
+
+  
     <div className="about-us-container">
+
       <div className="about-us-card">
         <img
           src="../images/Abdullah.jpg" // Replace with the correct path to your image

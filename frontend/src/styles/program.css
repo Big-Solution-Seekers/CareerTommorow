@@ -24,3 +24,9 @@
     text-align: center;
     font-size: 18px;
 }
+
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%; /* full width on mobile */
+    }
+}

@@ -31,6 +31,12 @@
     color: #555;
 }
 
+.post-actions {
+    position: absolute; /* Positioning to the right */
+    right: 15px; /* Adjust as needed */
+    top: 15px; /* Adjust as needed */
+}
+
 .btn-modal, .comments-toggle-button, .post-actions button {
     padding: 8px 12px;
     border: none;
@@ -91,7 +97,7 @@
 .comment-meta {
     font-size: 0.9em;
     color: #555;
-    margin: 5px 0 0; /* Add margin for spacing */
+    margin: 5px 0 0;
 }
 
 .comments-container .comment:last-child {
@@ -315,4 +321,151 @@
     font-size: 24px;
     cursor: pointer;
     color: #333;
+}
+
+
+
+
+/* Adding a fade-in effect for the posts container */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    opacity: 0; /* Initial state for fade-in */
+    animation: fadeIn 0.5s forwards; /* Animation for fade-in */
+}
+
+/* Keyframes for the fade-in effect */
+@keyframes fadeIn {
+    to {
+        opacity: 1; /* Final state */
+    }
+}
+
+/* Adding a subtle scale effect on post cards */
+.post-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    position: relative;
+    width: 70%;
+    max-width: 700px;
+    margin: 0 auto;
+    transition: transform 0.3s ease; /* Transition for scaling */
+}
+
+.post-card:hover {
+    transform: scale(1.02); /* Slightly scale up on hover */
+}
+
+/* Adding a bounce effect to buttons */
+.btn-modal, .comments-toggle-button, .post-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    margin-top: 10px;
+    transition: transform 0.2s ease; /* Transition for button bounce */
+}
+
+.btn-modal:hover, .comments-toggle-button:hover, .post-actions button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Bounce effect */
+}
+
+/* Adding slide-in effect for comments */
+.comments-container {
+    max-height: 150px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0; /* Initial state for slide-in */
+    transform: translateY(-10px); /* Slide in from above */
+    animation: slideIn 0.5s forwards; /* Animation for slide-in */
+}
+
+/* Keyframes for the slide-in effect */
+@keyframes slideIn {
+    to {
+        opacity: 1; /* Final state */
+        transform: translateY(0); /* Final position */
+    }
+}
+
+/* Adding transition effects for comment items */
+.comment {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease; /* Transition for hover effect */
+}
+
+.comment:hover {
+    background-color: #f0f8ff; /* Light background on hover */
+}
+
+/* Adding animations to the modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0; /* Initial state for modal */
+    animation: modalFadeIn 0.3s forwards; /* Fade-in animation for modal */
+}
+
+/* Keyframes for the modal fade-in effect */
+@keyframes modalFadeIn {
+    to {
+        opacity: 1; /* Final state */
+    }
+}
+
+/* Adding transition effects for the post item */
+.post-item {
+    border: 1px solid #ccc;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effects */
+}
+
+.post-item:hover {
+    transform: scale(1.02); /* Scale up on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%; /* full width on mobile */
+    }
 }
