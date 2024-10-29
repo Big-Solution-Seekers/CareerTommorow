@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getAllPrograms } from '../adapters/programs-adapters';
 import { getFieldDescription, getAllFields } from '../adapters/fields-adapter'; // Import getAllFields
 import '../styles/program.css';
+import ProgramCard from '../components/ProgramCard';
 
 const ProgramsList = () => {
     const { fieldId } = useParams();
@@ -57,17 +58,26 @@ const ProgramsList = () => {
         navigate('/');
     };
 
-    const handleSingleProgram = (e) => {
-        let id = null;
-        if (e.target.parentNode.className === "program-card") 
-            id = e.target.parentNode.getAttribute("data-program-id");
-        else 
-            id = e.target.getAttribute("data-program-id");
-        navigate(`/program/${id}`);
-    };
+    const handleSideBar = (e) => {
+        if(e.target.innerText === category) {
+            return
+        } else if(e.target.innerText === 'Technology') {
+            console.log(fields[0].id)
+            navigate(`/programs/${fields[0].id}`)
+        } else if(e.target.innerText === 'Business') {
+            console.log(fields[1].id)
+            navigate(`/programs/${fields[1].id}`)
+        } else if(e.target.innerText === 'Health care') {
+            console.log(fields[2].id)
+            navigate(`/programs/${fields[2].id}`)
+        } else if(e.target.innerText === 'Trade') {
+            console.log(fields[3].id)
+            navigate(`/programs/${fields[3].id}`)
+        }
+    }
 
     return (
-        <div className="programs-list-container">
+        <div className='container'>
             <button className="back-button" onClick={handleBack}>
                 Back to Home
             </button>
@@ -80,12 +90,27 @@ const ProgramsList = () => {
             </>
                
             )}
+            <div className='wrapper'>
+            <div className="programs-list-container">
             {programs.map((program) => (
-                <div key={program.id} className="program-card" onClick={handleSingleProgram} data-program-id={program.id}>
-                    <h4>{program.name}</h4>
-                    <p>{program.description}</p>
-                </div>
+                <ProgramCard key={program.id} program={program} />
             ))}
+            </div>
+            <ul className='side-bar'>
+                <li>
+                    <button className='route' onClick={handleSideBar}>Technology</button>
+                </li>
+                <li>
+                    <button className='route'onClick={handleSideBar}>Business</button>
+                </li>
+                <li>
+                    <button className='route'onClick={handleSideBar}>Health care</button>
+                </li>
+                <li>
+                    <button className='route'onClick={handleSideBar}>Trade</button>
+                </li>
+            </ul>
+            </div>
         </div>
     );
 };
