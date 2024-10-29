@@ -224,7 +224,7 @@ const PostModel = () => {
                 <div className='modal'>
                     <div className='overlay' onClick={toggleModal}></div>
                     <div className='modal-content'>
-                        <button className="close-btn" onClick={toggleModal}>x</button>
+                        <button className="close" onClick={toggleModal}>&times;</button>
                         <form className='post-form' onSubmit={handleSubmit}>
                             <h2>Create your post!</h2>
                             <label htmlFor="title">Title</label>
@@ -263,7 +263,7 @@ const PostModel = () => {
                 <div className='modal'>
                     <div className='overlay' onClick={toggleEditModal}></div>
                     <div className='modal-content'>
-                        <button className="close-btn" onClick={toggleEditModal}>x</button>
+                        <button className="close" onClick={toggleEditModal}>&times;</button>
                         <form onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
                             <h2>Edit Post</h2>
                             <label htmlFor="edit-title">Title</label>

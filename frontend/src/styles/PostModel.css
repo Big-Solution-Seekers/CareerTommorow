@@ -208,11 +208,11 @@
     display: block;
     width: fit-content;
 }
-
+/* 
 .btn-modal:hover {
     background-color: #0056b3;
-}
-
+} */
+/* 
 .modal {
     position: fixed;
     top: 0;
@@ -224,7 +224,7 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
-}
+} */
 
 .overlay {
     top: 0;
@@ -232,7 +232,7 @@
     right: 0;
     bottom: 0;
 }
-
+/* 
 .modal-content {
     background-color: white;
     border-radius: 10px;
@@ -241,7 +241,7 @@
     width: 100%;
     z-index: 100;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .post-form {
     display: flex;
@@ -307,11 +307,11 @@
     color: #666;
     font-size: 14px;
 }
-
+/* 
 .modal-content {
     position: relative;
-}
-
+} */
+/* 
 .close-btn {
     position: absolute;
     top: 0px;
@@ -321,7 +321,7 @@
     font-size: 24px;
     cursor: pointer;
     color: #333;
-}
+} */
 
 
 
@@ -421,7 +421,7 @@
     background-color: #f0f8ff; /* Light background on hover */
 }
 
-/* Adding animations to the modal */
+/* 
 .modal {
     position: fixed;
     top: 0;
@@ -433,9 +433,9 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    opacity: 0; /* Initial state for modal */
-    animation: modalFadeIn 0.3s forwards; /* Fade-in animation for modal */
-}
+    opacity: 0;
+    animation: modalFadeIn 0.3s forwards;
+}  */
 
 /* Keyframes for the modal fade-in effect */
 @keyframes modalFadeIn {
@@ -460,9 +460,54 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
 }
 
+/* 
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8rem;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1;
+  } */
 
 
 
+/* Modal styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8rem;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1;
+  }
+  
 
 @media (max-width: 768px) {
     .card {

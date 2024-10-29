@@ -54,7 +54,12 @@ export default function UserPage() {
           alt={`${profileUsername}'s profile`}
           className="profile-picture"
         />
+
+        
       </div>
+
+      <h3>Current Username: {currentUser.username}</h3>
+      <h3>Current Email: {currentUser.email}</h3>
       
       {isCurrentUserProfile && (
         <>
