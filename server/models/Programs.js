@@ -13,7 +13,7 @@ class Programs {
         this.image = image
         this.map_link = map_link
         this.requirements = requirements
-        this.program_summary
+        this.program_summary = program_summary
     }
 
     static async list() {
