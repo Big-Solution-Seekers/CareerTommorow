@@ -23,6 +23,7 @@ export default function SignUpPage() {
 
   // Default profile picture options
   const defaultProfilePictures = [
+
     dog,
     penguin,
     rabbit,
@@ -47,7 +48,7 @@ export default function SignUpPage() {
       username,
       email,
       password,
-      profile_image: selectedProfileImage,  // Include profile image
+      profile_image: selectedProfileImage,  
     });
     if (error) return setErrorText(error.message);
   
