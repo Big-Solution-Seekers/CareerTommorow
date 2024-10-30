@@ -44,6 +44,7 @@ const ProgramInfo = () => {
           <h3>Cost: {program.cost}</h3>
           <h3>Summary: {program.program_summary}</h3>
           <h3>Requirements: {program.requirements}</h3>
+
           <h3><Link to={program.url}> <button>Find out more</button></Link></h3>
         </div>
       </div>
@@ -51,4 +52,5 @@ const ProgramInfo = () => {
   );
 }
 
-export default ProgramInfo;
+
+export default ProgramInfo

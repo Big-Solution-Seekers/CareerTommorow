@@ -1,5 +1,4 @@
 
-
 .programInfoContainer {
     display: flex;
     align-items: flex-start; /* Align items at the start */
@@ -25,6 +24,7 @@
     flex: 1; /* Allow this section to take up remaining space */
   }
   
+
   
   @media (max-width: 768px) {
     .card {
