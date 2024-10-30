@@ -68,12 +68,6 @@
     transform: translateY(-3px);
 } */
 
-.add-post-container {
-    display: flex;
-    margin-top: 10px;
-    margin-left: auto; /* This pushes the container to the right */
-}
-
 
 
 .btn-modal {
@@ -155,15 +149,17 @@
 /* Selector and Error Text Styles */
 .field-selector-container {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-end; /* Align items to the start */
     padding-right: 20px;
     margin-bottom: 10px;
 }
+
 .field-selector-container label {
-    margin-right: 10px;
+    margin-bottom: 5px; /* Space between label and select */
     font-weight: bold;
 }
+
 .field-selector {
     padding: 8px;
     border-radius: 4px;
@@ -173,9 +169,11 @@
     color: #333;
     transition: border-color 0.3s;
 }
+
 .field-selector:hover {
     border-color: #888;
 }
+
 .field-selector:focus {
     outline: none;
     border-color: #5b9dd9;
@@ -282,6 +280,41 @@
     height: 50px; /* or your desired size */
     border-radius: 50%; /* Makes the image circular */
     margin-right: 10px; /* Spacing between the image and text */
+}
+
+.profile-and-name {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the image circular */
+    margin-right: 10px; /* Spacing between profile pic and username */
+}
+
+.post-user {
+    font-size: 1rem; /* Adjust font size as needed */
+    font-weight: bold;
+}
+
+/* In PostModel.css or a relevant stylesheet */
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 1.5s ease forwards;
+}
+
+@keyframes fadeInAnimation {
+    to {
+        opacity: 1;
+    }
+}
+
+.welcome-message {
+    font-size: 50px;
+    opacity: 0; /* Start with hidden opacity */
+    transition: opacity 1.5s ease; /* Smooth transition */
 }
 
 
