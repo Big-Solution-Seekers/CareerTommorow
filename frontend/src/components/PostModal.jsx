@@ -208,7 +208,7 @@ const PostModel = () => {
 // console.log(comments)
     return (
         <>
-            <button onClick={toggleModal} className="btn-modal">Add a post!</button>
+    
         <div className="field-selector-container">
             <label htmlFor="field-filter">Filter by Field: </label>
             <select id="field-filter" className="field-selector" value={selectedField} onChange={(e) => setSelectedField(e.target.value)}>
@@ -220,11 +220,15 @@ const PostModel = () => {
             </select>
         </div>
 
+        <div className="add-post-container">
+    <button onClick={toggleModal} className="btn-modal">Add a post!</button>
+</div>
+
             {modal && (
                 <div className='modal'>
                     <div className='overlay' onClick={toggleModal}></div>
                     <div className='modal-content'>
-                        <button className="close-btn" onClick={toggleModal}>x</button>
+                        <button className="close" onClick={toggleModal}>X</button>
                         <form className='post-form' onSubmit={handleSubmit}>
                             <h2>Create your post!</h2>
                             <label htmlFor="title">Title</label>
@@ -263,7 +267,7 @@ const PostModel = () => {
                 <div className='modal'>
                     <div className='overlay' onClick={toggleEditModal}></div>
                     <div className='modal-content'>
-                        <button className="close-btn" onClick={toggleEditModal}>x</button>
+                        <button className="close" onClick={toggleEditModal}>X</button>
                         <form onSubmit={(e) => { e.preventDefault(); handleUpdatePost(editPostId); }}>
                             <h2>Edit Post</h2>
                             <label htmlFor="edit-title">Title</label>
@@ -288,9 +292,14 @@ const PostModel = () => {
 <div className="posts-container">
     {filteredPosts.map((post) => (
         <div key={post.id} className="post-card">
+         {post.profile_image ? (
+                <img src={post.profile_image || currentUser.profile_image} alt={`${post.username}'s profile`} className="profile-pic" />
+            ) : (
+                <img src={currentUser.profile_image} alt={`${currentUser.username}'s profile`} className="profile-pic" />
+            )}
             <h3 className="post-title">{post.title}</h3>
             <p className="post-content">{post.content}</p>
-            <p className="post-meta">Posted by {post.username} at {timeAgo(post.created_at)}</p>
+            <p className="post-meta">Posted by {post.username || currentUser.username} {timeAgo(post.created_at)}</p>
             {currentUser.id === post.user_id && (
                 <div className="post-actions">
                     <button onClick={() => handleEditPost(post)}>Edit</button>
@@ -307,7 +316,7 @@ const PostModel = () => {
                 <div key={comment.id} className="comment">
                     <div className="comment-content-wrapper">
                         <p className="comment-content">{comment.content}</p>
-                        <p className="comment-meta">Commented by {comment.username}</p>
+                        <p className="comment-meta">Commented by {comment.username || currentUser.username}</p>
                     </div>
                     
                     {currentUser.id === comment.user_id && (

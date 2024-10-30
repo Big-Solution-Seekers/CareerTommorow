@@ -4,3 +4,9 @@
     display: block;      /* Center the image if you want */
     margin: 0 auto;     /* Center the image horizontally */
 }
+
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%; /* full width on mobile */
+    }
+}

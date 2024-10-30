@@ -44,3 +44,8 @@
     background-color: #005582; /* Darker shade on hover */
   }
   
+  @media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%; /* full width on mobile */
+    }
+}

@@ -36,23 +36,24 @@ class User {
     return rawUserData ? new User(rawUserData) : null;
   }
 
-  static async create(username, password, email) {
+  static async create(username, password, email, profile_image) {
     const passwordHash = await authUtils.hashPassword(password);
-    const query = `INSERT INTO users (username, password_hash, email)
-      VALUES (?, ?, ?) RETURNING *`;
-    const result = await knex.raw(query, [username, passwordHash, email]);
+    const query = `INSERT INTO users (username, password_hash, email, profile_image)
+      VALUES (?, ?, ?, ?) RETURNING *`;
+    const result = await knex.raw(query, [username, passwordHash, email, profile_image]);
     const rawUserData = result.rows[0];
     return new User(rawUserData);
   }
 
-  static async updateUserInfo(id, username, email) {
+  static async updateUserInfo(id, username, email, password) {
+    const passwordHash = await authUtils.hashPassword(password);
     const query = `
       UPDATE users
-      SET username = ?, email = ?
+      SET username = ?, email = ?,  password_hash = ?
       WHERE id = ?
-      RETURNING id, username, email
+      RETURNING id, username, email, password_hash
     `;
-    const result = await knex.raw(query, [username, email, id]);
+    const result = await knex.raw(query, [username, email, passwordHash, id]);
     const rawUpdatedUser = result.rows[0];
     return rawUpdatedUser ? new User(rawUpdatedUser) : null;
   }

@@ -1,103 +1,255 @@
-import '../styles/SignUp.css'
+// import '../styles/SignUp.css'
+// import { useContext, useState } from "react";
+// import { useNavigate, Navigate, Link } from "react-router-dom";
+// import CurrentUserContext from "../contexts/current-user-context";
+// import { createUser } from "../adapters/user-adapter";
+
+// export default function SignUpPage() {
+//   const navigate = useNavigate();
+//   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+//   const [errorText, setErrorText] = useState('');
+//   const [username, setUsername] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [confirmPassword, setConfirmPassword] = useState('');
+//   const [selectedProfileImage, setSelectedProfileImage] = useState(null); // State for selected profile image
+
+//   // Default profile picture options
+//   const defaultProfilePictures = [
+//     "../../images/dog.jpeg",
+//     "../../images/penguin.png",
+//     "../../images/rabbit.png",
+//     "../../images/panda.png",
+//     "../../images/frog.png",
+//     "../../images/cat.png",
+
+
+//   ];
+
+//   if (currentUser) return <Navigate to={`/users/${currentUser.id}`} />;
+
+
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
+//     setErrorText('');
+//     if (!username || !email || !password || !confirmPassword || !selectedProfileImage) {
+//       return setErrorText('Missing username, email, password, or profile image');
+//     }
+//     if (password !== confirmPassword) {
+//       return setErrorText('Passwords do not match');
+//     }
+  
+//     const [user, error] = await createUser({
+//       username,
+//       email,
+//       password,
+//       profile_image: selectedProfileImage,  // Include profile image
+//     });
+//     if (error) return setErrorText(error.message);
+  
+//     setCurrentUser(user);
+//     navigate('/');
+//   };
+  
+//   const handleChange = (event) => {
+//     const { name, value } = event.target;
+//     if (name === 'username') setUsername(value);
+//     if (name === 'email') setEmail(value);
+//     if (name === 'password') setPassword(value);
+//     if (name === 'confirm_password') setConfirmPassword(value);
+//   };
+
+//   return (
+//     <div className='sign_up'>
+//       <h1>Sign Up</h1>
+//       <form onSubmit={handleSubmit} onChange={handleChange} aria-labelledby="create-heading">
+//         <h2 id="create-heading">Create New Account</h2>
+//         <label htmlFor="username">Username</label>
+//         <input
+//           autoComplete="off"
+//           type="text"
+//           id="username"
+//           name="username"
+//           onChange={handleChange}
+//           value={username}
+//         />
+
+//         <label htmlFor="email">Email</label>
+//         <input
+//           autoComplete="off"
+//           type="email"
+//           id="email"
+//           name="email"
+//           onChange={handleChange}
+//           value={email}
+//         />
+
+//         <label htmlFor="password">Password</label>
+//         <input
+//           autoComplete="off"
+//           type="password"
+//           id="password"
+//           name="password"
+//           onChange={handleChange}
+//           value={password}
+//         />
+
+//         <label htmlFor="confirmPassword">Confirm Password</label>
+//         <input
+//           autoComplete="off"
+//           type="password"
+//           id="confirm_password"
+//           name="confirm_password"
+//           onChange={handleChange}
+//           value={confirmPassword}
+//         />
+
+//         <div className="profile-picture-selection">
+//           <h3>Select a Profile Picture:</h3>
+//           {defaultProfilePictures.map((pic, index) => (
+//             <img
+//               key={index}
+//               src={pic}
+//               alt={`Profile option ${index + 1}`}
+//               onClick={() => setSelectedProfileImage(pic)}
+//               className={`profile-option ${selectedProfileImage === pic ? "selected" : ""}`}
+//               style={{ cursor: "pointer", border: selectedProfileImage === pic ? "2px solid blue" : "none" }}
+//             />
+//           ))}
+//         </div>
+
+//         <button className="btn">Sign Up Now!</button>
+//       </form>
+//       {!!errorText && <p>{errorText}</p>}
+//       <p className='back_to_login'>Already have an account with us? <Link to="/login">Log in!</Link></p>
+//     </div>
+//   );
+// }
+
+
+import '../styles/SignUp.css';
 import { useContext, useState } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import CurrentUserContext from "../contexts/current-user-context";
 import { createUser } from "../adapters/user-adapter";
 
-// Controlling the sign up form is a good idea because we want to add (eventually)
-// more validation and provide real time feedback to the user about usernames and passwords
 export default function SignUpPage() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [errorText, setErrorText] = useState('');
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [selectedProfileImage, setSelectedProfileImage] = useState(null); // State for selected profile image
 
-  // users shouldn't be able to see the sign up page if they are already logged in.
-  // if the currentUser exists in the context, navigate the user to 
-  // the /users/:id page for that user, using the currentUser.id value
+  // Default profile picture options
+  const defaultProfilePictures = [
+    "../../images/dog.jpeg",
+    "../../images/penguin.png",
+    "../../images/rabbit.png",
+    "../../images/panda.png",
+    "../../images/frog.png",
+    "../../images/cat.png",
+  ];
+
   if (currentUser) return <Navigate to={`/users/${currentUser.id}`} />;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorText('');
-    if (!username || !email || !password || !confirmPassword) return setErrorText('Missing username, email, or password');
-    
+    if (!username || !email || !password || !confirmPassword || !selectedProfileImage) {
+      return setErrorText('Missing username, email, password, or profile image');
+    }
     if (password !== confirmPassword) {
       return setErrorText('Passwords do not match');
     }
-
-    const [user, error] = await createUser({ username, email, password});
+  
+    const [user, error] = await createUser({
+      username,
+      email,
+      password,
+      profile_image: selectedProfileImage,  // Include profile image
+    });
     if (error) return setErrorText(error.message);
-
-    console.log(event)
+  
     setCurrentUser(user);
     navigate('/');
   };
-
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === 'username') setUsername(value);
-    if (name === 'email') setEmail(value)
+    if (name === 'email') setEmail(value);
     if (name === 'password') setPassword(value);
-    if (name === 'confirm_password') setConfirmPassword(value)
+    if (name === 'confirm_password') setConfirmPassword(value);
   };
 
-  return <div className='sign_up'>
-    <h1>Sign Up</h1>
-    <form onSubmit={handleSubmit} onChange={handleChange} aria-labelledby="create-heading">
-      <h2 id="create-heading">Create New Account</h2>
-      <label htmlFor="username">Username</label>
-      <input
-        autoComplete="off"
-        type="text"
-        id="username"
-        name="username"
-        onChange={handleChange}
-        value={username}
-      />
+  return (
+    <div className='sign_up'>
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSubmit} aria-labelledby="create-heading">
+        <h2 id="create-heading">Create New Account</h2>
+        <label htmlFor="username">Username</label>
+        <input
+          autoComplete="off"
+          type="text"
+          id="username"
+          name="username"
+          onChange={handleChange}
+          value={username}
+        />
 
-      <label htmlFor="email">Email</label>
-      <input
-        autoComplete="off"
-        type="email"
-        id="email"
-        name="email"
-        onChange={handleChange}
-        value={email}
-      />
+        <label htmlFor="email">Email</label>
+        <input
+          autoComplete="off"
+          type="email"
+          id="email"
+          name="email"
+          onChange={handleChange}
+          value={email}
+        />
 
-      <label htmlFor="password">Password</label>
-      <input
-        autoComplete="off"
-        type="password"
-        id="password"
-        name="password"
-        onChange={handleChange}
-        value={password}
-      />
+        <label htmlFor="password">Password</label>
+        <input
+          autoComplete="off"
+          type="password"
+          id="password"
+          name="password"
+          onChange={handleChange}
+          value={password}
+        />
 
-      <label htmlFor="confirmPassword">Confirm Password</label>
-      <input
-        autoComplete="off"
-        type="password"
-        id="confirm_password"
-        name="confirm_password"
-        onChange={handleChange}
-        value={confirmPassword}
-      />
+        <label htmlFor="confirmPassword">Confirm Password</label>
+        <input
+          autoComplete="off"
+          type="password"
+          id="confirm_password"
+          name="confirm_password"
+          onChange={handleChange}
+          value={confirmPassword}
+        />
+    <h3>Select a Profile Picture:</h3>
 
-      {/* In reality, we'd want a LOT more validation on signup, so add more things if you have time
-        <label htmlFor="password-confirm">Password Confirm</label>
-        <input autoComplete="off" type="password" id="password-confirm" name="passwordConfirm" />
-      */}
+        <div className="profile-container">
+          <div className="profile-picture-selection">
+            {defaultProfilePictures.map((pic, index) => (
+              <img
+                key={index}
+                src={pic}
+                alt={`Profile option ${index + 1}`}
+                onClick={() => setSelectedProfileImage(pic)}
+                className={`profile-option ${selectedProfileImage === pic ? "selected" : ""}`}
+                style={{ cursor: "pointer" }}
+              />
+            ))}
+          </div>
+        </div>
 
-      <button className="btn" >Sign Up Now!</button>
-    </form>
-    {!!errorText && <p>{errorText}</p>}
-    <p className='back_to_login'>Already have an account with us? <Link to="/login">Log in!</Link></p>
-  </ div>;
+        <button className="btn">Sign Up Now!</button>
+      </form>
+      {!!errorText && <p>{errorText}</p>}
+      <p className='back_to_login'>Already have an account with us? <Link to="/login">Log in!</Link></p>
+    </div>
+  );
 }
-

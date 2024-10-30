@@ -18,34 +18,68 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 1rem;
-  background: #191970;
+  background: transparent;
 }
 
 #logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: #FFF;
+  display: flex; /* Center logo vertically if needed */
 }
 
+.logo-image {
+  width: 130px; /* Set desired width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px;
+}
 
 nav ul {
-  display: flex;
-  gap: 1rem;
+  display: flex; /* Flexbox to align items in a row */
+  font-size: large;
   padding: 0;
   margin: 0;
   list-style: none;
+  gap: 3rem; /* Space between items */
 }
 
 nav a {
-  display: block;
-  color: #FFF;
+  display: flex; /* Use flex to enable alignment */
+  align-items: center; /* Center links vertically */
+  height: 40px; /* Fixed height to align items */
+  color: #000;
+  text-decoration: none; /* Remove underline from links */
+  line-height: 40px; /* Ensures text is vertically centered */
 }
 
-/* automatically added by NavLink component */
+nav a:hover {
+  text-decoration: underline; /* Add hover effect for better UX */
+}
+
 .active {
-  color: #EEBC32;
+  color: blue;
   font-weight: bold;
   font-style: italic;
+}
+
+.profile-container {
+  display: flex; /* Use flex to align profile elements */
+  align-items: center; /* Center profile items vertically */
+}
+
+.profile-image {
+  width: 60px; /* Adjust size as needed */
+  height: 60px; /* Adjust size as needed */
+  border-radius: 50%; /* Makes it circular */
+  margin-left: 8px; /* Space between the username and image */
+  object-fit: cover; /* Ensures the image fits well */
+}
+
+@media (max-width: 768px) {
+  .card {
+      flex: 1 1 100%; /* full width on mobile */
+  }
+
+  nav ul {
+      flex-direction: column; /* Stack items vertically on mobile */
+      gap: 1rem; /* Adjust gap for vertical alignment */
+  }
 }
 
