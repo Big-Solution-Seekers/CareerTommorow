@@ -126,16 +126,28 @@ exports.seed = async (knex) => {
       program_summary: 'YM&YWHA of Washington heights & Inwood is a jewish community center that provides social services and programs in health, wealness, education, and social justice for individuals of all ages. The center features a new Workforce Development Center that provides free healthcare training programs, including Patient Care Technician (PCT) and Certified Nursing Assistant (CNA) courses.',
     },
     {
-      fields_id: careerFields[2].id, name: 'NYU Dentistry', cost: 0, url: 'https://pbs.twimg.com/profile_images/836338082186166272/jHNqYnDb_400x400.jpg',
+      fields_id: careerFields[2].id, name: 'NYU Dentistry', cost: 0, url: 'https://pbs.twimg.com/profile_images/836338082186166272/jHNqYnDb_400x400.jpg', description: 'Dental Assistant', location: 'New York City',
       image: 'https://pbs.twimg.com/profile_images/836338082186166272/jHNqYnDb_400x400.jpg',
       map_link: 'https://www.google.com/maps/place/NYU+College+of+Dentistry/@40.7378213,-73.9784058,15z/data=!4m2!3m1!1s0x0:0xedf7f1439bcc8194?sa=X&ved=1t:2428&ictx=111',
       program_summary: 'New York University is a private prestigious university that currently offers a highly selective, tuition-free Dental Assistant Certificate Program designed for motivated and underemployed individuals.',
+      requirements: 'High School degree or equivalent, Referral'
     },
 
     // -----------------------------------------------------------------
 
-    { fields_id: careerFields[3].id, name: 'New York City Small Business Services ', cost: 0, url: 'https://www.nyc.gov/site/sbs/careers/industrial-training.page', description: 'Construction Site Safety HVAC Eco-friendly Energy Installation, Stipend included ', location: 'New York', image: 'https://d5xydlzdo08s0.cloudfront.net/media/celebrities/16017/sbslogo_300x300__L.jpg' },
-    { fields_id: careerFields[3].id, name: 'Genspace ', cost: 0, url: 'https://www.genspace.org/break-into-biotech-program', description: 'Life Science Skills Training program, Stipend included', location: 'New York', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYsU4a_r0eoUX_sLhy2NpYc5zgXW2tc_0SFQ&s' },
+    {
+      fields_id: careerFields[3].id, name: 'New York City Small Business Services ', cost: 0, url: 'https://www.nyc.gov/site/sbs/careers/industrial-training.page', description: 'Construction Site Safety HVAC Eco-friendly Energy Installation, Stipend included ', location: 'New York',
+      image: 'https://d5xydlzdo08s0.cloudfront.net/media/celebrities/16017/sbslogo_300x300__L.jpg',
+      program_summary: 'New York City Small Business Services (SBS) plays a vital role in supporting the local economy by helping residents secure quality jobs and strengthening small businesses. By collaborating with partners in the industrial and construction industry, as well as the Workforce1 Industrial and Transportation Career Center, SBS offers free training programs tailored to high-demand fields such as manufacturing, construction, wholesale trade, transportation and warehousing, and automotive repair and maintenance. These initiatives aim to equip New Yorkers with the skills needed to thrive in these industries.',
+      requirements: 'Ages 18 and older, NYC resident',
+    },
+    {
+      fields_id: careerFields[3].id, name: 'Genspace ', cost: 0, url: 'https://www.genspace.org/break-into-biotech-program', description: 'Life Science Skills Training program, Stipend included', location: 'New York',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYsU4a_r0eoUX_sLhy2NpYc5zgXW2tc_0SFQ&s',
+      map_link: 'https://www.google.com/maps/place/Genspace/@40.6567687,-74.0028305,15z/data=!4m6!3m5!1s0x89c25ac1a8ddca33:0x35026f410373f569!8m2!3d40.6567687!4d-74.0028305!16s%2Fg%2F11gb3whskc?entry=ttu&g_ep=EgoyMDI0MTAyNy4wIKXMDSoASAFQAw%3D%3D',
+      program_summary: 'Genspace is a community bio lab that offers the "Break into Biotech" program, designed to provide individuals with the chance to explore and engage in the growing bioeconomy. This program features hands-on training, networking opportunities, mentorship, and career development resources, helping participants build the skills and connections needed for success in the biotechnology field.',
+      requirements: 'High School degree or equivalent, NYC resident, Authorized to work in the U.S'
+    },
     { fields_id: careerFields[3].id, name: 'YouthBuild IGNITE', cost: 0, url: 'https://www.cypresshills.org/career-education', description: 'GED Prep Construction training Healthcare Training,Stipend included ', location: 'New York', image: 'https://events.amny.com/wp-content/uploads/2024/10/3_c5f813.png?w=500' },
 
 
