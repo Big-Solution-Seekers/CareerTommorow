@@ -51,37 +51,5 @@ const ProgramInfo = () => {
   );
 }
 
-export default ProgramInfo;
 
-
-.programInfoContainer {
-  display: flex;
-  align-items: flex-start; /* Align items at the start */
-  gap: 20px; /* Space between image and details */
-}
-
-.programImageContainer {
-  display: flex;
-  flex-direction: column; /* Stack image and button vertically */
-  align-items: center; /* Center the image and button */
-}
-
-.programImage {
-  max-width: 100%; /* Ensure the image is responsive */
-  height: auto; /* Maintain aspect ratio */
-}
-
-.mapButton {
-  margin-top: 10px; /* Space between the image and button */
-}
-
-.programDetails {
-  flex: 1; /* Allow this section to take up remaining space */
-}
-
-
-@media (max-width: 768px) {
-  .card {
-      flex: 1 1 100%; /* full width on mobile */
-  }
-}
+export default ProgramInfo
