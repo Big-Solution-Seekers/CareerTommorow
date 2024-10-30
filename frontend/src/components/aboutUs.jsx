@@ -1,5 +1,8 @@
 import React from 'react';
 import '../styles/AboutUs.css';
+import Abdullah from '../images/Abdullah.jpg'
+import Rashell from '../images/Rashell.jpg'
+import Adrian from '../images/Adrian.jpg'
 
 const AboutUs = () => {
   const linkedInUrlAbdullah = "https://www.linkedin.com/in/abdullah-khan-395645260/"; // Replace with your LinkedIn URL
@@ -13,7 +16,7 @@ const AboutUs = () => {
 
       <div className="about-us-card">
         <img
-          src="../images/Abdullah.jpg" // Replace with the correct path to your image
+          src= {Abdullah} // Replace with the correct path to your image
           alt="About Us"
           className="about-us-image"
         />
@@ -34,7 +37,7 @@ const AboutUs = () => {
 
       <div className="about-us-card">
         <img
-          src="../images/Rashell.jpg" // Replace with the correct path to your image
+          src={Rashell} // Replace with the correct path to your image
           alt="About Us"
           className="about-us-image"
         />
@@ -52,7 +55,7 @@ const AboutUs = () => {
 
       <div className="about-us-card">
         <img
-          src="../images/Adrian.jpg" // Replace with the correct path to your image
+          src={Adrian} // Replace with the correct path to your image
           alt="About Us"
           className="about-us-image"
         />

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import CurrentUserContext from "../contexts/current-user-context";
+import logo from '../images/3.png'
 
 export default function SiteHeadingAndNav() {
   const { currentUser } = useContext(CurrentUserContext);
@@ -8,7 +9,7 @@ export default function SiteHeadingAndNav() {
   return (
     <header>
       <a id='logo' href='/'>
-        <img className="logo-image" src="../../images/3.png" alt="Logo" />
+        <img className="logo-image" src={logo} alt="Logo" />
       </a>
       <nav>
         <ul>

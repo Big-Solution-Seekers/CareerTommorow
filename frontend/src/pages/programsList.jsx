@@ -78,9 +78,6 @@ const ProgramsList = () => {
 
     return (
         <div className='container'>
-            <button className="back-button" onClick={handleBack}>
-                Back to Home
-            </button>
             {errorText && <p className="error-text">{errorText}</p>}
             {programs.length === 0 && !errorText && <p>Loading programs...</p>}
             {fieldDescription && category && ( // Ensure both are available before rendering
@@ -111,6 +108,9 @@ const ProgramsList = () => {
                 </li>
             </ul>
             </div>
+            <button className="back-button" onClick={handleBack}>
+                Back to Home
+            </button>
         </div>
     );
 };
