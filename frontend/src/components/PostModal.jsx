@@ -218,11 +218,12 @@ const PostModel = () => {
                  <option value="3">Healthcare</option>
                  <option value="4">Trade Training</option>
             </select>
-        </div>
 
-        <div className="add-post-container">
-    <button onClick={toggleModal} className="btn-modal">Add a post!</button>
-</div>
+            
+   
+            <button onClick={toggleModal}  style={{ margin: 0, marginTop: '20px', borderRadius: '10px' }} className="btn-modal">Ask a Question!</button>
+
+        </div>
 
             {modal && (
                 <div className='modal'>
@@ -289,14 +290,21 @@ const PostModel = () => {
                     </div>
                 </div>
             )}
+
+
 <div className="posts-container">
     {filteredPosts.map((post) => (
         <div key={post.id} className="post-card">
+
+
+            <div className="profile-and-name">
          {post.profile_image ? (
                 <img src={post.profile_image || currentUser.profile_image} alt={`${post.username}'s profile`} className="profile-pic" />
             ) : (
                 <img src={currentUser.profile_image} alt={`${currentUser.username}'s profile`} className="profile-pic" />
             )}
+            <h3 className='post-user'> {post.username || currentUser.username} </h3>
+            </div>
             <h3 className="post-title">{post.title}</h3>
             <p className="post-content">{post.content}</p>
             <p className="post-meta">Posted by {post.username || currentUser.username} {timeAgo(post.created_at)}</p>
