@@ -3,6 +3,13 @@ import { useContext, useState } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import CurrentUserContext from "../contexts/current-user-context";
 import { createUser } from "../adapters/user-adapter";
+import dog from '../images/dog.jpeg'
+import cat from '../images/cat.png'
+import penguin from '../images/penguin.png'
+import frog from '../images/frog.png'
+import panda from '../images/panda.png'
+import rabbit from '../images/rabbit.png'
+
 
 export default function SignUpPage() {
   const navigate = useNavigate();
@@ -16,12 +23,13 @@ export default function SignUpPage() {
 
   // Default profile picture options
   const defaultProfilePictures = [
-    "../images/dog.jpeg",
-    "../images/penguin.png",
-    "../images/rabbit.png",
-    "../images/panda.png",
-    "../images/frog.png",
-    "../images/cat.png",
+
+    dog,
+    penguin,
+    rabbit,
+    panda,
+    frog,
+    cat
   ];
 
   if (currentUser) return <Navigate to={`/users/${currentUser.id}`} />;
