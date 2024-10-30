@@ -27,30 +27,30 @@ const ProgramInfo = () => {
     return <div>Loading...</div>; // Loading state while fetching
   }
 
-
-  const requirements = program.requirements.split(', ')
   return (
     <>
-      <h1>{program.name}</h1>
-      <h3>Title: {program.description}</h3>
-      <h3>Cost: ${program.cost}</h3>
-      <h3>{program.program_summary}</h3>
-      {/* <h3>Requirements: {program.requirements}</h3> */}
-      <ul>
-        {requirements.map(r => (
-          <li key={r}>{r}</li>
-        ))}
-      </ul>
-      <img className="programImage" src={program.image} alt={program.name} />
-      <h3>Find Out More: <Link to={program.url}>{program.url}</Link></h3>
+      <h1 className="programTitle">{program.name}</h1>
+      <div className="programInfoContainer">
+        <div className="programImageContainer">
+          <img className="programImage" src={program.image} alt={program.name} />
+          {mapButton && (
+            <Link to={program.map_link}>
+              <button className="mapButton">Google Maps</button>
+            </Link>
+          )}
+        </div>
+        <div className="programDetails">
+          <h3>{program.description}</h3>
+          <h3>Cost: {program.cost}</h3>
+          <h3>Summary: {program.program_summary}</h3>
+          <h3>Requirements: {program.requirements}</h3>
 
-      {mapButton && (
-        <Link to={program.map_link}>
-          <button>Google Maps</button>
-        </Link>
-      )}
+          <h3><Link to={program.url}> <button>Find out more</button></Link></h3>
+        </div>
+      </div>
     </>
   );
 }
 
-export default ProgramInfo;
+
+export default ProgramInfo
