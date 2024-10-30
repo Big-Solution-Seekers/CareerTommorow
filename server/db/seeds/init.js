@@ -50,19 +50,22 @@ exports.seed = async (knex) => {
       fields_id: careerFields[0].id, name: 'Npower', cost: 0, url: 'https://www.npower.org/?gad_source=1&gclid=Cj0KCQjw05i4BhDiARIsAB_2wfCOYXde89K2vB8uYnFcJKjF1UGP81Hsq6oqN0NWbaYwNJWHR5qeDxMaAvs5EALw_wcB', description: 'Software Engineer program for women, Tech fundamentals, Cybersecurity, & Cloud computing ', location: 'New York',
       image: 'https://www.texasmutual.com/assets/images/nonprofitstories-npower.jpg',
       map_link: "https://www.google.com/maps/place/NPower+Headquarters/@40.7026365,-73.9942768,17z/data=!3m1!4b1!4m6!3m5!1s0x89c25b6b1ae92d47:0xa1550fd497ef6b2!8m2!3d40.7026366!4d-73.9894059!16s%2Fg%2F1vj603kf?entry=ttu&g_ep=EgoyMDI0MTAyMS4xIKXMDSoASAFQAw%3D%3D",
-      program_summary: "NPower is a nonprofit dedicated to creating pathways to economic freedom for women from under-resourced communities, military-connected individuals, and young adults. They aim to empower these groups with the skills and opportunities in tech. While NPower primarily focuses on cybersecurity training, they also offer courses in web development and cloud computing, enabling participants to build successful careers in technology."
+      program_summary: "NPower is a nonprofit dedicated to creating pathways to economic freedom for women from under-resourced communities, military-connected individuals, and young adults. They aim to empower these groups with the skills and opportunities in tech. While NPower primarily focuses on cybersecurity training, they also offer courses in web development and cloud computing, enabling participants to build successful careers in technology.",
+      requirements: 'Young adults 18-26 OR military-connected individuals, High school diploma or Equivalent, Legally authorized'
     },
     {
       fields_id: careerFields[0].id, name: 'LaunchCode', cost: 0, url: 'https://www.launchcode.org/education', description: 'Software Engineer, Data Analyst, Database Engineer & Salesforce ', location: 'New York',
       image: 'https://www.launchcode.org/assets/og-default-image-254a27700bce39b831cfc829e9849d300afe0e43aa6678894976d5214380afa4.jpg',
       map_link: "https://www.google.com/maps/place/LaunchCode/@38.6516256,-90.2620888,17z/data=!3m1!4b1!4m6!3m5!1s0x87d8b4d4dfb1118d:0x46ba750d4f6e9fe1!8m2!3d38.6516256!4d-90.2595139!16s%2Fg%2F11bz07y4bw?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D",
       program_summary: "LaunchCode is a free tech training and job placement program, you can take their courses and participate in apprenticeship programs at absolutely no cost—even after you land a job! Instead, they earn revenue from employers when they successfully place individuals in apprenticeships or jobs. LaunchCode offers both part-time and full-time courses across a variety of subjects, including web development (with options in Java and C#), data analysis, SQL server and database management, and Salesforce.",
+      requirements: 'Open to all applicants, Some courses prioritize women, marginalized genders, and military- connected individuals to promote inclusivity',
     },
     {
       fields_id: careerFields[0].id, name: 'Fullstack Academy ', cost: 0, url: 'https://www.fullstackacademy.com/programs/wdf-data', description: 'Data Analysis program.', location: 'New York',
       image: 'https://aplnexted.com/wp-content/uploads/2021/04/FullStack-Logo.jpeg',
       map_link: "https://www.google.com/maps/place/Fullstack+Academy/@40.6832508,-73.9951849,17z/data=!3m1!4b1!4m6!3m5!1s0x89c25a163bf6a675:0x1f79c3d76948280f!8m2!3d40.6832508!4d-73.99261!16s%2Fg%2F11bw5xqlv0?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D",
       program_summary: "Fullstack Academy is a live online tech boot camp that offers a range of programs, including part-time and full-time software engineering boot camps, an online coding boot camp, an AI and machine learning boot camp, a cybersecurity boot camp, and a data analysis boot camp. Offering affordable tuition and payment plans starting as low as $226 per month, it makes quality education accessible. One standout program is the no-cost, 18-week immersive Data Analysis Training Accelerator (DATA) boot camp, offered in partnership with NYC’s Tech Talent Pipeline, providing participants with training at no expense.",
+      requirements: 'Be 18 years of age or older, Be a current New York City resident, Be authorized to work in the United States, Be unemployed, or earn $45,000 or less if currently employed, Have no paid professional data or marketing analyst experience',
     },
     {
       fields_id: careerFields[0].id, name: 'Code Squad', cost: 0, url: 'https://www.codesquad.org/students.html', description: 'Software Engineer/Developer program.', location: 'New York',
@@ -78,13 +81,20 @@ exports.seed = async (knex) => {
       requirements: "At least 18 years of age, High School diploma or equivalent ,Authorized to work in the U.S",
     },
 
-    //-----------------------------------------------
+    //--------------------------------Buisness----------------------------
 
-    { fields_id: careerFields[1].id, name: 'Strayer University', cost: 0, url: 'https://degrees.strayer.edu/business/ ', description: 'Marketing, Management, Accounting', location: 'New York', image: 'https://example.com/image2.png' },
+    {
+      fields_id: careerFields[1].id, name: 'Grace Institute', cost: 0, url: 'https://graceinstitute.org/training-and-placement/', description: 'Project Coordinator, Executive Assistant', location: 'New York',
+      image: 'https://graceinstitute.org/wp-content/uploads/elementor/thumbs/SC102921-scaled-e1727967862565-qv0qf6prqmty9fq7mw8nb0xbeyws0ihlja6lckxlog.jpg',
+      map_link: 'https://www.google.com/maps/place/Grace+Institute/@40.7084687,-74.0148215,15z/data=!4m2!3m1!1s0x0:0x1b419263cbc8ac53?sa=X&ved=1t:2428&ictx=111',
+      program_summary: 'Grace Institute is dedicated to training and empowering women to achieve financial independence. The organization offers a hybrid, tuition-free 13-week program designed to prepare women for careers in administration. Participants engage in courses covering professional development, business communications, and office technology, equipping them with the skills needed for success in the workplace.',
+      requirements: 'Women or non-binary, Ages 18 to 64, Authorized to work in the United States',
+    },
     {
       fields_id: careerFields[1].id, name: 'Coursera ', cost: 0, url: 'https://www.coursera.org/professional-certificates/google-digital-marketing-ecommerce', description: 'Marketing,E-commerce', location: 'New York',
       image: 'https://infostride.com/wp-content/uploads/2024/06/Thumbnail_508fa1-1200x717.png',
       program_summary: "Coursera is an online platform that offers a wide range of courses designed to advance your career. Partnering with universities and organizations like Google and ADP, Coursera provides certificates that enhance your professional credentials. Among their many business-related courses are the Business Analysis Professional Certificate, Digital Marketing & E-Commerce, and so much more.",
+      requirements: 'Varies'
     },
     {
       fields_id: careerFields[1].id, name: 'Year Up United  ', cost: 0, url: 'https://www.yearup.org/job-training/banking', description: 'Banking, Business Operations, Marketing, E-commerce', location: 'New York',
@@ -93,7 +103,7 @@ exports.seed = async (knex) => {
       program_summary: "Year Up United is a transformative program that creates career pathways for young adults. Believing in the potential of this demographic, the program emphasizes the importance of providing opportunities to foster growth and development. Year Up United offers three key categories of courses: Banking & Customer Success, Business Operations, and Financial Operations.",
       requirements: "18-29 years old, High school graduate or GED,Low to moderate income, U.S.citizenship, permanent resident, DACA recipient, or employment authorization card, Live within commuting distance of a Year Up United location."
     },
-
+    // ---------------------------------Heathcare-----------------------------------------------------
     {
       fields_id: careerFields[2].id, name: 'Job Corps', cost: 0, url: 'https://info.joinjobcorps.com/trade', description: 'Medical Assistant, Medical Administrative Assistant, EMT, Nurse Assistant, Dental Assistant', location: 'New York',
       image: 'https://nmwcc.com/wp-content/uploads/2022/08/job-corps-Log-300x168.jpg',
@@ -106,24 +116,28 @@ exports.seed = async (knex) => {
       image: 'https://www.phippsny.org/wp-content/themes/required-foundation/images/logo.png',
       map_link: 'https://www.google.com/maps/place/Phipps+Neighborhoods+West+Farms+Opportunity+Center/@40.8403574,-73.8787378,19z/data=!3m1!4b1!4m6!3m5!1s0x89c2f48d152588cb:0x836b8aabfcf85c7b!8m2!3d40.8403574!4d-73.8787378!16s%2Fg%2F1tftxwy5?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D',
       program_summary: 'Phipps Houses is a non-profit organization that provides low-income individuals and families with the social services and opportunities they need to thrive. Phipps Houses provides career readiness programs such as the Career Network: Health Care, which partners with Hostos Community College and Montefiore Medical Center to help young adults secure employment in the healthcare field. ​​This 10-week program includes stipends, onsite training, job readiness workshops, CPR/First Aid certification, certification opportunities at Hostos (PCT, CMA, MMA), and job placement assistance.',
+      requirements: 'Ages 18-30, Highschool Diploma or equivalency, Pass a background check and drug test',
     },
     {
       fields_id: careerFields[2].id, name: 'Bronx eoc', cost: 0, url: 'http://www.bronxeoc.org/vocational.html#emt', description: 'Medical assitant & EMT', location: 'New York',
       image: 'https://sunyempire.edu/media/partnerships/images/Bronx-EOC-logo.jpg',
       map_link: 'https://www.google.com/maps/place/SUNY+Bronx+Educational+Opportunity+Center/@40.8405334,-73.9002001,15z/data=!4m2!3m1!1s0x0:0x9dbc6b71fe4d68a9?sa=X&ved=1t:2428&ictx=111',
       program_summary: 'The SUNY Bronx Educational Opportunity Center provides tuition-free programs. Some vocational programs they have for individuals are Patient Care Technician, Certified Nursing Assistant, Direct Support Professional, Medical Assistant, Emergency Medical Technician, and Home Health Aid.',
+      requirements: 'Live in New York State, Income eligibility, TABES Scores, Proof of legal status in the U.S',
     },
     {
       fields_id: careerFields[2].id, name: 'Selfhelp', cost: 0, url: 'https://selfhelp.net/home-care-training/', description: 'HHA & PCA', location: 'New York',
       image: 'https://media.licdn.com/dms/image/v2/C4D1BAQGWVDgrN0cWLQ/company-background_10000/company-background_10000/0/1611072059495/selfhelp_community_services_cover?e=2147483647&v=beta&t=JU4Hz4Ydq47bhHLMCMb5uqRptovx5Bjmk6NS3kcsBTw',
       map_link: 'https://www.google.com/maps/place/Selfhelp+Community+Services,+Inc./@40.7208506,-74.0921684,12.03z/data=!4m10!1m2!2m1!1sSelfhelp!3m6!1s0x89c259adab5d38ad:0xf11694f57e7ffd51!8m2!3d40.7535985!4d-73.9919802!15sCghTZWxmaGVscJIBHHNvY2lhbF9zZXJ2aWNlc19vcmdhbml6YXRpb27gAQA!16s%2Fg%2F1tfbjn3l?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D',
       program_summary: 'Selfhelp is a non-profit organization dedicated to helping seniors maintain their independence and dignity through housing, home care, and social services. To support this mission, Selfhelp offers a free Home Care Training Program available in both English and Spanish, which includes training for home health aides and personal care aides. Participants receive immediate job placement assistance upon completing the program, which lasts just one week!',
+      requirements: 'No specified requirements'
     },
     {
       fields_id: careerFields[2].id, name: 'YM & YWAH Washignton Heights & Inwood', cost: 0, url: 'https://media.licdn.com/dms/image/v2/C4E0BAQGeWtYtSUChEQ/company-logo_200_200/company-logo_200_200/0/1630610743542/ym__ywha_of_washington_heights_and_inwood_logo?e=2147483647&v=beta&t=H4a532DebPLG99NjacDKbJ5jXnyR3CeJ26saL8B8moI',
       image: 'https://media.licdn.com/dms/image/v2/C4E0BAQGeWtYtSUChEQ/company-logo_200_200/company-logo_200_200/0/1630610743542/ym__ywha_of_washington_heights_and_inwood_logo?e=2147483647&v=beta&t=H4a532DebPLG99NjacDKbJ5jXnyR3CeJ26saL8B8moI',
       map_link: 'https://www.google.com/maps/place/YM+%26+YWHA+of+Washington+Heights+and+Inwood/@40.8601279,-73.9295215,15z/data=!4m2!3m1!1s0x0:0x820d5e1f509a891?sa=X&ved=1t:2428&ictx=111',
       program_summary: 'YM&YWHA of Washington heights & Inwood is a jewish community center that provides social services and programs in health, wealness, education, and social justice for individuals of all ages. The center features a new Workforce Development Center that provides free healthcare training programs, including Patient Care Technician (PCT) and Certified Nursing Assistant (CNA) courses.',
+      requirements: 'Be 18 or older'
     },
     {
       fields_id: careerFields[2].id, name: 'NYU Dentistry', cost: 0, url: 'https://pbs.twimg.com/profile_images/836338082186166272/jHNqYnDb_400x400.jpg', description: 'Dental Assistant', location: 'New York City',
@@ -133,7 +147,7 @@ exports.seed = async (knex) => {
       requirements: 'High School degree or equivalent, Referral'
     },
 
-    // -----------------------------------------------------------------
+    // ---------------------Trade Training--------------------------------------------
 
     {
       fields_id: careerFields[3].id, name: 'New York City Small Business Services ', cost: 0, url: 'https://www.nyc.gov/site/sbs/careers/industrial-training.page', description: 'Construction Site Safety HVAC Eco-friendly Energy Installation, Stipend included ', location: 'New York',
@@ -148,93 +162,99 @@ exports.seed = async (knex) => {
       program_summary: 'Genspace is a community bio lab that offers the "Break into Biotech" program, designed to provide individuals with the chance to explore and engage in the growing bioeconomy. This program features hands-on training, networking opportunities, mentorship, and career development resources, helping participants build the skills and connections needed for success in the biotechnology field.',
       requirements: 'High School degree or equivalent, NYC resident, Authorized to work in the U.S'
     },
-    { fields_id: careerFields[3].id, name: 'YouthBuild IGNITE', cost: 0, url: 'https://www.cypresshills.org/career-education', description: 'GED Prep Construction training Healthcare Training,Stipend included ', location: 'New York', image: 'https://events.amny.com/wp-content/uploads/2024/10/3_c5f813.png?w=500' },
+    {
+      fields_id: careerFields[3].id, name: 'YouthBuild IGNITE', cost: 0, url: 'https://www.cypresshills.org/career-education', description: 'GED Prep Construction training Healthcare Training,Stipend included ', location: 'New York',
+      image: 'https://events.amny.com/wp-content/uploads/2024/10/3_c5f813.png?w=500',
+      map_link: 'https://www.google.com/maps/place/Cypress+Hills+East+New+York+Community+Center/@40.6810684,-73.8752822,15z/data=!4m2!3m1!1s0x0:0x41b4e6f1e8bdf0b6?sa=X&ved=1t:2428&ictx=111',
+      program_summary: 'YouthBuild Ignite is a vocational training program that empowers unemployed and out-of-school young adults. The program equips participants with practical job skills, helps them secure employment, and supports their pursuit of higher education through college or vocational training. One of the workshops offered by the program provides young adults with paid construction training and certification from the National Center for Construction Education and Research, providing valuable credentials for careers in the construction industry.',
+      requirements: 'Must be 18-24, Comes from a low-income background',
+    },
 
 
   ]).returning('*');
 
-// Insert posts
-const posts = await knex('posts').insert([
-  { 
-    user_id: users[0].id, 
-    fields_id: careerFields[0].id, 
-    title: 'How to get started in Technology?', 
-    content: 'I’ve been thinking about diving into the tech world. Any tips on the best programming languages to learn first?', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[1].id, 
-    fields_id: careerFields[1].id, 
-    title: 'Is Business Management a good career path?', 
-    content: 'I’m considering a degree in business management. Is it a stable field? What are the job prospects like?', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[2].id, 
-    fields_id: careerFields[2].id, 
-    title: 'Exploring Careers in Healthcare', 
-    content: 'I really want to help people. What roles in healthcare are best for someone starting out?', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[3].id, 
-    fields_id: careerFields[3].id, 
-    title: 'Getting into Trades Training', 
-    content: 'I’ve heard skilled trades are in high demand. What trade should I consider if I love working with my hands?', 
-    created_at: knex.fn.now() 
-  },
-]).returning('*');
+  // Insert posts
+  const posts = await knex('posts').insert([
+    {
+      user_id: users[0].id,
+      fields_id: careerFields[0].id,
+      title: 'How to get started in Technology?',
+      content: 'I’ve been thinking about diving into the tech world. Any tips on the best programming languages to learn first?',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[1].id,
+      fields_id: careerFields[1].id,
+      title: 'Is Business Management a good career path?',
+      content: 'I’m considering a degree in business management. Is it a stable field? What are the job prospects like?',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[2].id,
+      fields_id: careerFields[2].id,
+      title: 'Exploring Careers in Healthcare',
+      content: 'I really want to help people. What roles in healthcare are best for someone starting out?',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[3].id,
+      fields_id: careerFields[3].id,
+      title: 'Getting into Trades Training',
+      content: 'I’ve heard skilled trades are in high demand. What trade should I consider if I love working with my hands?',
+      created_at: knex.fn.now()
+    },
+  ]).returning('*');
 
-// Insert comments
-const comments = await knex('comments').insert([
-  { 
-    user_id: users[1].id, 
-    post_id: posts[0].id, 
-    content: 'Starting with HTML, CSS, and JavaScript is a great idea! Those are the building blocks of web development.', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[2].id, 
-    post_id: posts[0].id, 
-    content: 'I recommend checking out free resources like Codecademy and freeCodeCamp. They helped me a lot!', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[0].id, 
-    post_id: posts[1].id, 
-    content: 'Business management can be great! Many roles are stable, but it also depends on your area of interest. Marketing is booming right now!', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[3].id, 
-    post_id: posts[1].id, 
-    content: 'I’ve been in business for a while now. It’s definitely stable, especially if you find a niche you love!', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[0].id, 
-    post_id: posts[2].id, 
-    content: 'Consider roles like a medical assistant or a nurse. They’re very rewarding and in high demand!', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[1].id, 
-    post_id: posts[2].id, 
-    content: 'I agree! And if you’re passionate about a specific area, like pediatrics or geriatrics, those can be very fulfilling.', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[2].id, 
-    post_id: posts[3].id, 
-    content: 'I think HVAC or plumbing are great trades to get into. They offer good pay and job security.', 
-    created_at: knex.fn.now() 
-  },
-  { 
-    user_id: users[0].id, 
-    post_id: posts[3].id, 
-    content: 'Totally agree! Plus, there’s a huge need for skilled tradespeople right now.', 
-    created_at: knex.fn.now() 
-  },
-]).returning('*');
+  // Insert comments
+  const comments = await knex('comments').insert([
+    {
+      user_id: users[1].id,
+      post_id: posts[0].id,
+      content: 'Starting with HTML, CSS, and JavaScript is a great idea! Those are the building blocks of web development.',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[2].id,
+      post_id: posts[0].id,
+      content: 'I recommend checking out free resources like Codecademy and freeCodeCamp. They helped me a lot!',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[0].id,
+      post_id: posts[1].id,
+      content: 'Business management can be great! Many roles are stable, but it also depends on your area of interest. Marketing is booming right now!',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[3].id,
+      post_id: posts[1].id,
+      content: 'I’ve been in business for a while now. It’s definitely stable, especially if you find a niche you love!',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[0].id,
+      post_id: posts[2].id,
+      content: 'Consider roles like a medical assistant or a nurse. They’re very rewarding and in high demand!',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[1].id,
+      post_id: posts[2].id,
+      content: 'I agree! And if you’re passionate about a specific area, like pediatrics or geriatrics, those can be very fulfilling.',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[2].id,
+      post_id: posts[3].id,
+      content: 'I think HVAC or plumbing are great trades to get into. They offer good pay and job security.',
+      created_at: knex.fn.now()
+    },
+    {
+      user_id: users[0].id,
+      post_id: posts[3].id,
+      content: 'Totally agree! Plus, there’s a huge need for skilled tradespeople right now.',
+      created_at: knex.fn.now()
+    },
+  ]).returning('*');
 
 };
