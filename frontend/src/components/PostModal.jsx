@@ -293,7 +293,7 @@ const PostModel = () => {
     {filteredPosts.map((post) => (
         <div key={post.id} className="post-card">
          {post.profile_image ? (
-                <img src={post.profile_image} alt={`${post.username}'s profile`} className="profile-pic" />
+                <img src={post.profile_image || currentUser.profile_image} alt={`${post.username}'s profile`} className="profile-pic" />
             ) : (
                 <img src={currentUser.profile_image} alt={`${currentUser.username}'s profile`} className="profile-pic" />
             )}
