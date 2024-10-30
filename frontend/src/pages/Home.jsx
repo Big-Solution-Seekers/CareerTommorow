@@ -6,74 +6,74 @@ import ScrollReveal from 'scrollreveal';
 import { useEffect } from 'react';
 
 export default function HomePage() {
-  useEffect(() => {
-    ScrollReveal().reveal('.carousel', {
-      origin: 'bottom',
-      distance: '50px',
-      duration: 1000,
-      reset: true
-    });
+  // useEffect(() => {
+  //   ScrollReveal().reveal('.carousel', {
+  //     origin: 'bottom',
+  //     distance: '50px',
+  //     duration: 1000,
+  //     reset: true
+  //   });
 
-    ScrollReveal().reveal('.mission-section', {
-      origin: 'bottom',
-      distance: '50px',
-      duration: 1000,
-      reset: true,
-      delay: 200
-    });
+  //   ScrollReveal().reveal('.mission-section', {
+  //     origin: 'bottom',
+  //     distance: '50px',
+  //     duration: 1000,
+  //     reset: true,
+  //     delay: 200
+  //   });
 
-    ScrollReveal().reveal('.frontpage-container', {
-      origin: 'bottom',
-      distance: '50px',
-      duration: 1000,
-      reset: true,
-      delay: 400
-    });
+  //   ScrollReveal().reveal('.frontpage-container', {
+  //     origin: 'bottom',
+  //     distance: '50px',
+  //     duration: 1000,
+  //     reset: true,
+  //     delay: 400
+  //   });
 
-    ScrollReveal().reveal('.quiz-section', {
-      origin: 'bottom',
-      distance: '50px',
-      duration: 1000,
-      reset: true,
-      delay: 600
-    });
+  //   ScrollReveal().reveal('.quiz-section', {
+  //     origin: 'bottom',
+  //     distance: '50px',
+  //     duration: 1000,
+  //     reset: true,
+  //     delay: 600
+  //   });
 
-    // Add zoom effect to FieldCards
-    ScrollReveal().reveal('.field-card', {
-      origin: 'bottom',
-      distance: '50px',
-      scale: 0.85, // Start smaller
-      duration: 1000,
-      reset: true,
-      delay: 800,
-      easing: 'ease-in-out', // Optional: Smooth transition
-      opacity: 0 // Optional: Start invisible
-    });
+  //   // Add zoom effect to FieldCards
+  //   ScrollReveal().reveal('.field-card', {
+  //     origin: 'bottom',
+  //     distance: '50px',
+  //     scale: 0.85, // Start smaller
+  //     duration: 1000,
+  //     reset: true,
+  //     delay: 800,
+  //     easing: 'ease-in-out', // Optional: Smooth transition
+  //     opacity: 0 // Optional: Start invisible
+  //   });
 
-    // Change background color on scroll
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const maxHeight = document.body.scrollHeight - window.innerHeight;
-      const scrollFraction = scrollTop / maxHeight;
+  //   // Change background color on scroll
+  //   const handleScroll = () => {
+  //     const scrollTop = window.scrollY;
+  //     const maxHeight = document.body.scrollHeight - window.innerHeight;
+  //     const scrollFraction = scrollTop / maxHeight;
 
 
-      const startColor = { r: 173, g: 216, b: 230 };
-      const endColor = { r: 255, g: 255, b: 255 };
+  //     const startColor = { r: 173, g: 216, b: 230 };
+  //     const endColor = { r: 255, g: 255, b: 255 };
 
-      const r = Math.round(startColor.r + (endColor.r - startColor.r) * scrollFraction);
-      const g = Math.round(startColor.g + (endColor.g - startColor.g) * scrollFraction);
-      const b = Math.round(startColor.b + (endColor.b - startColor.b) * scrollFraction);
+  //     const r = Math.round(startColor.r + (endColor.r - startColor.r) * scrollFraction);
+  //     const g = Math.round(startColor.g + (endColor.g - startColor.g) * scrollFraction);
+  //     const b = Math.round(startColor.b + (endColor.b - startColor.b) * scrollFraction);
 
-      document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-    };
+  //     document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
-    
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  //   window.addEventListener('scroll', handleScroll);
+
+  //   // Cleanup event listener on component unmount
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
 
   return (
     <>
