@@ -27,13 +27,20 @@ const ProgramInfo = () => {
     return <div>Loading...</div>; // Loading state while fetching
   }
 
+
+  const requirements = program.requirements.split(', ')
   return (
     <>
       <h1>{program.name}</h1>
       <h3>Title: {program.description}</h3>
       <h3>Cost: ${program.cost}</h3>
       <h3>{program.program_summary}</h3>
-      <h3>Requirements: {program.requirements}</h3>
+      {/* <h3>Requirements: {program.requirements}</h3> */}
+      <ul>
+        {requirements.map(r => (
+          <li key={r}>{r}</li>
+        ))}
+      </ul>
       <img className="programImage" src={program.image} alt={program.name} />
       <h3>Find Out More: <Link to={program.url}>{program.url}</Link></h3>
 
