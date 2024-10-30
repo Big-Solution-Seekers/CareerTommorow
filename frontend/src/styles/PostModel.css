@@ -1,56 +1,96 @@
+/* Container Styles */
 .posts-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
 }
 
+/* Post Card Styles */
 .post-card {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    position: relative;
     width: 70%;
     max-width: 700px;
     margin: 0 auto;
+    transition: transform 0.3s ease;
+    display: flex;              /* Enable flexbox */
+    flex-direction: column;     /* Stack children vertically */
+}
+.post-card:hover {
+    transform: scale(1.02);
 }
 
+/* Post Content Styles */
 .post-title {
     margin: 0;
     font-size: 1.5em;
 }
-
 .post-content {
     margin: 10px 0;
 }
-
 .post-meta {
     font-size: 0.9em;
     color: #555;
 }
 
-.post-actions {
-    position: absolute; /* Positioning to the right */
-    right: 15px; /* Adjust as needed */
-    top: 15px; /* Adjust as needed */
+/* Post Content Wrapper */
+.post-content-wrapper {
+    display: flex;              /* Add a wrapper to use flex properties */
+    flex-direction: column;     /* Stack title, content, and meta vertically */
 }
 
-.btn-modal, .comments-toggle-button, .post-actions button {
+.post-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    align-self: flex-end;       
+    z-index: 1;
+}
+
+
+/* .btn, .btn-modal, .comments-toggle-button {
+    background-color: #007bff;
+    color: white;
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    margin-top: 10px;
-}
-
-.btn-modal:hover, .comments-toggle-button:hover, .post-actions button:hover {
+    transition: transform 0.2s ease, background-color 0.3s;
+} */
+/* .btn:hover, .btn-modal:hover, .comments-toggle-button:hover {
     background-color: #0056b3;
+    transform: translateY(-3px);
+} */
+
+.add-post-container {
+    display: flex;
+    margin-top: 10px;
+    margin-left: auto; /* This pushes the container to the right */
 }
 
+
+
+.btn-modal {
+    background-color: #007bff; /* Button background color */
+    color: white; /* Text color */
+    padding: 10px 15px; /* Padding */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.btn-modal:hover {
+    background-color: #0056b3; /* Darker background on hover */
+}
+
+/* Comments Section */
 .comments-section {
     margin-top: 10px;
 }
@@ -64,105 +104,55 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px; 
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: slideIn 0.5s forwards;
 }
-
 .comment {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.3s ease;
+}
+.comment:hover {
+    background-color: #f0f8ff;
 }
 .comment-content-wrapper {
-    flex-grow: 1; 
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-.commented-by {
+/* Comment Meta */
+.commented-by, .comment-meta {
     font-size: 0.9em;
     color: #555;
-    margin-bottom: 5px;
 }
 
-.comment-content {
-    margin: 0;
-}
-
-.comment-meta {
-    font-size: 0.9em;
-    color: #555;
-    margin: 5px 0 0;
-}
-
-.comments-container .comment:last-child {
-    margin-bottom: 0;
-}
-
-.delete-btn {
-    background-color: #007bff;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
+/* Comment Input Section */
 .add-comment-section {
     display: flex;
-    align-items: center; 
-    margin-top: 10px; 
-}
-
-.new-comment-input {
-    flex-grow: 1; 
-    padding: 6px; 
-    border: 1px solid #ddd; 
-    border-radius: 4px; 
-    margin-right: 10px; 
-}
-
-.new-comment-input:focus {
-    outline: none;
-    border-color: #007bff; 
-}
-
-.post-actions {
-    display: flex;
-    gap: 10px;
+    align-items: center;
     margin-top: 10px;
 }
-
-.post-actions button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.new-comment-input {
+    flex-grow: 1;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+.new-comment-input:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
-.post-actions button:hover {
-    background-color: #0056b3;
-}
-
-.btn {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
+/* Selector and Error Text Styles */
 .field-selector-container {
     display: flex;
     align-items: center;
@@ -170,12 +160,10 @@
     padding-right: 20px;
     margin-bottom: 10px;
 }
-
 .field-selector-container label {
     margin-right: 10px;
     font-weight: bold;
 }
-
 .field-selector {
     padding: 8px;
     border-radius: 4px;
@@ -183,78 +171,28 @@
     font-size: 14px;
     background-color: #f9f9f9;
     color: #333;
+    transition: border-color 0.3s;
 }
-
 .field-selector:hover {
     border-color: #888;
 }
-
 .field-selector:focus {
     outline: none;
     border-color: #5b9dd9;
     box-shadow: 0 0 5px rgba(91, 157, 217, 0.5);
 }
-
-.btn-modal {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin: 20px auto;
-    display: block;
-    width: fit-content;
-}
-/* 
-.btn-modal:hover {
-    background-color: #0056b3;
-} */
-/* 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-} */
-
-.overlay {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-/* 
-.modal-content {
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px;
-    max-width: 400px;
-    width: 100%;
-    z-index: 100;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-} */
-
-.post-form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.post-form label {
+.error-text {
+    color: red;
     margin-top: 10px;
-    font-weight: bold;
-    color: #333;
+    font-size: 14px;
 }
 
+/* Post Form and Modal */
+.post-form, .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .post-form input {
     padding: 10px;
     margin-top: 5px;
@@ -264,253 +202,103 @@
     font-size: 16px;
     width: 100%;
 }
-
-.error-text {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-.posts-list {
-    width: 75%;
-    margin: 50px auto;
-    padding: 0;
-}
-
-.post-item {
-    border: 1px solid #ccc;
-    padding: 30px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-}
-
-.post-item:hover {
-    transform: scale(1.03);
-}
-
-.post-item h3 {
-    margin-top: 0;
-    color: #333;
-    font-size: 24px;
-}
-
-.post-item p {
-    font-size: 18px;
-    color: #444;
-    margin: 15px 0;
-}
-
-.post-item small {
-    color: #666;
-    font-size: 14px;
-}
-/* 
-.modal-content {
-    position: relative;
-} */
-/* 
-.close-btn {
-    position: absolute;
-    top: 0px;
-    right: 5px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #333;
-} */
-
-
-
-
-/* Adding a fade-in effect for the posts container */
-.posts-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    opacity: 0; /* Initial state for fade-in */
-    animation: fadeIn 0.5s forwards; /* Animation for fade-in */
-}
-
-/* Keyframes for the fade-in effect */
-@keyframes fadeIn {
-    to {
-        opacity: 1; /* Final state */
-    }
-}
-
-/* Adding a subtle scale effect on post cards */
-.post-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    position: relative;
-    width: 70%;
-    max-width: 700px;
-    margin: 0 auto;
-    transition: transform 0.3s ease; /* Transition for scaling */
-}
-
-.post-card:hover {
-    transform: scale(1.02); /* Slightly scale up on hover */
-}
-
-/* Adding a bounce effect to buttons */
-.btn-modal, .comments-toggle-button, .post-actions button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    margin-top: 10px;
-    transition: transform 0.2s ease; /* Transition for button bounce */
-}
-
-.btn-modal:hover, .comments-toggle-button:hover, .post-actions button:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px); /* Bounce effect */
-}
-
-/* Adding slide-in effect for comments */
-.comments-container {
-    max-height: 150px;
-    overflow-y: auto;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    opacity: 0; /* Initial state for slide-in */
-    transform: translateY(-10px); /* Slide in from above */
-    animation: slideIn 0.5s forwards; /* Animation for slide-in */
-}
-
-/* Keyframes for the slide-in effect */
-@keyframes slideIn {
-    to {
-        opacity: 1; /* Final state */
-        transform: translateY(0); /* Final position */
-    }
-}
-
-/* Adding transition effects for comment items */
-.comment {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s ease; /* Transition for hover effect */
-}
-
-.comment:hover {
-    background-color: #f0f8ff; /* Light background on hover */
-}
-
-/* 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    animation: modalFadeIn 0.3s forwards;
-}  */
-
-/* Keyframes for the modal fade-in effect */
-@keyframes modalFadeIn {
-    to {
-        opacity: 1; /* Final state */
-    }
-}
-
-/* Adding transition effects for the post item */
-.post-item {
-    border: 1px solid #ccc;
-    padding: 30px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effects */
-}
-
-.post-item:hover {
-    transform: scale(1.02); /* Scale up on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
-}
-
-/* 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.8rem;
-    color: #333;
-    cursor: pointer;
-    font-weight: bold;
-    line-height: 1;
-  } */
-
-
-
-/* Modal styling */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
+    z-index: 1000; /* Ensure modal overlay is above all other elements */
+    opacity: 0;
+    animation: modalFadeIn 0.3s forwards;
+}
+.modal-content {
     background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-  }
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.8rem;
-    color: #333;
-    cursor: pointer;
-    font-weight: bold;
-    line-height: 1;
-  }
-  
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Ensure content inside modal stays on top of overlay */
+}
 
-@media (max-width: 768px) {
-    .card {
-        flex: 1 1 100%; /* full width on mobile */
+/* Miscellaneous Styles */
+.overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.posts-list {
+    width: 75%;
+    margin: 50px auto;
+    padding: 0;
+}
+.post-item {
+    border: 1px solid #ccc;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.post-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.post-item h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 24px;
+}
+.post-item p {
+    font-size: 18px;
+    color: #444;
+    margin: 15px 0;
+}
+.post-item small {
+    color: #666;
+    font-size: 14px;
+}
+
+.close {
+    background: none; /* Remove default background */
+    border: none; /* Remove border */
+    color: #333; /* Set text color */
+    font-size: 24px; /* Adjust font size */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    position: absolute; /* Positioning relative to the modal */
+    top: 0px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+}
+
+.profile-pic {
+    width: 50px; /* or your desired size */
+    height: 50px; /* or your desired size */
+    border-radius: 50%; /* Makes the image circular */
+    margin-right: 10px; /* Spacing between the image and text */
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes modalFadeIn {
+    to {
+        opacity: 1;
     }
 }

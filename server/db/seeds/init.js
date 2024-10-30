@@ -29,12 +29,12 @@ exports.seed = async (knex) => {
   ]).returning('*');
 
   // Create users and get their IDs
-  const user1 = await User.create('john_doe', '1234', 'john.doe@example.com', 'https://images.unsplash.com/photo-1580518324671-c2f0833a3af3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhlYWRzaG90c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
-  const user2 = await User.create('jane_doe', '4567', 'jane.doe@example.com', 'https://images.unsplash.com/photo-1580518324671-c2f0833a3af3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhlYWRzaG90c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
-  const user3 = await User.create('cool_cat', '1234', 'cool.cat@example.com', 'https://images.unsplash.com/photo-1580518324671-c2f0833a3af3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhlYWRzaG90c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
-
+  const user1 = await User.create('john_doe', '1234', 'john.doe@example.com', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP0lnWmV6d1cu3ARX1wU851-E3_iwc4uHDZA&s');
+  const user2 = await User.create('jane_doe', '4567', 'jane.doe@example.com', 'https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Dog-512.png');
+  const user3 = await User.create('cool_cat', '1234', 'cool.cat@example.com', 'https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Penguin-512.png');
+  const user4 = await User.create('silly_dawg', '1234', 'silly.dog@example.com', 'https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Dog-512.png')
   // Assuming User.create returns an object with the 'id', you can access it like this:
-  const users = [user1, user2, user3];
+  const users = [user1, user2, user3, user4];
 
   // Insert programs
   const programs = await knex('programs').insert([
@@ -113,17 +113,88 @@ exports.seed = async (knex) => {
 
   ]).returning('*');
 
-  // Insert posts
-  const posts = await knex('posts').insert([
-    { user_id: users[0].id, fields_id: careerFields[0].id, title: 'How to learn JavaScript', content: 'JavaScript is a versatile language...', created_at: knex.fn.now() },
-    { user_id: users[1].id, fields_id: careerFields[1].id, title: 'Best practices for data cleaning', content: 'Data cleaning is an essential step...', created_at: knex.fn.now() },
-  ]).returning('*');
+// Insert posts
+const posts = await knex('posts').insert([
+  { 
+    user_id: users[0].id, 
+    fields_id: careerFields[0].id, 
+    title: 'How to get started in Technology?', 
+    content: 'I’ve been thinking about diving into the tech world. Any tips on the best programming languages to learn first?', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[1].id, 
+    fields_id: careerFields[1].id, 
+    title: 'Is Business Management a good career path?', 
+    content: 'I’m considering a degree in business management. Is it a stable field? What are the job prospects like?', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[2].id, 
+    fields_id: careerFields[2].id, 
+    title: 'Exploring Careers in Healthcare', 
+    content: 'I really want to help people. What roles in healthcare are best for someone starting out?', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[3].id, 
+    fields_id: careerFields[3].id, 
+    title: 'Getting into Trades Training', 
+    content: 'I’ve heard skilled trades are in high demand. What trade should I consider if I love working with my hands?', 
+    created_at: knex.fn.now() 
+  },
+]).returning('*');
 
-  // Insert comments
-  const comments = await knex('comments').insert([
-    { user_id: users[0].id, post_id: posts[0].id, content: 'Great tips! Thanks for sharing.', created_at: knex.fn.now() },
-    { user_id: users[1].id, post_id: posts[1].id, content: 'Very helpful article.', created_at: knex.fn.now() },
-  ]).returning('*');
-
+// Insert comments
+const comments = await knex('comments').insert([
+  { 
+    user_id: users[1].id, 
+    post_id: posts[0].id, 
+    content: 'Starting with HTML, CSS, and JavaScript is a great idea! Those are the building blocks of web development.', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[2].id, 
+    post_id: posts[0].id, 
+    content: 'I recommend checking out free resources like Codecademy and freeCodeCamp. They helped me a lot!', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[0].id, 
+    post_id: posts[1].id, 
+    content: 'Business management can be great! Many roles are stable, but it also depends on your area of interest. Marketing is booming right now!', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[3].id, 
+    post_id: posts[1].id, 
+    content: 'I’ve been in business for a while now. It’s definitely stable, especially if you find a niche you love!', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[0].id, 
+    post_id: posts[2].id, 
+    content: 'Consider roles like a medical assistant or a nurse. They’re very rewarding and in high demand!', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[1].id, 
+    post_id: posts[2].id, 
+    content: 'I agree! And if you’re passionate about a specific area, like pediatrics or geriatrics, those can be very fulfilling.', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[2].id, 
+    post_id: posts[3].id, 
+    content: 'I think HVAC or plumbing are great trades to get into. They offer good pay and job security.', 
+    created_at: knex.fn.now() 
+  },
+  { 
+    user_id: users[0].id, 
+    post_id: posts[3].id, 
+    content: 'Totally agree! Plus, there’s a huge need for skilled tradespeople right now.', 
+    created_at: knex.fn.now() 
+  },
+]).returning('*');
 
 };

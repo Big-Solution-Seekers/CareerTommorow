@@ -1,7 +1,7 @@
 const knex = require('../db/knex');
 
 class Posts {
-    constructor({ id, user_id, fields_id, title, content, username, created_at}) {
+    constructor({ id, user_id, fields_id, title, content, username, created_at, profile_image}) {
         this.id = id;
         this.user_id = user_id;
         this.fields_id = fields_id;
@@ -9,14 +9,17 @@ class Posts {
         this.content = content;
         this.username = username;
         this.created_at = created_at;
+        this.profile_image = profile_image
     }
 
 
     static async list(fields_id = null) {
         let query = `
-            SELECT posts.*, users.username
+     
+            SELECT posts.*, users.username, profile_image
             FROM posts
             JOIN users ON posts.user_id = users.id
+       
         `;
         const queryParams = [];
         
