@@ -1,12 +1,92 @@
+.programInfoContainer {
+    display: flex;                  
+    justify-content: space-between; 
+    align-items: flex-start;        
+    margin: 20px;                  
+    border-radius: 10px;           /* Rounded corners */
+    padding: 20px;                 /* Padding inside the container */
+}
+
+.programImageContainer {
+    flex: 0 0 auto;                
+    margin-right: 20px;            
+    text-align: center;            /* Center the content in the image container */
+}
+
+.programDetails {
+    flex: 1;                        
+    display: flex;                 
+    flex-direction: column;        /* Stack details vertically */
+    justify-content: center;       /* Center align items */
+}
+
 .programImage {
-    width: 50rem;        /* Set the width of the image */
-    height: auto;        /* Maintain the aspect ratio */
-    display: block;      /* Center the image if you want */
-    margin: 0 auto;     /* Center the image horizontally */
+    width: 50rem;   
+    border-radius: 30px;         
+    height: auto;                  
+    display: block;                
+    margin: 0 auto;               
+    transition: transform 0.3s;   /* Smooth scaling effect */
+}
+
+.programImage:hover {
+    transform: scale(1.05);        /* Scale image on hover */
+}
+
+.mapButton {
+    display: block;                
+    margin-top: 10px;             
+    background-color: #007bff;     /* Green background for button */
+    color: white;                  
+    border: none;                 
+    border-radius: 5px;           
+    padding: 10px 15px;           
+    cursor: pointer;              
+    transition: background-color 0.3s; /* Smooth color transition */
+}
+
+.mapButton:hover {
+    background-color: #0056b3;      /* Darker green on hover */
+}
+
+h3 {
+    color: #333;                    /* Dark color for text */
+    margin-bottom: 10px;           /* Spacing between headings */
+}
+
+h1.programTitle {
+    text-align: center;             /* Center the program title */
+    margin-bottom: 20px;            /* Space below the title */
+    font-size: 2.5rem;              /* Larger font size */
+    color: #2c3e50;                 /* Darker color for better readability */
+}
+
+.programDetails ul {
+    list-style-type: disc;          /* Disc bullet points for lists */
+    padding-left: 20px;             /* Padding for list items */
+}
+
+.programDetails h3 {
+    font-size: 1.3rem;             /* Set the font size for h3 to match the paragraph size */
+    color: #333;                   /* Dark color for text */
+    margin-bottom: 10px;          /* Spacing between headings */
+}
+
+.programDetails h3:nth-of-type(2) { /* This targets the summary paragraph specifically */
+    font-size: 1.6rem;             /* Increase the font size for the summary paragraph */
+    font-weight: bold;             /* Make it bold for emphasis, optional */
 }
 
 @media (max-width: 768px) {
-    .card {
-        flex: 1 1 100%; /* full width on mobile */
+    .programInfoContainer {
+        flex-direction: column;     
+        align-items: center;        
+    }
+    .programImageContainer {
+        margin-right: 0;            
+        margin-bottom: 20px;        
+    }
+    .programDetails {
+        width: 100%;                
     }
 }

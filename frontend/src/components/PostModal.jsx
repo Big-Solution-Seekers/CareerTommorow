@@ -26,6 +26,8 @@ const PostModel = () => {
     const [selectedField, setSelectedField] = useState('all');
     const [postMakingField, setPostMakingField] = useState('');
 
+    
+
 
     const timeAgo = (timestamp) => {
         const now = new Date();
@@ -66,6 +68,36 @@ const PostModel = () => {
         }));
     };
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     if (!currentUser) {
+    //         setErrorText('You must be signed in to create a post.');
+    //         return;
+    //     }
+    //     if (createTitle.trim() && createContent.trim()) {
+    //         const fields_id = parseInt(postMakingField);
+    //         console.log("Selected fields_id:", fields_id);
+
+    //         const newPost = {
+    //             user_id: currentUser.id,
+    //             fields_id, // Save selected field ID
+    //             title: createTitle,
+    //             content: createContent,
+    //             username: currentUser.username,
+    //             profile_image: currentUser.profile_image
+    //         };
+    //         const [post, error] = await fetchHandler(baseUrl, getPostOptions(newPost));
+    //         if (post) {
+    //             setPosts((prevPosts) => [post,  ...prevPosts]);
+    //             setTitle('');
+    //             setContent('');
+    //             toggleModal(); 
+    //         } else {
+    //             setErrorText('Error creating post'); 
+    //         }
+    //     }
+    // };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!currentUser) {
@@ -74,18 +106,20 @@ const PostModel = () => {
         }
         if (createTitle.trim() && createContent.trim()) {
             const fields_id = parseInt(postMakingField);
-            console.log("Selected fields_id:", fields_id);
-
             const newPost = {
                 user_id: currentUser.id,
-                fields_id, // Save selected field ID
+                fields_id,
                 title: createTitle,
                 content: createContent,
                 username: currentUser.username,
+                profile_image: currentUser.profile_image, // Include profile_image directly
             };
+            
+            // Handle post creation
             const [post, error] = await fetchHandler(baseUrl, getPostOptions(newPost));
             if (post) {
-                setPosts((prevPosts) => [post, ...prevPosts]);
+                // Update posts with the newly created post, ensuring it has the correct profile image
+                setPosts((prevPosts) => [{ ...post, profile_image: currentUser.profile_image }, ...prevPosts]);
                 setTitle('');
                 setContent('');
                 toggleModal(); 
@@ -94,6 +128,7 @@ const PostModel = () => {
             }
         }
     };
+    
 
     const handleEditPost = (post) => {
         setEditPostId(post.id);
@@ -297,12 +332,17 @@ const PostModel = () => {
         <div key={post.id} className="post-card">
 
 
-            <div className="profile-and-name">
-         {post.profile_image ? (
+            {/* <div className="profile-and-name">
                 <img src={post.profile_image || currentUser.profile_image} alt={`${post.username}'s profile`} className="profile-pic" />
-            ) : (
-                <img src={currentUser.profile_image} alt={`${currentUser.username}'s profile`} className="profile-pic" />
-            )}
+            */}
+
+<div className="profile-and-name">
+  <img
+    key={post.profile_image} // This will force React to reload the image if the profile image URL changes
+    src={post.profile_image || currentUser.profile_image}
+    alt={`${post.username}'s profile`}
+    className="profile-pic"
+  /> 
             <h3 className='post-user'> {post.username || currentUser.username} </h3>
             </div>
             <h3 className="post-title">{post.title}</h3>

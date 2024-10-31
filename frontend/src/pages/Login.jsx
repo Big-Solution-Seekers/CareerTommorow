@@ -38,7 +38,7 @@ export default function LoginPage() {
 
       <button>Log in!</button>
     </form>
-    {!!errorText && <p>{errorText}</p>}
+    {!!errorText && <p>Incorrect Username or Password</p>}
 
   </div>
   )

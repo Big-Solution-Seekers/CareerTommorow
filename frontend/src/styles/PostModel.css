@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'); /* Importing font */
-
-
 /* Container Styles */
 .posts-container {
     display: flex;
@@ -13,67 +10,78 @@
 
 /* Post Card Styles */
 .post-card {
-    background: #ffffff; /* White background for clarity */
-    border: 1px solid #e0e0e0; /* Lighter border for subtlety */
-    border-radius: 10px; /* Slightly larger border radius for softness */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
-    padding: 20px;
-    width: 70%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 60%;
     max-width: 700px;
     margin: 0 auto;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added shadow transition */
-    display: flex;
-    flex-direction: column;
+    transition: transform 0.2s ease;
+    display: flex;              /* Enable flexbox */
+    flex-direction: column;     /* Stack children vertically */
 }
 .post-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced hover shadow */
+    transform: scale(1.05);
 }
 
 /* Post Content Styles */
 .post-title {
     margin: 0;
-    font-size: 1.75em; /* Larger title for emphasis */
-    font-weight: 600; /* Semi-bold for prominence */
-    color: #333; /* Darker color for contrast */
+    font-size: 1.5em;
 }
 .post-content {
     margin: 10px 0;
-    line-height: 1.6; /* Improved readability */
-    color: #444; /* Softer black for body text */
 }
 .post-meta {
     font-size: 0.9em;
-    color: #777; /* Lighter color for meta info */
+    color: #555;
 }
 
 /* Post Content Wrapper */
 .post-content-wrapper {
-    display: flex;
-    flex-direction: column;
+    display: flex;              /* Add a wrapper to use flex properties */
+    flex-direction: column;     /* Stack title, content, and meta vertically */
 }
 
-/* Post Actions */
 .post-actions {
     display: flex;
     gap: 10px;
     margin-top: 10px;
-    align-self: flex-end;
+    align-self: flex-end;       
+    z-index: 1;
 }
 
-/* Button Styles */
-.btn-modal {
-    background-color: #007bff; /* Primary button color */
+
+/* .btn, .btn-modal, .comments-toggle-button {
+    background-color: #007bff;
     color: white;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border: none;
-    border-radius: 5px; /* Softer corners */
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; /* Transform on hover */
+    transition: transform 0.2s ease, background-color 0.3s;
+} */
+/* .btn:hover, .btn-modal:hover, .comments-toggle-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+} */
+
+
+
+.btn-modal {
+    background-color: #007bff; /* Button background color */
+    color: white; /* Text color */
+    padding: 10px 15px; /* Padding */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Transition effect */
 }
+
 .btn-modal:hover {
-    background-color: #0056b3; /* Darker shade for hover */
-    transform: translateY(-2px); /* Lift effect */
+    background-color: #0056b3; /* Darker background on hover */
 }
 
 /* Comments Section */
@@ -83,7 +91,7 @@
 .comments-container {
     max-height: 150px;
     overflow-y: auto;
-    background: #f7f7f7; /* Light background for comments */
+    background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 10px;
@@ -96,8 +104,8 @@
     animation: slideIn 0.5s forwards;
 }
 .comment {
-    background-color: #ffffff; /* White background for comments */
-    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 4px;
     padding: 10px;
     display: flex;
@@ -106,7 +114,7 @@
     transition: background-color 0.3s ease;
 }
 .comment:hover {
-    background-color: #f0f8ff; /* Light blue highlight */
+    background-color: #f0f8ff;
 }
 .comment-content-wrapper {
     flex-grow: 1;
@@ -128,7 +136,7 @@
 }
 .new-comment-input {
     flex-grow: 1;
-    padding: 10px; /* Increased padding */
+    padding: 6px;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-right: 10px;
@@ -141,23 +149,23 @@
 /* Selector and Error Text Styles */
 .field-selector-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-end; /* Align items to the start */
     padding-right: 20px;
     margin-bottom: 10px;
 }
 
 .field-selector-container label {
-    margin-bottom: 5px;
+    margin-bottom: 5px; /* Space between label and select */
     font-weight: bold;
 }
 
 .field-selector {
-    padding: 10px; /* Increased padding for comfort */
+    padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
     font-size: 14px;
-    background-color: #f7f7f7; /* Light background */
+    background-color: #f9f9f9;
     color: #333;
     transition: border-color 0.3s;
 }
@@ -171,7 +179,6 @@
     border-color: #5b9dd9;
     box-shadow: 0 0 5px rgba(91, 157, 217, 0.5);
 }
-
 .error-text {
     color: red;
     margin-top: 10px;
@@ -203,17 +210,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 1000; /* Ensure modal overlay is above all other elements */
     opacity: 0;
     animation: modalFadeIn 0.3s forwards;
 }
 .modal-content {
     background-color: white;
     border-radius: 10px;
-    padding: 20px; /* Increased padding */
+    padding: 10px;
     max-width: 400px;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Ensure content inside modal stays on top of overlay */
 }
 
 /* Miscellaneous Styles */
@@ -229,11 +237,11 @@
     padding: 0;
 }
 .post-item {
-    border: 1px solid #e0e0e0;
-    padding: 20px;
+    border: 1px solid #ccc;
+    padding: 30px;
     margin-bottom: 20px;
     border-radius: 8px;
-    background-color: #ffffff; /* White background */
+    background-color: #f0f0f0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -257,41 +265,45 @@
 }
 
 .close {
-    background: none;
-    border: none;
-    color: #333;
-    font-size: 24px;
-    cursor: pointer;
-    position: absolute;
-    top: 10px; /* Adjusted for better visibility */
-    right: 10px; /* Adjusted for better visibility */
+    background: none; /* Remove default background */
+    border: none; /* Remove border */
+    color: #333; /* Set text color */
+    font-size: 24px; /* Adjust font size */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    position: absolute; /* Positioning relative to the modal */
+    top: 0px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
 }
-
 .profile-pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+    width: 50px; /* or your desired size */
+    height: 50px; /* or your desired size */
+    border-radius: 50%; /* Makes the image circular */
+    margin-right: 10px; /* Spacing between the image and text */
+    border-bottom: 2px solid #ddd; /* Adds a line under the profile image */
+    padding-bottom: 4px; /* Adjusts spacing between the border and the image */
 }
 
 .profile-and-name {
     display: flex;
     align-items: center;
+    border-bottom: 2px solid black; /* Add a line under the profile and username */
+    padding-bottom: 10px; /* Optional: space between text and line */
+    margin-bottom: 10px; /* Optional: space between line and the next content */
 }
 
 .profile-pic {
-    width: 40px; /* Adjusted size */
-    height: 40px; /* Adjusted size */
-    border-radius: 50%;
-    margin-right: 10px;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the image circular */
+    margin-right: 10px; /* Spacing between profile pic and username */
 }
 
 .post-user {
-    font-size: 1rem;
+    font-size: 1rem; /* Adjust font size as needed */
     font-weight: bold;
 }
 
-/* Fade-In Animations */
+/* In PostModel.css or a relevant stylesheet */
 .fade-in {
     opacity: 0;
     animation: fadeInAnimation 1.5s ease forwards;
@@ -303,57 +315,14 @@
     }
 }
 
-/* Welcome Message */
-/* .welcome-message {
-    font-size: 50px;
-    opacity: 0;
-    transition: opacity 1.5s ease;
-} */
-
 .welcome-message {
-    font-family: 'Poppins', sans-serif; /* Bold, modern font */
-    font-size: 3em; /* Extra-large for emphasis */
-    font-weight: 700;
-    color: #4a90e2;
-    background: linear-gradient(90deg, #ff8a00, #e52e71, #9d50bb, #4a90e2);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    opacity: 0;
-    animation: pulseFadeIn 2s ease forwards, pulseGlow 3s ease-in-out infinite; /* Pulse effect */
-    margin: 0 auto 30px;
-    max-width: 80%;
-    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
-    transition: transform 0.3s ease;
-}
-
-/* Hover effect */
-.welcome-message:hover {
-    transform: scale(1.05); /* Slightly increase size on hover */
-}
-
-/* Fade-in and pulsing keyframes */
-@keyframes pulseFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulseGlow {
-    0%, 100% {
-        text-shadow: 0 0 10px #ff8a00, 0 0 20px #e52e71, 0 0 30px #9d50bb, 0 0 40px #4a90e2;
-    }
-    50% {
-        text-shadow: 0 0 20px #ff8a00, 0 0 30px #e52e71, 0 0 40px #9d50bb, 0 0 50px #4a90e2;
-    }
+    font-size: 50px;
+    opacity: 0; /* Start with hidden opacity */
+    transition: opacity 1.5s ease; /* Smooth transition */
 }
 
 
+/* Animations */
 @keyframes fadeIn {
     to {
         opacity: 1;
