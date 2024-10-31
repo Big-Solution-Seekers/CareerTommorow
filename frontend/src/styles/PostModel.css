@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'); /* Importing font */
+
+
 /* Container Styles */
 .posts-container {
     display: flex;
@@ -301,13 +304,56 @@
 }
 
 /* Welcome Message */
-.welcome-message {
+/* .welcome-message {
     font-size: 50px;
     opacity: 0;
     transition: opacity 1.5s ease;
+} */
+
+.welcome-message {
+    font-family: 'Poppins', sans-serif; /* Bold, modern font */
+    font-size: 3em; /* Extra-large for emphasis */
+    font-weight: 700;
+    color: #4a90e2;
+    background: linear-gradient(90deg, #ff8a00, #e52e71, #9d50bb, #4a90e2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    opacity: 0;
+    animation: pulseFadeIn 2s ease forwards, pulseGlow 3s ease-in-out infinite; /* Pulse effect */
+    margin: 0 auto 30px;
+    max-width: 80%;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+    transition: transform 0.3s ease;
 }
 
-/* Animations */
+/* Hover effect */
+.welcome-message:hover {
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+/* Fade-in and pulsing keyframes */
+@keyframes pulseFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        text-shadow: 0 0 10px #ff8a00, 0 0 20px #e52e71, 0 0 30px #9d50bb, 0 0 40px #4a90e2;
+    }
+    50% {
+        text-shadow: 0 0 20px #ff8a00, 0 0 30px #e52e71, 0 0 40px #9d50bb, 0 0 50px #4a90e2;
+    }
+}
+
+
 @keyframes fadeIn {
     to {
         opacity: 1;
