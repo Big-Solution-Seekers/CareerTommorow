@@ -4,22 +4,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ensure it takes up the full viewport height */
+    
     text-align: center; /* Center text alignment */
 }
   
 /* Style for the quiz title */
 .quiz-title {
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 44px;
     font-weight: bold;
 }
   
 /* Center each question container */
 .quiz-question-container {
     margin-bottom: 20px;
-    width: 100%; /* Optional: You can adjust this based on your preference */
-    max-width: 600px; /* Limits the width of the question container */
+    width: 1000px;
+    height: 350px;
     border: 1px solid #ccc; /* Add border */
     border-radius: 8px; /* Optional: Add rounded corners */
     padding: 15px; /* Add padding for spacing inside the border */
@@ -38,11 +38,12 @@
     border: 1px solid #ccc;
     padding: 8px 12px;
     margin: 5px 0;
-    font-size: 14px;
+    font-size: 22px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     cursor: pointer;
     text-align: left;
-    width: 100%; /* Ensures buttons take the full width of the question container */
-    max-width: 400px; /* Restricts the maximum button width */
+    width: 800px;
+    height: 50px;
     transition: background-color 0.3s ease;
     color: black; /* Set button text color to black */
 }
@@ -76,4 +77,45 @@
     .card {
         flex: 1 1 100%; /* full width on mobile */
     }
+}
+
+.quiz-navigation-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 3px;
+}
+
+.next-button {
+    width: 80px;
+    height: 40px;
+    background-color: #007bff;
+}
+
+.back-button {
+    width: 80px;
+    height: 40px;
+    background-color: #007bff;
+}
+
+.next-button:disabled {
+    background-color: #cccccc; /* Greyed out background */
+    color: #666666; /* Dimmed text color */
+    cursor: not-allowed; /* Change cursor to indicate non-clickable */
+    opacity: 0.6; /* Lower opacity for a 'disabled' appearance */
+}
+
+.calculated {
+    padding-top: 80px;
+    font-size: 50px;
+}
+
+#submit-button {
+    height: 60px;
+    width: 400px;
+    font-size: 30px;
+}
+
+.quiz-question {
+    font-size: 25px;
 }

@@ -78,7 +78,7 @@ const ResultsModel = ({ answers, questions }) => {
                 type="submit"
                 onClick={handleSubmit}
             >
-                Submit
+                Submit!
             </button>
 
             {modal && selectedField && (
@@ -86,7 +86,7 @@ const ResultsModel = ({ answers, questions }) => {
                     <div className="result-overlay" onClick={() => setModal(false)}></div>
                     <div className="result-model-content">
                         <h1>
-                            Based on the results, we feel that pursuing a career in {selectedField.category} would be a great fit for you.
+                            Based on the results, we feel that pursuing a career in {selectedField.category} would be a great fit for you!
                         </h1>
                     <button
                         className="view-programs-button"
