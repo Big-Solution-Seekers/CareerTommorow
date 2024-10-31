@@ -41,7 +41,7 @@
   }
   
   .about-us-button:hover {
-    background-color: #005582; /* Darker shade on hover */
+    background-color: #005582;
   }
   
   @media (max-width: 768px) {
