@@ -37,7 +37,7 @@ export default function HomePage() {
         origin: 'bottom',
         distance: '50px',
         scale: 0.85,
-        duration: 1000,
+        duration: 700,
         reset: true,
         delay: 800 + index * 200, // Stagger each card by 200ms
         easing: 'ease-in-out',
