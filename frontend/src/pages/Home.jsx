@@ -197,18 +197,20 @@ export default function HomePage() {
             diverse educational programs that lead to successful careers, ensuring they have the opportunities and
             resources needed to pursue fulfilling paths that align with their financial realities.
           </p>
+          <></>
         </div>
       </div>
 
       <div className="frontpage-container">
-        <FieldCards className="field-card" />
-        <div className="quiz-section">
-          <h3>Don't know what field to choose?</h3>
-          <h4>Take this quiz!</h4>
-          <Link to="/quiz">
-            <button type="submit">Take quiz!</button>
-          </Link>
-        </div>
+        <h2>Let The Discovery Begin!</h2>
+        <FieldCards className="field-card" /> {/* Ensure FieldCards has this class */}
+      </div>
+      <div className="quiz-section">
+        <h2>Don't know what field to choose?</h2>
+        <h4>Take this quiz!</h4>
+        <Link to="/quiz">
+          <button type="submit">Take quiz!</button>
+        </Link>
       </div>
     </>
   );
