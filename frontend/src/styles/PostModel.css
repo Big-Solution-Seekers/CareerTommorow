@@ -12,18 +12,18 @@
 .post-card {
     background: #fff;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    width: 70%;
+    width: 60%;
     max-width: 700px;
     margin: 0 auto;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
     display: flex;              /* Enable flexbox */
     flex-direction: column;     /* Stack children vertically */
 }
 .post-card:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
 }
 
 /* Post Content Styles */
@@ -274,17 +274,21 @@
     top: 0px; /* Adjust as needed */
     right: 10px; /* Adjust as needed */
 }
-
 .profile-pic {
     width: 50px; /* or your desired size */
     height: 50px; /* or your desired size */
     border-radius: 50%; /* Makes the image circular */
     margin-right: 10px; /* Spacing between the image and text */
+    border-bottom: 2px solid #ddd; /* Adds a line under the profile image */
+    padding-bottom: 4px; /* Adjusts spacing between the border and the image */
 }
 
 .profile-and-name {
     display: flex;
     align-items: center;
+    border-bottom: 2px solid black; /* Add a line under the profile and username */
+    padding-bottom: 10px; /* Optional: space between text and line */
+    margin-bottom: 10px; /* Optional: space between line and the next content */
 }
 
 .profile-pic {

@@ -8,16 +8,11 @@
 .mission-section {
   display: flex;
   flex-direction: column;
-  /* Stack title and mission vertically */
   justify-content: flex-start;
-  /* Align content to the top */
   padding: 15px;
   width: 70%;
-  /* Adjust width as needed */
   align-items: center;
 }
-
-
 
 .mission {
   text-align: justify;
@@ -27,20 +22,18 @@
   width: 58%;
 }
 
+/* html{
+  scroll-behavior: smooth;
+} */
+
 .carousel {
   display: flex;
   flex-direction: column;
-  /* Stack images vertically */
   justify-content: center;
-  /* Center images vertically */
   align-items: center;
-  /* Center images horizontally */
   width: 40%;
-  /* Adjust the width as needed */
   height: 300px;
-  /* Fixed height to prevent shifting */
   overflow: hidden;
-  /* Hide overflow if necessary */
   padding: 25px;
 }
 
@@ -62,7 +55,6 @@ button {
 }
 
 h4 {
-
   text-align: center;
 }
 
@@ -78,3 +70,4 @@ h4 {
   text-align: center;
   padding: 40px
 }
+

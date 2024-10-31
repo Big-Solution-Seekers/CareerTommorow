@@ -27,6 +27,8 @@ const ProgramInfo = () => {
     return <div>Loading...</div>; // Loading state while fetching
   }
 
+  const requirements = program.requirements.split(',')
+
   return (
     <>
       <h1 className="programTitle">{program.name}</h1>
@@ -41,9 +43,13 @@ const ProgramInfo = () => {
         </div>
         <div className="programDetails">
           <h3>{program.description}</h3>
+          <h3>{program.program_summary}</h3>
           <h3>Cost: {program.cost}</h3>
-          <h3>Summary: {program.program_summary}</h3>
-          <h3>Requirements: {program.requirements}</h3>
+          
+          <h3>Requirements:<ul>
+            {requirements.map(r =>
+              <li key={r}>{r}</li>
+            )}</ul></h3>
 
           <h3><Link to={program.url}> <button>Find out more</button></Link></h3>
         </div>
