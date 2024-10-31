@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 110px;
+  padding: 40px;
 }
 
 .mission-section {
@@ -95,4 +95,3 @@ button {
   text-align: center;
   padding: 40px
 }
-

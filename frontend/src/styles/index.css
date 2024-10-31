@@ -46,6 +46,10 @@ nav ul {
   /* Space between items */
 }
 
+/* nav ul:hover {
+  background-color: beige;
+} */
+
 nav a {
   display: flex;
   /* Use flex to enable alignment */
