@@ -183,8 +183,9 @@ export default function HomePage() {
     <>
       <div className="title-div">
         <h1 style={{ fontSize: '120px', fontFamily: 'Rubik'}}>Career Tomorrow!</h1>
-        <h2 style={{ alignItems: 'center' }}>A website made for scholars</h2>
+  
       </div>
+      <h2 className="website-catch-line">A website made for scholars</h2>
 
       <div className="frontpage">
         <div className="carousel">
