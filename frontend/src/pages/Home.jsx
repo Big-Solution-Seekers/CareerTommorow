@@ -52,9 +52,9 @@ export default function HomePage() {
       const scrollFraction = Math.min(scrollTop / maxHeight, 1);
 
       const startColor = { r: 172, g: 208, b: 230 };
-      const endColor = { r: 95, g: 135, b: 161  };
+      const endColor = { r: 95, g: 135, b: 161 };
 
-     
+
 
       const r = Math.round(startColor.r + (endColor.r - startColor.r) * scrollFraction);
       const g = Math.round(startColor.g + (endColor.g - startColor.g) * scrollFraction);
@@ -74,10 +74,9 @@ export default function HomePage() {
   return (
     <>
       <div className="title-div">
-        <h1 style={{ fontSize: '120px'}}>Career Tomorrow!</h1>
-        <h2 style={{ alignItems: 'center' }}>A website made for scholars</h2>
+        <h1 style={{ fontSize: '105px', marginTop: "20px " }}>Career Tomorrow!</h1>
+        <h2 style={{ alignItems: 'center' }}>A website made for scholars like you</h2>
       </div>
-
       <div className="frontpage">
         <div className="carousel">
           <CarouselComponent />
@@ -87,7 +86,7 @@ export default function HomePage() {
           <p className="mission">
             Our mission is to empower low-income and lower-middle-class students. We aim to help students discover
             diverse educational programs that lead to successful careers, ensuring they have the opportunities and
-            resources needed to pursue fulfilling paths that align with their financial realities.
+            resources needed to pursue fulfilling paths that align with their financial realities
           </p>
           <></>
         </div>

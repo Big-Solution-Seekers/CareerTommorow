@@ -43,19 +43,19 @@ export default function SignUpPage() {
     if (password !== confirmPassword) {
       return setErrorText('Passwords do not match');
     }
-  
+
     const [user, error] = await createUser({
       username,
       email,
       password,
-      profile_image: selectedProfileImage,  
+      profile_image: selectedProfileImage,
     });
     if (error) return setErrorText(error.message);
-  
+
     setCurrentUser(user);
     navigate('/');
   };
-  
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === 'username') setUsername(value);
@@ -67,6 +67,18 @@ export default function SignUpPage() {
   return (
     <div className='sign_up'>
       <h1>Sign Up</h1>
+      <div className='box'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div >
       <form onSubmit={handleSubmit} aria-labelledby="create-heading">
         <h2 id="create-heading">Create New Account</h2>
         <label htmlFor="username">Username</label>
@@ -108,7 +120,7 @@ export default function SignUpPage() {
           onChange={handleChange}
           value={confirmPassword}
         />
-    <h3>Select a Profile Picture:</h3>
+        <h3>Select a Profile Picture:</h3>
 
         <div className="profile-container">
           <div className="profile-picture-selection">

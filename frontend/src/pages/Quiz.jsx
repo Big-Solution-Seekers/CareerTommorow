@@ -82,6 +82,19 @@ export default function Quiz() {
     <div id="quiz-container">
       <h1 className="quiz-title">Career Preference Quiz</h1>
 
+      <div className='box'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div >
+
       {!showModal ? (
         <>
           <div className="quiz-question-container">
@@ -92,9 +105,8 @@ export default function Quiz() {
               {questions[currentQuestionIndex].options.map((option, i) => (
                 <button
                   key={i}
-                  className={`quiz-option-button ${
-                    answers[currentQuestionIndex] === option[0] ? "selected" : ""
-                  }`}
+                  className={`quiz-option-button ${answers[currentQuestionIndex] === option[0] ? "selected" : ""
+                    }`}
                   onClick={() => handleAnswerChange(currentQuestionIndex, option)}
                 >
                   {`${optionLetters[i]}. ${option[0]}`}
@@ -121,8 +133,8 @@ export default function Quiz() {
           </div>
         </>
       ) : (<>
-      <h1>We've calculated the results!</h1>
-      <ResultsModel answers={answers} questions={questions} />
+        <h1>We've calculated the results!</h1>
+        <ResultsModel answers={answers} questions={questions} />
       </>
       )}
     </div>

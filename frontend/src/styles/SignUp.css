@@ -1,7 +1,7 @@
 /* Apply basic styles to the whole page */
 .sign_up {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
   margin: 0;
   padding: 0;
   display: flex;
@@ -14,7 +14,8 @@
 /* Style the main form container */
 form {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: column;
+  /* Stack items vertically */
   justify-content: center;
   align-items: center;
   background-color: white;
@@ -24,7 +25,8 @@ form {
   width: 300px;
 }
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -41,6 +43,15 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+#username,
+#email,
+#password,
+#confirm_password {
+  border-radius: 20px;
+  width: 85%;
+}
+
 
 /* Button styling */
 button {
@@ -69,7 +80,8 @@ button:hover {
 form {
   display: flex;
   flex-direction: column;
-  align-items: stretch; /* Make the inputs take full width */
+  align-items: stretch;
+  /* Make the inputs take full width */
 }
 
 /* Link style for login */
@@ -85,26 +97,117 @@ a:hover {
 /* SignUp.css */
 .profile-picture-selection {
   display: flex;
-  flex-wrap: wrap;  /* Allow wrapping to new lines */
-  justify-content: space-between;  /* Space between images */
-  max-width: 200px;  /* Set a max width for your selection area */
+  flex-wrap: wrap;
+  /* Allow wrapping to new lines */
+  justify-content: space-between;
+  /* Space between images */
+  max-width: 200px;
+  /* Set a max width for your selection area */
 }
 
 .profile-option {
-  width: 30%;  /* Set width to allow 3 images per row */
-  margin-bottom: 10px;  /* Add some space below each image */
-  cursor: pointer;  /* Pointer cursor for better UX */
-  transition: border 0.3s;  /* Add transition for border highlight */
+  width: 30%;
+  /* Set width to allow 3 images per row */
+  margin-bottom: 10px;
+  /* Add some space below each image */
+  cursor: pointer;
+  /* Pointer cursor for better UX */
+  transition: border 0.3s;
+  /* Add transition for border highlight */
 }
 
 .profile-option.selected {
-  border: 2px solid blue;  /* Highlight selected image */
+  border: 2px solid blue;
+  /* Highlight selected image */
 }
+
+.box div {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  border: 6px, solid, rgba(255, 255, 255, 0.8);
+}
+
+.box div:nth-child(1) {
+  top: 12%;
+  left: 42%;
+  animation: animate 10s linear infinite;
+}
+
+.box div:nth-child(2) {
+  top: 70%;
+  left: 50%;
+  animation: animate 7s linear infinite;
+}
+
+.box div:nth-child(3) {
+  top: 17%;
+  left: 6%;
+  animation: animate 9s linear infinite;
+}
+
+.box div:nth-child(4) {
+  top: 20%;
+  left: 60%;
+  animation: animate 10s linear infinite;
+}
+
+.box div:nth-child(5) {
+  top: 67%;
+  left: 10%;
+  animation: animate 6s linear infinite;
+}
+
+.box div:nth-child(6) {
+  top: 80%;
+  left: 70%;
+  animation: animate 12s linear infinite;
+}
+
+.box div:nth-child(7) {
+  top: 60%;
+  left: 80%;
+  animation: animate 15s linear infinite;
+}
+
+.box div:nth-child(8) {
+  top: 32%;
+  left: 25%;
+  animation: animate 16s linear infinite;
+}
+
+.box div:nth-child(9) {
+  top: 90%;
+  left: 25%;
+  animation: animate 9s linear infinite;
+}
+
+.box div:nth-child(10) {
+  top: 10%;
+  left: 80%;
+  animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(0) translate(0) rotate(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.3) translate(-90px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+
 
 /* Optional: Make the form container responsive */
 @media (max-width: 500px) {
   form {
-      width: 100%;
-      padding: 1.5rem;
+    width: 100%;
+    padding: 1.5rem;
   }
 }
