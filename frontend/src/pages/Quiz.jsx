@@ -80,6 +80,18 @@ export default function Quiz() {
 
   return (
     <div id="quiz-container">
+          <div className='box'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div >
     <h1 className="quiz-title">Career Preference Quiz</h1>
     {!showModal ? (
         <>
