@@ -44,23 +44,38 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.title {
+.title1 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 45px;
+  font-size: 105px; /* Large title size for desktop */
+  margin-top: 20px; /* Maintain margin */
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  .title1 {
+    font-size: 36px; /* Smaller title font for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .title1 {
+    font-size: 28px; /* Further reduce title size for phones */
+  }
 }
 
 button {
   display: block;
   margin: 20px auto;
 }
+
 .website-catch-line {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 24px;;
+  font-size: 24px;
   max-width: fit-content;
   white-space: nowrap;
   overflow: hidden;
   border-right: 2px solid black; /* Initial blinking cursor effect */
-  animation: typing 10s  forwards, cursor-blink 0.7s step-end forwards; /* Ends cursor blink */
+  animation: typing 10s forwards, cursor-blink 0.7s step-end forwards; /* Ends cursor blink */
   margin: 0 auto;
   text-align: center;
 }
@@ -74,8 +89,6 @@ button {
   50% { border-color: transparent; }
   100% { border-right: none; } /* Remove the cursor at the end */
 }
-
-
 
 .h4 {
   text-align: center;
@@ -91,9 +104,60 @@ button {
 
 .quiz-section {
   text-align: center;
-  padding: 40px
+  padding: 40px;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  .frontpage {
+    flex-direction: column; /* Stack elements vertically */
+    padding: 20px; /* Adjust padding */
+  }
+
+  .mission-section {
+    width: 100%; /* Full width on mobile */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .mission {
+    font-size: 18px; /* Slightly smaller font size */
+    width: 90%; /* Wider text area */
+  }
+
+  .carousel {
+    width: 100%; /* Full width carousel */
+    height: auto; /* Adjust height automatically */
+  }
+
+  .carousel img {
+    width: 100%; /* Full width images */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .website-catch-line {
+    font-size: 20px; /* Smaller catch line font */
+  }
+
+  button {
+    margin: 10px auto; /* Reduced button margin */
+  }
+
+  .quiz-section {
+    padding: 20px; /* Adjust padding for quiz section */
+  }
+}
+
+@media (max-width: 480px) {
+
+  .mission {
+    font-size: 16px; /* Further reduce mission text size */
+  }
+
+  .website-catch-line {
+    font-size: 18px; /* Further reduce catch line font */
+  }
 }
