@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 export default function HomePage() {
   useEffect(() => {
+    document.body.style.backgroundColor = 'rgb(172, 208, 230)'; // Your starting color
     // ScrollReveal animations
     ScrollReveal().reveal('.carousel', {
       origin: 'bottom',
@@ -75,8 +76,8 @@ export default function HomePage() {
     <>
       <div className="title-div">
 
-        <h1 style={{ fontSize: '120px', fontFamily: 'Rubik'}}>Career Tomorrow!</h1>
-  
+        <h1 style={{ fontSize: '105px', marginTop: "20px " }}>Career Tomorrow</h1>
+        <h2 style={{ alignItems: 'center' }}>A website made for scholars like you!</h2>
       </div>
       <h2 className="website-catch-line">A website made for scholars</h2>
       <div className="frontpage">

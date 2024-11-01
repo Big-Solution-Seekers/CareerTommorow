@@ -62,18 +62,24 @@ nav a {
   /* Remove underline from links */
   line-height: 40px;
   /* Ensures text is vertically centered */
+  border-radius: 20px;
+  font-weight: 500;
+  padding: 6px 15px;
 }
 
-nav a:hover {
-  text-decoration: underline;
-  /* Add hover effect for better UX */
-}
-
+nav a:hover,
 .active {
+  text-decoration: none;
+  /* Add hover effect for better UX */
+  background-color: #0E6BA8;
+  color: beige;
+}
+
+/* .active {
   color: blue;
   font-weight: bold;
   font-style: italic;
-}
+} */
 
 .profile-container {
   display: flex;

@@ -93,3 +93,7 @@ button {
   text-align: center;
   padding: 40px
 }
+
+html {
+  scroll-behavior: smooth;
+}
