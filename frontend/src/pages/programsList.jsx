@@ -82,8 +82,8 @@ const ProgramsList = () => {
             {programs.length === 0 && !errorText && <p>Loading programs...</p>}
             {fieldDescription && category && ( // Ensure both are available before rendering
             <>
-             <h3>{category} </h3>
-             <h4>Description of Field: {fieldDescription}</h4>
+             <h1>{category} </h1>
+             <h4 className='description'>Description of Field: {fieldDescription}</h4>
             </>
                
             )}
@@ -108,7 +108,7 @@ const ProgramsList = () => {
                 </li>
             </ul>
             </div>
-            <button className="back-button" onClick={handleBack}>
+            <button onClick={handleBack}>
                 Back to Home
             </button>
         </div>
