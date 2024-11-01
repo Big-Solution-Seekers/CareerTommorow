@@ -6,6 +6,9 @@ import ScrollReveal from 'scrollreveal';
 import { useEffect } from 'react';
 
 export default function HomePage() {
+
+
+
   useEffect(() => {
     document.body.style.backgroundColor = 'rgb(172, 208, 230)'; // Your starting color
     // ScrollReveal animations
@@ -72,8 +75,15 @@ export default function HomePage() {
     };
   }, []);
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+
   return (
     <>
+
+    
       <div className="title-div">
 
         <h1 style={{ fontSize: '105px', marginTop: "20px " }}>Career Tomorrow</h1>
