@@ -6,6 +6,9 @@ import ScrollReveal from 'scrollreveal';
 import { useEffect } from 'react';
 
 export default function HomePage() {
+
+
+
   useEffect(() => {
     // ScrollReveal animations
     ScrollReveal().reveal('.carousel', {
@@ -71,8 +74,15 @@ export default function HomePage() {
     };
   }, []);
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+
   return (
     <>
+
+    
       <div className="title-div">
 
         <h1 style={{ fontSize: '120px', fontFamily: 'Rubik'}}>Career Tomorrow!</h1>

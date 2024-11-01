@@ -4,6 +4,7 @@ import CurrentUserContext from "../contexts/current-user-context";
 import { fetchHandler, getPostOptions } from "../utils/fetchingUtils";
 import { deletePost, updatePost } from "../adapters/post-adapter";
 import { getAllComments } from "../adapters/comments-adapter";
+import cat from '../images/cat.png'
 
 const baseUrl = '/api/posts';
 const commentsUrl = '/api/comments';
@@ -339,10 +340,11 @@ const PostModel = () => {
 <div className="profile-and-name">
   <img
     key={post.profile_image} // This will force React to reload the image if the profile image URL changes
-    src={post.profile_image || currentUser.profile_image}
-    alt={`${post.username}'s profile`}
+    src={post.profile_image || currentUser.profile_image || cat}
+    alt={currentUser.profile_image}
     className="profile-pic"
   /> 
+
             <h3 className='post-user'> {post.username || currentUser.username} </h3>
             </div>
             <h3 className="post-title">{post.title}</h3>
