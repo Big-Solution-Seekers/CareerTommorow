@@ -4,34 +4,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
     text-align: center; /* Center text alignment */
 }
-  
+
 /* Style for the quiz title */
 .quiz-title {
     margin-bottom: 20px;
     font-size: 44px;
     font-weight: bold;
 }
-  
+
 /* Center each question container */
 .quiz-question-container {
     margin-bottom: 20px;
-    width: 1000px;
+    width: 1000px; /* Default width for larger screens */
     height: 350px;
     border: 1px solid #ccc; /* Add border */
     border-radius: 8px; /* Optional: Add rounded corners */
     padding: 15px; /* Add padding for spacing inside the border */
     background-color: #f9f9f9; /* Optional: Background color for better visibility */
 }
+
 /* Center the options */
 .quiz-options {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-  
+
 /* Smaller button styling */
 .quiz-option-button {
     background-color: #f0f0f0;
@@ -42,21 +42,21 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     cursor: pointer;
     text-align: left;
-    width: 800px;
+    width: 800px; /* Default width for buttons */
     height: 50px;
     transition: background-color 0.3s ease;
     color: black; /* Set button text color to black */
 }
-  
+
 .quiz-option-button:hover {
     background-color: #e0e0e0;
 }
-  
+
 .quiz-option-button.selected {
     background-color: #007bff;
     color: white; /* Optional: You can keep or change this for the selected state */
 }
-  
+
 .quiz-button {
     margin-top: 20px;
     background-color: #007bff;
@@ -68,15 +68,9 @@
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-  
+
 .quiz-button:hover {
     background-color: #0056b3;
-}
-
-@media (max-width: 768px) {
-    .card {
-        flex: 1 1 100%; /* full width on mobile */
-    }
 }
 
 .quiz-navigation-buttons {
@@ -112,10 +106,79 @@
 
 #submit-button {
     height: 60px;
-    width: 400px;
+    width: 400px; /* Default width for the submit button */
     font-size: 30px;
 }
 
 .quiz-question {
     font-size: 25px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+    .quiz-question-container {
+        width: 90%; /* Make the question container responsive on medium screens */
+    }
+
+    .quiz-option-button {
+        width: 100%; /* Make option buttons full width */
+    }
+
+    #submit-button {
+        width: 100%; /* Make the submit button full width */
+    }
+
+    .quiz-title {
+        font-size: 36px; /* Adjust title font size */
+    }
+
+    .quiz-question {
+        font-size: 22px; /* Adjust question font size */
+    }
+}
+
+@media (max-width: 768px) {
+    .quiz-title {
+        font-size: 28px; /* Further adjust title font size for small screens */
+    }
+
+    .quiz-question-container {
+        height: auto; /* Allow height to adjust for content */
+    }
+
+    .quiz-option-button {
+        font-size: 18px; /* Adjust option button font size */
+    }
+
+    .calculated {
+        font-size: 30px; /* Adjust calculated result font size */
+    }
+
+    .quiz-button {
+        font-size: 16px; /* Adjust quiz button font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-title {
+        font-size: 24px; /* Smaller title font size for very small screens */
+        margin-top: 40px;
+    }
+
+    .quiz-option-button {
+        font-size: 16px; /* Adjust option button font size further */
+    }
+
+    .quiz-question {
+        font-size: 18px; /* Smaller question font size */
+    }
+
+    #submit-button {
+        font-size: 24px; /* Adjust submit button font size */
+    }
+
+    .next-button, .back-button {
+        width: 70px; /* Adjust navigation button width */
+        height: 35px; /* Adjust navigation button height */
+    }
 }

@@ -321,7 +321,6 @@
     transition: opacity 1.5s ease; /* Smooth transition */
 }
 
-
 /* Animations */
 @keyframes fadeIn {
     to {
@@ -337,5 +336,40 @@
 @keyframes modalFadeIn {
     to {
         opacity: 1;
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .post-card {
+        width: 90%; /* Increase width on smaller screens */
+        padding: 10px; /* Adjust padding */
+    }
+    .posts-list {
+        width: 90%; /* Adjust the width of the posts list */
+    }
+    .post-item {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+    .new-comment-input {
+        margin-right: 5px; /* Reduce margin */
+    }
+    .field-selector-container {
+        padding-right: 10px; /* Reduce padding */
+    }
+}
+
+@media (max-width: 780px) {
+    .post-title {
+        font-size: 1.2em; /* Adjust font size for smaller screens */
+    }
+    .post-item h3 {
+        font-size: 20px; /* Adjust font size */
+    }
+    .post-item p {
+        font-size: 16px; /* Adjust font size */
+    }
+    .btn-modal {
+        padding: 8px 12px; /* Adjust button padding */
     }
 }

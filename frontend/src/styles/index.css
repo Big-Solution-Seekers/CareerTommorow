@@ -13,6 +13,7 @@ input {
   margin-bottom: 1rem;
 }
 
+/* Header Styles */
 header {
   display: flex;
   justify-content: space-between;
@@ -24,44 +25,36 @@ header {
 
 #logo {
   display: flex;
-  /* Center logo vertically if needed */
 }
 
 .logo-image {
   width: 200px;
-  /* Set desired width */
   height: auto;
-  /* Maintain aspect ratio */
   border-radius: 10px;
 }
 
+/* Navbar Styles */
+nav {
+  display: flex; /* Flexbox for the navigation */
+}
+
+/* Default nav style for desktop */
 nav ul {
   display: flex;
-  /* Flexbox to align items in a row */
   font-size: large;
   padding: 0;
   margin: 0;
   list-style: none;
   gap: 3rem;
-  /* Space between items */
 }
-
-/* nav ul:hover {
-  background-color: beige;
-} */
 
 nav a {
   display: flex;
-  /* Use flex to enable alignment */
   align-items: center;
-  /* Center links vertically */
   height: 40px;
-  /* Fixed height to align items */
   color: #000;
   text-decoration: none;
-  /* Remove underline from links */
   line-height: 40px;
-  /* Ensures text is vertically centered */
   border-radius: 20px;
   font-weight: 500;
   padding: 6px 15px;
@@ -70,47 +63,92 @@ nav a {
 nav a:hover,
 .active {
   text-decoration: none;
-  /* Add hover effect for better UX */
   background-color: #0E6BA8;
   color: beige;
 }
 
-/* .active {
-  color: blue;
-  font-weight: bold;
-  font-style: italic;
-} */
-
+/* Profile Container Styles */
 .profile-container {
   display: flex;
-  /* Use flex to align profile elements */
   align-items: center;
-  /* Center profile items vertically */
 }
 
 .profile-image {
   width: 60px;
-  /* Adjust size as needed */
   height: 60px;
-  /* Adjust size as needed */
   border-radius: 50%;
-  /* Makes it circular */
   margin-left: 8px;
-  /* Space between the username and image */
   object-fit: cover;
-  /* Ensures the image fits well */
 }
 
+/* Hamburger Menu Styles */
+.hamburger {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: auto; /* Align it to the right */
+}
+
+.hamburger div {
+  background-color: #000; /* Color for hamburger bars */
+  height: 4px; /* Thickness of each bar */
+  width: 30px; /* Width of each bar */
+  margin: 4px 0; /* Space between bars */
+}
+
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px; /* Hide off-screen to the right */
+  width: 250px;
+  height: 100%;
+  background-color: #fff; /* Background color for the sidebar */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Shadow on the left side */
+  transition: right 0.3s ease; /* Transition for sliding effect */
+  z-index: 1000; /* Ensure it's above other content */
+  padding: 20px;
+  display: none; /* Hide sidebar initially */
+}
+
+/* Style to show the sidebar */
+.sidebar.open {
+  right: 0; /* Slide in from the right */
+  display: block; /* Show sidebar when open */
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
-  .card {
-    flex: 1 1 100%;
-    /* full width on mobile */
+  nav {
+    display: none; /* Hide nav links on mobile */
   }
 
-  nav ul {
-    flex-direction: column;
-    /* Stack items vertically on mobile */
-    gap: 1rem;
-    /* Adjust gap for vertical alignment */
+  .hamburger {
+    display: flex; /* Show hamburger menu */
+  }
+
+  /* Sidebar links */
+  .sidebar ul {
+    padding: 0; /* Remove padding */
+    list-style: none; /* Remove bullet points */
+  }
+
+  .sidebar a {
+    display: block; /* Block display for sidebar links */
+    padding: 10px 0; /* Adjust padding for sidebar links */
+    color: #000; /* Default text color */
+    text-decoration: none; /* No underline */
+  }
+
+  .sidebar a:hover {
+    background-color: #0E6BA8; /* Hover effect */
+    color: beige; /* Hover text color */
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    display: none; /* Hide sidebar on desktop */
   }
 }

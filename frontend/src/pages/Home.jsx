@@ -86,7 +86,7 @@ export default function HomePage() {
     
       <div className="title-div">
 
-        <h1 style={{ fontSize: '105px', marginTop: "20px " }}>Career Tomorrow</h1>
+        <h1 className='title1'>Career Tomorrow</h1>
 
       </div>
       <h2 className="website-catch-line">A website made for scholars</h2>
