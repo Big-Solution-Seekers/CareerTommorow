@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 export default function HomePage() {
   useEffect(() => {
+    document.body.style.backgroundColor = 'rgb(172, 208, 230)'; // Your starting color
     // ScrollReveal animations
     ScrollReveal().reveal('.carousel', {
       origin: 'bottom',
